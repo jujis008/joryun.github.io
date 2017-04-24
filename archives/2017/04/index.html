@@ -6,12 +6,12 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="//joryun.com">
-  <title>Joryun刘家源的博客</title>
+  <title>Archives: 2017/4 | Joryun刘家源的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="大三学生，程序猿一枚。主攻后台开发...">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Joryun刘家源的博客">
-<meta property="og:url" content="//joryun.com/index.html">
+<meta property="og:url" content="//joryun.com/archives/2017/04/index.html">
 <meta property="og:site_name" content="Joryun刘家源的博客">
 <meta property="og:description" content="大三学生，程序猿一枚。主攻后台开发...">
 <meta name="twitter:card" content="summary">
@@ -158,211 +158,47 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-新手搭建调用webservice那些坑" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/24/新手搭建调用webservice那些坑/">新手搭建调用webservice那些坑</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/24/新手搭建调用webservice那些坑/" class="archive-article-date">
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/04/24/新手搭建调用webservice那些坑/" class="archive-article-date">
   	<time datetime="2017-04-24T15:52:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-24</time>
 </a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>###今天主要和大家分享搭建java版webservice，以及php调用webservice遇到的一些坑&lt;(＾－＾)&gt;简洁版教程</p>
-<p>####（博客内容大部分纯手打，纯亲测）</p>
-<p>####注：网上有很多使用Eclipse构建webservice的教程，不过配置较麻烦，而且最后可能还访问不了。因此，此博客采用MyEclipse搭建。需注意一点，MyEclipse10及以下的支持不了pattern库，因此发布的项目如果包含<strong>java.util.regex.Pattern;</strong>则无法支持，这也是博主换IDE的原因。</p>
-<blockquote>
-<p>开发环境：MyEclipse2014，JAX-WS构建（容易使用），Tomcat 7</p>
-</blockquote>
-<hr>
-<blockquote>
-<p>###何为WebService？</p>
-<p>####它是一种构建应用程序的普遍模型,可以在任何支持网络通信的操作系统中实施运行;它是一种新的web应用程序分支，是自包含、自描述、模块化的应用，可以发布、定位、通过web调用。Web Service是一个应用组件,它逻辑性的为其他应用程序提供数据与服务.各应用程序通过网络协议和规定的一些标准数据格式（Http，XML，Soap)来访问Web Service,通过Web Service内部执行得到所需结果.Web Service可以执行从简单的请求到复杂商务处理的任何功能。一旦部署以后，其他Web Service应用程序可以发现并调用它部署的服务。</p>
-</blockquote>
-<hr>
-<blockquote>
-<p>###关键的技术和规则</p>
-<p>在构建和使用Web Service时,主要用到以下几个关键的技术和规则:</p>
-<ol>
-<li>XML:描述数据的标准方法.</li>
-<li>SOAP:表示信息交换的协议.</li>
-<li>WSDL:Web服务描述语言.</li>
-<li>UDDI:通用描述、发现与集成，它是一种独立于平台的，基于XML语言的用于在互联网上描述商务的协议.</li>
-</ol>
-</blockquote>
-<p>####<strong>XML</strong></p>
-<p>可扩展的标记语言(XML)是Web service平台中表示数据的基本格式。除了易于建立和易于分析外，XML主要的优点在于它既是平台无关的，又是厂商无关的。无关性是比技术优越性更重要的：软件厂商是不会选择一个由竞争对手所发明的技术的。</p>
-<p>####<strong>SOAP</strong></p>
-<p>SOAP是web service的标准通信协议，SOAP为simple object access protocoll的缩写，简单对象访问协议. 它是一种标准化的传输消息的XML消息格式。</p>
-<p>####<strong>WSDL</strong></p>
-<p>WSDL的全称是web service Description Language,是一种基于XML格式的关于web服务的描述语言。其主要目的在于web service的提供者将自己的web服务的所有相关内容,如所提供的服务的传输方式，服务方法接口，接口参数，服务路径等，生成相应的完全文档，发布给使用者。使用者可以通过这个WSDL文档，创建相应的SOAP请求消息，通过HTTP传递给webservice提供者；web服务在完成服务请求后，将SOAP返回消息传回请求者，服务请求者再根据WSDL文档将SOAP返回消息解析成自己能够理解的内容。</p>
-<p>####<strong>UDDI</strong></p>
-<p>将web service进行UDDI注册发布,UDDI是一种创建注册表服务的规范,以便大家将自己的web service进行注册发布供使用者查找.然而当服务提供者想将自己的web service向全世界公布，以便外部找到其服务时，那么服务提供者可以将自己的web service注册到相应的UDDI商用注册网站，目前全球有IBM等4家UDDI商用注册网站。因为WSDL文件中已经给定了web service的地址URI，外部可以直接通过WSDL提供的URI进行相应的web service调用。所以UDDI并不是一个必需的web service组件，服务方完全可以不进行UDDI的注册。</p>
-<hr>
-<p>##<strong>开始搭建webservice</strong></p>
-<p>####前提：首先安装好MyEclipse2014，保证jdk环境配置好了，有tomcat服务器（没有也没关系，MyEclipse自带MyEclipse Tomcat 7，亲测好用，默认端口为8080）。</p>
-<blockquote>
-<ul>
-<li>创建发布webservice</li>
-<li>配置Tomcat </li>
-<li>部署项目并启动Tomcat服务器</li>
-<li>添加JAX-WS库</li>
-<li>测试webservice</li>
-</ul>
-</blockquote>
-<p>###<strong>创建发布webservice</strong></p>
-<p>####新建Web Service Project<br><img src="http://img.blog.csdn.net/20160526144616800" alt="新建Web Service Project"></p>
-<p>####然后填好信息并next<br><img src="http://img.blog.csdn.net/20160526144930826" alt="这里写图片描述"></p>
-<p>####然后接下来一直next，可选择生成web.xml.</p>
-<p>####这是刚新建的项目结构<br><img src="http://img.blog.csdn.net/20160526145130186" alt="这里写图片描述"></p>
-<p>####然后新建一类文件UserInfo.java<br><img src="http://img.blog.csdn.net/20160526145457078" alt="这里写图片描述"></p>
-<p>示例源码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">package com.yuan.webservice;</div><div class="line">/**</div><div class="line">* </div><div class="line">* @author Joryun</div><div class="line">*</div><div class="line">*/</div><div class="line">public class UserInfo &#123;</div><div class="line">public String GetUserInfo()&#123;</div><div class="line">return &quot;源哥&quot;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public String ParameterTest(String user, String pwd)&#123;</div><div class="line">return user+&quot;：&quot;+pwd;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>####接下来发布web service<br><img src="http://img.blog.csdn.net/20160526145727673" alt="这里写图片描述"></p>
-<p>####选择从java类创建web service<br><img src="http://img.blog.csdn.net/20160526150314214" alt="这里写图片描述"></p>
-<p>####选择访问的java class<br><img src="http://img.blog.csdn.net/20160526150649656" alt="这里写图片描述"></p>
-<p><img src="http://img.blog.csdn.net/20160526150700662" alt="这里写图片描述"></p>
-<p>####生成WSDL（WSDL以上有介绍，不懂可以回去看）<br><img src="http://img.blog.csdn.net/20160526150713032" alt="这里写图片描述"></p>
-<p>####发布后的项目结构如下<br><img src="http://img.blog.csdn.net/20160526151228211" alt="这里写图片描述"></p>
-<p>###<strong>配置Tomcat</strong></p>
-<p>####假定你需要使用自己本机Tomcat的情况下，教程如下：</p>
-<p>####Window-Preferences-MyEclipse-Servers-Tomcat<br><img src="http://img.blog.csdn.net/20160526151910516" alt="这里写图片描述"></p>
-<p><img src="http://img.blog.csdn.net/20160526152006074" alt="这里写图片描述"></p>
-<p>####配置好后Apply-OK.</p>
-<p>#### </p>
-<p>###<strong>部署项目并启动Tomcat服务器</strong></p>
-<p>####部署此项目到服务器<br><img src="http://img.blog.csdn.net/20160526152648665" alt="这里写图片描述"></p>
-<p><img src="http://img.blog.csdn.net/20160526152701654" alt="这里写图片描述"></p>
-<p><img src="http://img.blog.csdn.net/20160526152710686" alt="这里写图片描述"></p>
-<p>####选择完后Finish</p>
-<p>####接下来启动Tomcat服务器<br><img src="http://img.blog.csdn.net/20160526153044203" alt="这里写图片描述"></p>
-<p>####服务器已启动的图例<br><img src="http://img.blog.csdn.net/20160526153052937" alt="这里写图片描述"></p>
-<p>###<strong>添加JAX-WS库</strong></p>
-<p>####在项目的构建路径中添加库文件<br><img src="http://img.blog.csdn.net/20160526153640221" alt="这里写图片描述"></p>
-<p><img src="http://img.blog.csdn.net/20160526153659648" alt="这里写图片描述"></p>
-<p><img src="http://img.blog.csdn.net/20160526153815525" alt="这里写图片描述"></p>
-<p><img src="http://img.blog.csdn.net/20160526153842572" alt="这里写图片描述"></p>
-<p>###<strong>测试webservice</strong></p>
-<p>####输入URL，出现图式效果即为发布成功.</p>
-<blockquote>
-<p>URL:<a href="http://localhost:8080/WebServiceDemo/UserInfoPort?wsdl" target="_blank" rel="external">http://localhost:8080/WebServiceDemo/UserInfoPort?wsdl</a></p>
-</blockquote>
-<p><img src="http://img.blog.csdn.net/20160526154324689" alt="这里写图片描述"></p>
-<hr>
-<p>##<strong>PHP调用webservice</strong></p>
-<p>####注：博主采用CI框架测试，但不用框架也一样。并且php项目文件发布到了xampp上，直接访问本地即可查看效果。</p>
-<p>####关于php调用webservice，亲测过两种方法：</p>
-<blockquote>
-<p>####<strong>1. 引入nusoap.php，调用call()方法</strong></p>
-<p>####特别注意：以下两处圈红圈的是坑点，一开始测试的时候用的是webservice接口名的参数，即user，pwd.但实际上打印到网页上之后才发现参数是arg0和arg1。。。<br><img src="http://img.blog.csdn.net/20160526155851882" alt="这里写图片描述"></p>
-<p><img src="http://img.blog.csdn.net/20160526160147935" alt="这里写图片描述"></p>
-<p>####<strong>2. php5自带函数测试，classMap方式传值</strong>    </p>
-<p><img src="http://img.blog.csdn.net/20160526160403623" alt="这里写图片描述"></p>
-</blockquote>
-<p>####以下贴PHP实现源码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">header(&apos;Content-Type: text/html; charset=UTF-8&apos;);</div><div class="line">/**</div><div class="line">* Class Test</div><div class="line">* Joryun</div><div class="line">*</div><div class="line">* 调用webservice测试类</div><div class="line">*/</div><div class="line">class Test extends CI_Controller</div><div class="line">&#123;</div><div class="line">public function __construct()</div><div class="line">&#123;</div><div class="line">parent::__construct();</div><div class="line">&#125;</div><div class="line"></div><div class="line">public function index()</div><div class="line">&#123;</div><div class="line">/**</div><div class="line">* nusoap.php需在网上下载，并将该php文件包含进项目空间</div><div class="line">* 引入nusoap.php，调用call()方法</div><div class="line">*/</div><div class="line">//        require_once (&quot;libs/nusoap.php&quot;);</div><div class="line">//</div><div class="line">//        // Create the client instance</div><div class="line">//        $client = new nusoap_client(&apos;http://localhost:8080/WeixinDemo/UserInfoPort?wsdl&apos;, true);</div><div class="line">//        $client-&gt;soap_defencoding = &apos;utf-8&apos;;</div><div class="line">//        $client-&gt;decode_utf8 = false;</div><div class="line">//        $client-&gt;xml_encoding = &apos;utf-8&apos;;</div><div class="line">//</div><div class="line">//        $param = array(&apos;arg0&apos;=&gt;&apos;Joryun&apos;, &apos;arg1&apos;=&gt;&apos;666666&apos;);//webservice参数数组</div><div class="line">//        $result = $client-&gt;call(&apos;ParameterTest&apos;, $param);//接口和参数</div><div class="line">//        print_r($result);</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">/**</div><div class="line">* php5自带函数测试</div><div class="line">* classMap方式传值</div><div class="line">*/</div><div class="line">$client = new SoapClient(&quot;http://localhost:8080/WeixinDemo/UserInfoPort?wsdl&quot;);</div><div class="line"></div><div class="line">echo (&quot;SOAP服务器提供的开放Function:&quot;);</div><div class="line">echo &apos;&lt;pre&gt;&apos;;</div><div class="line">var_dump ( $client-&gt;__getFunctions () );//获取服务器上提供的方法</div><div class="line">echo &apos;&lt;/pre&gt;&apos;;</div><div class="line"></div><div class="line">echo &apos;&lt;br&gt;&apos;;</div><div class="line"></div><div class="line">echo (&quot;SOAP服务器提供的Type:&quot;);</div><div class="line">echo &apos;&lt;pre&gt;&apos;;</div><div class="line">var_dump ( $client-&gt;__getTypes () );//获取服务器上数据类型</div><div class="line">echo &apos;&lt;/pre&gt;&apos;;</div><div class="line"></div><div class="line">$object=new stdclass;</div><div class="line">$object-&gt;arg0=&apos;Joryun&apos;;</div><div class="line">$object-&gt;arg1=&apos;666666&apos;;</div><div class="line">$result = $client-&gt;ParameterTest($object);</div><div class="line">//$result=get_object_vars($result);   //将object转换为array</div><div class="line">var_dump($result);</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">?&gt;</div></pre></td></tr></table></figure>
-<p>####好了，今天的教程就说到这里了&lt;(￣︶￣)&gt;</p>
-<p>####当然了，之所以想分享是因为其中是有一些坑在，搞了一天多才搞定了。欢迎大家交流，有啥指导直说无妨哈哈哈哈~~</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/24/新手搭建调用webservice那些坑/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+        </div>
+    	 
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/21/hello-world/">Hello World</a>
+      <a class="archive-article-title" href="/2017/04/24/新手搭建调用webservice那些坑/">新手搭建调用webservice那些坑</a>
     </h1>
   
 
-        
-        <a href="/2017/03/21/hello-world/" class="archive-article-date">
-  	<time datetime="2017-03-21T07:35:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <div class="article-info info-on-right">
+          
+          
 
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/21/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-
-
-
-
-
-
-
   
   
+    </div></section>
+  
+
+    
 
 
           </div>
@@ -384,9 +220,9 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
+		isHome: false,
 		isPost: false,
-		isArchive: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
