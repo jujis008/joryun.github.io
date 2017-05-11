@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="Joryun's blog | java | web"><title>与Bootstrap和CI框架纠缠的三天 | 刘家源</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.1"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">与Bootstrap和CI框架纠缠的三天</h1><a id="logo" href="/.">刘家源</a><p class="description">TO BE IS TO DO</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">与Bootstrap和CI框架纠缠的三天</h1><div class="post-meta">Dec 31, 2016<span> | </span><span class="category"><a href="/categories/Coding/">Coding</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><div class="post-content"><p>如题，博主为交附个课程设计，只得用三天时间纠缠于不熟悉的领域中…</p>
+<p>一直以来，前台都是我的硬伤，否提用bootstrap框架，html5，css，js的简单整合都未必能得心应手，而对于我而言，只单单熟悉后台的业务实现，却无法设计出相映衬的前台UI，这点确实是烦恼已久。刚好，趁这次机会，稍微接触下完全不熟悉的bootstrap框架以及许久没用的CI框架，完成一次基本的整合。当然，实现的功能并不复杂，但若是想试下整合，或者想了解下ci框架处理业务的方式，便可以参考下。</p>
+<hr>
+<p>系统介绍：此次实现的是一个简单的毕业设计选题管理系统，目前是有学生和教师端，基本都是简单整合，无考虑表单重复提交问题，单点登录问题，sql注入等问题。</p>
+<p>学生端功能：</p>
+<ol>
+<li>查看个人信息</li>
+<li>查看公告</li>
+<li>查看可选题目（管理员分配教师，学生仅可查看该教师的课题）</li>
+<li>查看已选题目</li>
+<li>下载资料页面（不全）</li>
+</ol>
+<p>教师端功能：</p>
+<ol>
+<li>查看公告</li>
+<li>查看可选题目</li>
+<li>查看学生列表</li>
+<li>上传资料页面（不全）</li>
+</ol>
+<h2 id="Bootstrap框架整合进CI"><a href="#Bootstrap框架整合进CI" class="headerlink" title="Bootstrap框架整合进CI"></a>Bootstrap框架整合进CI</h2><h4 id="Bootstrap：简洁、直观、强悍的前端开发框架，让web开发更迅速、简单。"><a href="#Bootstrap：简洁、直观、强悍的前端开发框架，让web开发更迅速、简单。" class="headerlink" title="Bootstrap：简洁、直观、强悍的前端开发框架，让web开发更迅速、简单。"></a>Bootstrap：简洁、直观、强悍的前端开发框架，让web开发更迅速、简单。</h4><h4 id="CI：CodeIgniter-是一个小巧但功能强大的-PHP-框架，作为一个简单而“优雅”的工具包，它可以为开发者们建立功能完善的-Web-应用程序。"><a href="#CI：CodeIgniter-是一个小巧但功能强大的-PHP-框架，作为一个简单而“优雅”的工具包，它可以为开发者们建立功能完善的-Web-应用程序。" class="headerlink" title="CI：CodeIgniter 是一个小巧但功能强大的 PHP 框架，作为一个简单而“优雅”的工具包，它可以为开发者们建立功能完善的 Web 应用程序。"></a>CI：CodeIgniter 是一个小巧但功能强大的 PHP 框架，作为一个简单而“优雅”的工具包，它可以为开发者们建立功能完善的 Web 应用程序。</h4><p>单从快速开发来说的话，bootstrap+ci确实是很方便，毕竟都是快速开发，而且很容易上手。但由于博主擅长的是j2ee，因此也不过多解释了。严格意义上来说，这两个框架确实只是会用（当然前提是给看官方文档哈哈）.</p>
+<h3 id="官网下载ci环境包"><a href="#官网下载ci环境包" class="headerlink" title="官网下载ci环境包"></a>官网下载ci环境包</h3><p>下载下来的ci环境包内容如下：<br><img src="http://img.blog.csdn.net/20161229225623292?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<h3 id="ci框架的基本配置"><a href="#ci框架的基本配置" class="headerlink" title="ci框架的基本配置"></a>ci框架的基本配置</h3><ol>
+<li><p>解压缩安装包</p>
+</li>
+<li><p>将 CodeIgniter 文件夹及里面的文件上传到服务器，通常 index.php 文件将位于网站的根目录（ps：博主仅为了练手，因此将其部署于本地服务器，即xampp-htdocs）</p>
+</li>
+<li><p>使用文本编辑器打开 application/config/config.php 文件设置你网站的根 URL<br><img src="http://img.blog.csdn.net/20161229230748496?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+</li>
+<li><p>配置数据库参数，打开application/config/database.php<br><img src="http://img.blog.csdn.net/20161229231026060?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+</li>
+</ol>
+<h3 id="初步整合"><a href="#初步整合" class="headerlink" title="初步整合"></a>初步整合</h3><ol>
+<li><p>准备好bootstrap demo</p>
+</li>
+<li><p>将demo的html页面置于ci框架的view层<br><img src="http://img.blog.csdn.net/20161230111919590?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+</li>
+<li><p>将js，css，font等资源文件置于_static目录下<br><img src="http://img.blog.csdn.net/20161230112039179?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+</li>
+<li><p>修改下主页面css和js的link链接，完成基本的整合</p>
+</li>
+</ol>
+<h2 id="系统设计"><a href="#系统设计" class="headerlink" title="系统设计"></a>系统设计</h2><h4 id="界面UI"><a href="#界面UI" class="headerlink" title="界面UI"></a>界面UI</h4><p>首先，在view层分两文件夹，分别为student和teacher,用于存放各自相应的php文件。</p>
+<p><img src="http://img.blog.csdn.net/20161230205159288?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<h4 id="以学生端为示例"><a href="#以学生端为示例" class="headerlink" title="以学生端为示例"></a>以学生端为示例</h4><p>中间的内容显示内嵌了iframe.</p>
+<p><img src="http://img.blog.csdn.net/20161230205507743?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<h5 id="Choosable页面"><a href="#Choosable页面" class="headerlink" title="Choosable页面"></a>Choosable页面</h5><p><img src="http://img.blog.csdn.net/20161230211326565?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<p><img src="http://img.blog.csdn.net/20161230211410565?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<p>ps：选题按钮还没添加控制器.</p>
+<h5 id="Selected页面"><a href="#Selected页面" class="headerlink" title="Selected页面"></a>Selected页面</h5><p><img src="http://img.blog.csdn.net/20161230211556129?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<p>ps:留言功能还未完善.</p>
+<h5 id="Data页面"><a href="#Data页面" class="headerlink" title="Data页面"></a>Data页面</h5><p><img src="http://img.blog.csdn.net/20161230211727535?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>ps:下载文件功能还未完善.</p>
+<p>#####系统基本思路</p>
+<ol>
+<li>默认进系统的为Notice页面，即通过控制器load Notice页面.</li>
+<li>接着触发Choosable页面，而这过程先是action至该页面的控制器，然后传Choosable所需的数据，并以数组的形式返回，接着在目标页面（即Choosable页面）遍历即可</li>
+<li>其余页面的控制思路大同小异，但在form表单action的时候要注意路径问题，一般可调用ci内置的url helper函数获取服务器路径，可避免URL出错</li>
+</ol>
+<p>#####注意</p>
+<ol>
+<li>务必按照ci的编程规范编写，否则易出bug</li>
+<li>加载数据库，使用url helper以及session等功能，记得在构造函数那儿定义好，这样即可在控制器的全局使用<br><img src="http://img.blog.csdn.net/20161230211047278?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></li>
+</ol>
+<h4 id="系统源码"><a href="#系统源码" class="headerlink" title="系统源码"></a>系统源码</h4><p>详细的源码可访问博主Github：<br><a href="https://github.com/Joryun/BiShe.git" target="_blank" rel="external">https://github.com/Joryun/BiShe.git</a></p>
+<h4 id="系统总结"><a href="#系统总结" class="headerlink" title="系统总结"></a>系统总结</h4><p>博主三天捣鼓的简单整合系统，基本上完成了大致的整合以及一些基本功能，由于时间有限，后续的一些基本功能都没加上，但实现的思路都是类似的。这次为了应付课程设计也是拼了，随便捣鼓了这些原本不是很熟悉的东西，但总体来说还是挺好玩的。有兴趣加入更多模块和安全机制或功能的朋友大可以尝试下，博主仅在玩玩儿哈哈~~~</p>
+<p>新的一年将至，这个就算一个纪念吧！新的一年，博主会着重游走于Github，强化自身项目经验，做出更好的项目与大家一起交流学习，希望新的一年，程序猿们一起共勉！！</p>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.1" async></script><a data-url="http://joryun.com/2016/12/31/bootstrap-ci-demo/" data-id="cj2knkx5a0000z27ot8rskcvs" class="article-share-link">分享</a><div class="tags"><a href="/tags/bootstrap/">bootstrap</a><a href="/tags/codeigniter/">codeigniter</a><a href="/tags/php/">php</a></div><div class="post-nav"><a href="/2016/12/30/springboot-helloworld/" class="next">玩转Spring Boot之Hello World篇</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://joryun.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/">Coding</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/bootstrap/" style="font-size: 15px;">bootstrap</a> <a href="/tags/codeigniter/" style="font-size: 15px;">codeigniter</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/springboot/" style="font-size: 15px;">springboot</a> <a href="/tags/框架/" style="font-size: 15px;">框架</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/webservice/" style="font-size: 15px;">webservice</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/12/31/bootstrap-ci-demo/">与Bootstrap和CI框架纠缠的三天</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/30/springboot-helloworld/">玩转Spring Boot之Hello World篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/26/build-webservice/">新手搭建调用webservice那些坑</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2017 <a href="/." rel="nofollow">刘家源.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.1" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.1" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.1"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.1"></script></div></body></html>
