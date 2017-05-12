@@ -9,7 +9,7 @@
 (function($) {
 
   function composeRequest(options) {
-    var url = 'https://api.instagram.com/v1/users/self/?access_token=3632186935.3ade026.8ad36a8b688c43a38bdc0e4fe8580c94';
+    var url = 'https://api.instagram.com/v1';
     var data = {};
 
     if (options.accessToken == null && options.clientId == null) {
@@ -70,8 +70,8 @@
   };
 
   $.fn.instagram.defaults = {
-    accessToken: null,
-    clientId: null,
+    accessToken: '3632186935.3ade026.8ad36a8b688c43a38bdc0e4fe8580c94',
+    clientId: '3ade0267f8cc474fa53686aa6f7a8db5',
     count: null,
     url: null,
     hash: null,
