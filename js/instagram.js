@@ -70,8 +70,8 @@
   };
 
   $.fn.instagram.defaults = {
-    accessToken: '3632186935.3ade026.8ad36a8b688c43a38bdc0e4fe8580c94',
-    clientId: '3ade0267f8cc474fa53686aa6f7a8db5',
+    accessToken: null,
+    clientId: null,
     count: null,
     url: null,
     hash: null,
