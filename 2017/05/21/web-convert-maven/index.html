@@ -91,24 +91,30 @@
 
 
 <meta name="description" content="前言
-网上有许多普通web项目转换为maven项目的博文，但由于项目的不同，所需的步骤及必须的转换步骤也不同。因此，本文章将以一个基于SpringMVC，Spring，Hibernate的商城项目为例，详述转换过程。">
+网上有许多普通web项目转换为maven项目的博文，但由于项目的不同，所需的步骤及必须的转换步骤也不同。因此，本文章将以一个基于SpringMVC，Spring，Hibernate的商城项目为例，详述转换过程。项目介绍
+开发环境：IDEA，MySQL项目构建：暂无（已通过本文章成功转换为maven）软件环境：SpringMVC，Spring，Hibernate项目描述：商城系统目的
+将普通D">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java奇技淫巧之普通web项目转换为Maven项目">
 <meta property="og:url" content="http://joryun.com/2017/05/21/web-convert-maven/index.html">
 <meta property="og:site_name" content="刘家源">
 <meta property="og:description" content="前言
-网上有许多普通web项目转换为maven项目的博文，但由于项目的不同，所需的步骤及必须的转换步骤也不同。因此，本文章将以一个基于SpringMVC，Spring，Hibernate的商城项目为例，详述转换过程。">
+网上有许多普通web项目转换为maven项目的博文，但由于项目的不同，所需的步骤及必须的转换步骤也不同。因此，本文章将以一个基于SpringMVC，Spring，Hibernate的商城项目为例，详述转换过程。项目介绍
+开发环境：IDEA，MySQL项目构建：暂无（已通过本文章成功转换为maven）软件环境：SpringMVC，Spring，Hibernate项目描述：商城系统目的
+将普通D">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2929536-9c0437043624d7e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2929536-a2d6d000abfcd82c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2929536-108599e17672f33a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2929536-8080ae209ae8b181.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2929536-0e6a86553e02ce73.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2929536-7c1f90494c85e0a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-05-25T15:56:57.000Z">
+<meta property="og:updated_time" content="2017-05-25T15:58:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java奇技淫巧之普通web项目转换为Maven项目">
 <meta name="twitter:description" content="前言
-网上有许多普通web项目转换为maven项目的博文，但由于项目的不同，所需的步骤及必须的转换步骤也不同。因此，本文章将以一个基于SpringMVC，Spring，Hibernate的商城项目为例，详述转换过程。">
+网上有许多普通web项目转换为maven项目的博文，但由于项目的不同，所需的步骤及必须的转换步骤也不同。因此，本文章将以一个基于SpringMVC，Spring，Hibernate的商城项目为例，详述转换过程。项目介绍
+开发环境：IDEA，MySQL项目构建：暂无（已通过本文章成功转换为maven）软件环境：SpringMVC，Spring，Hibernate项目描述：商城系统目的
+将普通D">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2929536-9c0437043624d7e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -392,10 +398,10 @@
 
       
         <p>前言</p>
-<h5 id="网上有许多普通web项目转换为maven项目的博文，但由于项目的不同，所需的步骤及必须的转换步骤也不同。因此，本文章将以一个基于SpringMVC，Spring，Hibernate的商城项目为例，详述转换过程。"><a href="#网上有许多普通web项目转换为maven项目的博文，但由于项目的不同，所需的步骤及必须的转换步骤也不同。因此，本文章将以一个基于SpringMVC，Spring，Hibernate的商城项目为例，详述转换过程。" class="headerlink" title="网上有许多普通web项目转换为maven项目的博文，但由于项目的不同，所需的步骤及必须的转换步骤也不同。因此，本文章将以一个基于SpringMVC，Spring，Hibernate的商城项目为例，详述转换过程。"></a>网上有许多普通web项目转换为maven项目的博文，但由于项目的不同，所需的步骤及必须的转换步骤也不同。因此，本文章将以一个基于SpringMVC，Spring，Hibernate的商城项目为例，详述转换过程。</h5><a id="more"></a>
-<p>项目介绍</p>
+<h5 id="网上有许多普通web项目转换为maven项目的博文，但由于项目的不同，所需的步骤及必须的转换步骤也不同。因此，本文章将以一个基于SpringMVC，Spring，Hibernate的商城项目为例，详述转换过程。"><a href="#网上有许多普通web项目转换为maven项目的博文，但由于项目的不同，所需的步骤及必须的转换步骤也不同。因此，本文章将以一个基于SpringMVC，Spring，Hibernate的商城项目为例，详述转换过程。" class="headerlink" title="网上有许多普通web项目转换为maven项目的博文，但由于项目的不同，所需的步骤及必须的转换步骤也不同。因此，本文章将以一个基于SpringMVC，Spring，Hibernate的商城项目为例，详述转换过程。"></a>网上有许多普通web项目转换为maven项目的博文，但由于项目的不同，所需的步骤及必须的转换步骤也不同。因此，本文章将以一个基于SpringMVC，Spring，Hibernate的商城项目为例，详述转换过程。</h5><p>项目介绍</p>
 <h5 id="开发环境：IDEA，MySQL"><a href="#开发环境：IDEA，MySQL" class="headerlink" title="开发环境：IDEA，MySQL"></a>开发环境：IDEA，MySQL</h5><h5 id="项目构建：暂无（已通过本文章成功转换为maven）"><a href="#项目构建：暂无（已通过本文章成功转换为maven）" class="headerlink" title="项目构建：暂无（已通过本文章成功转换为maven）"></a>项目构建：暂无（已通过本文章成功转换为maven）</h5><h5 id="软件环境：SpringMVC，Spring，Hibernate"><a href="#软件环境：SpringMVC，Spring，Hibernate" class="headerlink" title="软件环境：SpringMVC，Spring，Hibernate"></a>软件环境：SpringMVC，Spring，Hibernate</h5><h5 id="项目描述：商城系统"><a href="#项目描述：商城系统" class="headerlink" title="项目描述：商城系统"></a>项目描述：商城系统</h5><p>目的</p>
-<h5 id="将普通Dynamic-Web项目转换为Maven项目"><a href="#将普通Dynamic-Web项目转换为Maven项目" class="headerlink" title="将普通Dynamic Web项目转换为Maven项目"></a>将普通Dynamic Web项目转换为Maven项目</h5><h3 id="转换步骤"><a href="#转换步骤" class="headerlink" title="转换步骤"></a>转换步骤</h3><p>前提</p>
+<h5 id="将普通Dynamic-Web项目转换为Maven项目"><a href="#将普通Dynamic-Web项目转换为Maven项目" class="headerlink" title="将普通Dynamic Web项目转换为Maven项目"></a>将普通Dynamic Web项目转换为Maven项目</h5><a id="more"></a>
+<h3 id="转换步骤"><a href="#转换步骤" class="headerlink" title="转换步骤"></a>转换步骤</h3><p>前提</p>
 <h5 id="转换之前将项目置于Github上，并clone到IDEA上，防止最后不成功而导致项目bug难以补救，毕竟git的revision功能相当棒呢！！"><a href="#转换之前将项目置于Github上，并clone到IDEA上，防止最后不成功而导致项目bug难以补救，毕竟git的revision功能相当棒呢！！" class="headerlink" title="转换之前将项目置于Github上，并clone到IDEA上，防止最后不成功而导致项目bug难以补救，毕竟git的revision功能相当棒呢！！"></a>转换之前将项目置于Github上，并clone到IDEA上，防止最后不成功而导致项目bug难以补救，毕竟git的revision功能相当棒呢！！</h5><h4 id="1-将项目初步convert为Maven项目"><a href="#1-将项目初步convert为Maven项目" class="headerlink" title="1.将项目初步convert为Maven项目"></a>1.将项目初步convert为Maven项目</h4><p>选择“Add framework support”，并勾选导入“Maven”依赖</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/2929536-9c0437043624d7e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <h4 id="2-备份lib接着移除lib，然后编写pom-xml"><a href="#2-备份lib接着移除lib，然后编写pom-xml" class="headerlink" title="2.备份lib接着移除lib，然后编写pom.xml"></a>2.备份lib接着移除lib，然后编写pom.xml</h4><p>看到下面的一大片“红”，勿担心，那只是你“颠覆世界”的第一步，千万不能退缩</p>
