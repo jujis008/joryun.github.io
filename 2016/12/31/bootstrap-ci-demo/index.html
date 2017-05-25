@@ -1,4 +1,361 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="Joryun's blog | java | web"><title>与Bootstrap和CI框架纠缠的三天 | 刘家源</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.1"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">与Bootstrap和CI框架纠缠的三天</h1><a id="logo" href="/.">刘家源</a><p class="description">TO BE IS TO DO</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/instagram/"><i class="fa fa-picture-o"> 相册</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">与Bootstrap和CI框架纠缠的三天</h1><div class="post-meta">Dec 31, 2016<span> | </span><span class="category"><a href="/categories/Coding/">Coding</a></span><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><div class="post-content"><p>如题，博主为交附个课程设计，只得用三天时间纠缠于不熟悉的领域中…</p>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="php,bootstrap,codeigniter," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="如题，博主为交附个课程设计，只得用三天时间纠缠于不熟悉的领域中…
+一直以来，前台都是我的硬伤，否提用bootstrap框架，html5，css，js的简单整合都未必能得心应手，而对于我而言，只单单熟悉后台的业务实现，却无法设计出相映衬的前台UI，这点确实是烦恼已久。刚好，趁这次机会，稍微接触下完全不熟悉的bootstrap框架以及许久没用的CI框架，完成一次基本的整合。当然，实现的功能并不复杂，但">
+<meta property="og:type" content="article">
+<meta property="og:title" content="与Bootstrap和CI框架纠缠的三天">
+<meta property="og:url" content="http://joryun.com/2016/12/31/bootstrap-ci-demo/index.html">
+<meta property="og:site_name" content="刘家源">
+<meta property="og:description" content="如题，博主为交附个课程设计，只得用三天时间纠缠于不熟悉的领域中…
+一直以来，前台都是我的硬伤，否提用bootstrap框架，html5，css，js的简单整合都未必能得心应手，而对于我而言，只单单熟悉后台的业务实现，却无法设计出相映衬的前台UI，这点确实是烦恼已久。刚好，趁这次机会，稍微接触下完全不熟悉的bootstrap框架以及许久没用的CI框架，完成一次基本的整合。当然，实现的功能并不复杂，但">
+<meta property="og:image" content="http://img.blog.csdn.net/20161229225623292?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20161229230748496?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20161229231026060?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20161230111919590?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20161230112039179?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20161230205159288?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20161230205507743?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20161230211326565?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20161230211410565?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20161230211556129?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20161230211727535?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20161230211047278?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-05-11T16:53:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="与Bootstrap和CI框架纠缠的三天">
+<meta name="twitter:description" content="如题，博主为交附个课程设计，只得用三天时间纠缠于不熟悉的领域中…
+一直以来，前台都是我的硬伤，否提用bootstrap框架，html5，css，js的简单整合都未必能得心应手，而对于我而言，只单单熟悉后台的业务实现，却无法设计出相映衬的前台UI，这点确实是烦恼已久。刚好，趁这次机会，稍微接触下完全不熟悉的bootstrap框架以及许久没用的CI框架，完成一次基本的整合。当然，实现的功能并不复杂，但">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20161229225623292?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://joryun.com/2016/12/31/bootstrap-ci-demo/"/>
+
+
+
+
+
+  <title>与Bootstrap和CI框架纠缠的三天 | 刘家源</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘家源</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">TO BE IS TO DO</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://joryun.com/2016/12/31/bootstrap-ci-demo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joryun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘家源">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">与Bootstrap和CI框架纠缠的三天</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-31T11:39:35+08:00">
+                12月 31 2016
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Coding/" itemprop="url" rel="index">
+                    <span itemprop="name">Coding</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>如题，博主为交附个课程设计，只得用三天时间纠缠于不熟悉的领域中…</p>
 <p>一直以来，前台都是我的硬伤，否提用bootstrap框架，html5，css，js的简单整合都未必能得心应手，而对于我而言，只单单熟悉后台的业务实现，却无法设计出相映衬的前台UI，这点确实是烦恼已久。刚好，趁这次机会，稍微接触下完全不熟悉的bootstrap框架以及许久没用的CI框架，完成一次基本的整合。当然，实现的功能并不复杂，但若是想试下整合，或者想了解下ci框架处理业务的方式，便可以参考下。</p>
 <hr>
 <p>系统介绍：此次实现的是一个简单的毕业设计选题管理系统，目前是有学生和教师端，基本都是简单整合，无考虑表单重复提交问题，单点登录问题，sql注入等问题。</p>
@@ -63,5 +420,372 @@
 <h4 id="系统源码"><a href="#系统源码" class="headerlink" title="系统源码"></a>系统源码</h4><p>详细的源码可访问博主Github：<br><a href="https://github.com/Joryun/BiShe.git" target="_blank" rel="external">https://github.com/Joryun/BiShe.git</a></p>
 <h4 id="系统总结"><a href="#系统总结" class="headerlink" title="系统总结"></a>系统总结</h4><p>博主三天捣鼓的简单整合系统，基本上完成了大致的整合以及一些基本功能，由于时间有限，后续的一些基本功能都没加上，但实现的思路都是类似的。这次为了应付课程设计也是拼了，随便捣鼓了这些原本不是很熟悉的东西，但总体来说还是挺好玩的。有兴趣加入更多模块和安全机制或功能的朋友大可以尝试下，博主仅在玩玩儿哈哈~~~</p>
 <p>新的一年将至，这个就算一个纪念吧！新的一年，博主会着重游走于Github，强化自身项目经验，做出更好的项目与大家一起交流学习，希望新的一年，程序猿们一起共勉！！</p>
-</div><script type="text/javascript" src="/js/share.js?v=0.0.1" async></script><a data-url="http://joryun.com/2016/12/31/bootstrap-ci-demo/" data-id="cj2yq2j980000vg7o5g8d229j" class="article-share-link">分享</a><div class="tags"><a href="/tags/bootstrap/">bootstrap</a><a href="/tags/codeigniter/">codeigniter</a><a href="/tags/php/">php</a></div><div class="post-nav"><a href="/2017/02/05/sublimetext-plugin/" class="pre">Sublime Text 3(Mac版)常用插件篇</a><a href="/2016/12/30/springboot-helloworld/" class="next">玩转Spring Boot之Hello World篇</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://joryun.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/">Coding</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learning/">Learning</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/jms/" style="font-size: 15px;">jms</a> <a href="/tags/bootstrap/" style="font-size: 15px;">bootstrap</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/webservice/" style="font-size: 15px;">webservice</a> <a href="/tags/github/" style="font-size: 15px;">github</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/codeigniter/" style="font-size: 15px;">codeigniter</a> <a href="/tags/avtivemq/" style="font-size: 15px;">avtivemq</a> <a href="/tags/springboot/" style="font-size: 15px;">springboot</a> <a href="/tags/框架/" style="font-size: 15px;">框架</a> <a href="/tags/mac/" style="font-size: 15px;">mac</a> <a href="/tags/编辑器/" style="font-size: 15px;">编辑器</a> <a href="/tags/插件/" style="font-size: 15px;">插件</a> <a href="/tags/thinking-in-java/" style="font-size: 15px;">thinking-in-java</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/05/21/web-convert-maven/">Java奇技淫巧之普通web项目转换为Maven项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/21/spring-jms-activemq-start/">Spring全家桶(1)：Spring JMS + ActiveMQ起步</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/09/think-in-java-01/">Think in Java(1)：对象篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/15/webservice-demo/">webservice(1)：体验查询号码归属地demo</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/27/github-clone-skill/">提高Github Clone速度</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/05/sublimetext-plugin/">Sublime Text 3(Mac版)常用插件篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/31/bootstrap-ci-demo/">与Bootstrap和CI框架纠缠的三天</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/30/springboot-helloworld/">玩转Spring Boot之Hello World篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/26/build-webservice/">新手搭建调用webservice那些坑</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2017 <a href="/." rel="nofollow">刘家源.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho. </br></a><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
- 本站总访问量：<span id="busuanzi_value_site_pv"></span> |   本站访客数：<span id="busuanzi_value_site_uv"></span></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.1" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.1" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.1"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.1"></script></div></body></html>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/php/" rel="tag"># php</a>
+          
+            <a href="/tags/bootstrap/" rel="tag"># bootstrap</a>
+          
+            <a href="/tags/codeigniter/" rel="tag"># codeigniter</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/30/springboot-helloworld/" rel="next" title="玩转Spring Boot之Hello World篇">
+                <i class="fa fa-chevron-left"></i> 玩转Spring Boot之Hello World篇
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/05/sublimetext-plugin/" rel="prev" title="Sublime Text 3(Mac版)常用插件篇">
+                Sublime Text 3(Mac版)常用插件篇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Joryun" />
+          <p class="site-author-name" itemprop="name">Joryun</p>
+           
+              <p class="site-description motion-element" itemprop="description">Joryun's blog | java | web</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">Kategorien</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">Tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bootstrap框架整合进CI"><span class="nav-number">1.</span> <span class="nav-text">Bootstrap框架整合进CI</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bootstrap：简洁、直观、强悍的前端开发框架，让web开发更迅速、简单。"><span class="nav-number">1.0.1.</span> <span class="nav-text">Bootstrap：简洁、直观、强悍的前端开发框架，让web开发更迅速、简单。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CI：CodeIgniter-是一个小巧但功能强大的-PHP-框架，作为一个简单而“优雅”的工具包，它可以为开发者们建立功能完善的-Web-应用程序。"><span class="nav-number">1.0.2.</span> <span class="nav-text">CI：CodeIgniter 是一个小巧但功能强大的 PHP 框架，作为一个简单而“优雅”的工具包，它可以为开发者们建立功能完善的 Web 应用程序。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#官网下载ci环境包"><span class="nav-number">1.1.</span> <span class="nav-text">官网下载ci环境包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ci框架的基本配置"><span class="nav-number">1.2.</span> <span class="nav-text">ci框架的基本配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初步整合"><span class="nav-number">1.3.</span> <span class="nav-text">初步整合</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统设计"><span class="nav-number">2.</span> <span class="nav-text">系统设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#界面UI"><span class="nav-number">2.0.1.</span> <span class="nav-text">界面UI</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#以学生端为示例"><span class="nav-number">2.0.2.</span> <span class="nav-text">以学生端为示例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Choosable页面"><span class="nav-number">2.0.2.1.</span> <span class="nav-text">Choosable页面</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Selected页面"><span class="nav-number">2.0.2.2.</span> <span class="nav-text">Selected页面</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Data页面"><span class="nav-number">2.0.2.3.</span> <span class="nav-text">Data页面</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统源码"><span class="nav-number">2.0.3.</span> <span class="nav-text">系统源码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统总结"><span class="nav-number">2.0.4.</span> <span class="nav-text">系统总结</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joryun</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
