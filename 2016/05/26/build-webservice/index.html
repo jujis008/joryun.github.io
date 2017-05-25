@@ -121,7 +121,7 @@
 <meta property="og:image" content="http://img.blog.csdn.net/20160526155851882">
 <meta property="og:image" content="http://img.blog.csdn.net/20160526160147935">
 <meta property="og:image" content="http://img.blog.csdn.net/20160526160403623">
-<meta property="og:updated_time" content="2017-05-11T16:00:07.000Z">
+<meta property="og:updated_time" content="2017-05-25T15:56:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="新手搭建调用webservice那些坑">
 <meta name="twitter:description" content="今天主要和大家分享搭建java版webservice，以及php调用webservice遇到的一些坑。博客内容大部分纯手打，纯亲测。注：网上有很多使用Eclipse构建webservice的教程，不过配置较麻烦，而且最后可能还访问不了。因此，此博客采用MyEclipse搭建。需注意一点，MyEclipse10及以下的支持不了pattern库，因此发布的项目如果包含Pattern则无法支持，这也是博">
@@ -408,6 +408,7 @@
 
       
         <p>今天主要和大家分享搭建java版webservice，以及php调用webservice遇到的一些坑。博客内容大部分纯手打，纯亲测。<br>注：网上有很多使用Eclipse构建webservice的教程，不过配置较麻烦，而且最后可能还访问不了。因此，此博客采用MyEclipse搭建。需注意一点，MyEclipse10及以下的支持不了pattern库，因此发布的项目如果包含Pattern则无法支持，这也是博主换IDE的原因。</p>
+<a id="more"></a>
 <h4 id="开发环境：MyEclipse2014，JAX-WS构建（容易使用），Tomcat-7"><a href="#开发环境：MyEclipse2014，JAX-WS构建（容易使用），Tomcat-7" class="headerlink" title="开发环境：MyEclipse2014，JAX-WS构建（容易使用），Tomcat 7"></a>开发环境：MyEclipse2014，JAX-WS构建（容易使用），Tomcat 7</h4><h4 id="何为WebService？"><a href="#何为WebService？" class="headerlink" title="何为WebService？"></a>何为WebService？</h4><p>它是一种构建应用程序的普遍模型,可以在任何支持网络通信的操作系统中实施运行;它是一种新的web应用程序分支，是自包含、自描述、模块化的应用，可以发布、定位、通过web调用。Web Service是一个应用组件,它逻辑性的为其他应用程序提供数据与服务.各应用程序通过网络协议和规定的一些标准数据格式（Http，XML，Soap)来访问Web Service,通过Web Service内部执行得到所需结果.Web Service可以执行从简单的请求到复杂商务处理的任何功能。一旦部署以后，其他Web Service应用程序可以发现并调用它部署的服务。</p>
 <h4 id="关键的技术和规则"><a href="#关键的技术和规则" class="headerlink" title="关键的技术和规则"></a>关键的技术和规则</h4><p>在构建和使用Web Service时,主要用到以下几个关键的技术和规则:</p>
 <ul>

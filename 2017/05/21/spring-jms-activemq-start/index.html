@@ -92,32 +92,23 @@
 
 <meta name="description" content="前言
 开发环境：IDEA，Active MQ项目构建：Maven软件环境：Spring，Spring JMS，Active MQ项目描述：Spring JMS与Active MQ进行通讯目的
-入门Spring JMS、Active MQ，使用Spring JMS向Active MQ的Message Queue发消息和读消息。注：
-
-demo整合过程均亲测，按顺序编码已测试通过
-项目代码有注释，可供">
+入门Spring JMS、Active MQ，使用Spring JMS向Active MQ的Message Queue发消息和读消息。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring全家桶(1)：Spring JMS + ActiveMQ起步">
 <meta property="og:url" content="http://joryun.com/2017/05/21/spring-jms-activemq-start/index.html">
 <meta property="og:site_name" content="刘家源">
 <meta property="og:description" content="前言
 开发环境：IDEA，Active MQ项目构建：Maven软件环境：Spring，Spring JMS，Active MQ项目描述：Spring JMS与Active MQ进行通讯目的
-入门Spring JMS、Active MQ，使用Spring JMS向Active MQ的Message Queue发消息和读消息。注：
-
-demo整合过程均亲测，按顺序编码已测试通过
-项目代码有注释，可供">
+入门Spring JMS、Active MQ，使用Spring JMS向Active MQ的Message Queue发消息和读消息。">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2929536-6252514d22150dc9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2929536-614e2114819e2d91.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2929536-97f7795b44b3a896.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-05-21T03:52:41.000Z">
+<meta property="og:updated_time" content="2017-05-25T15:56:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring全家桶(1)：Spring JMS + ActiveMQ起步">
 <meta name="twitter:description" content="前言
 开发环境：IDEA，Active MQ项目构建：Maven软件环境：Spring，Spring JMS，Active MQ项目描述：Spring JMS与Active MQ进行通讯目的
-入门Spring JMS、Active MQ，使用Spring JMS向Active MQ的Message Queue发消息和读消息。注：
-
-demo整合过程均亲测，按顺序编码已测试通过
-项目代码有注释，可供">
+入门Spring JMS、Active MQ，使用Spring JMS向Active MQ的Message Queue发消息和读消息。">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2929536-6252514d22150dc9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -402,7 +393,8 @@ demo整合过程均亲测，按顺序编码已测试通过
       
         <p>前言</p>
 <h5 id="开发环境：IDEA，Active-MQ"><a href="#开发环境：IDEA，Active-MQ" class="headerlink" title="开发环境：IDEA，Active MQ"></a>开发环境：IDEA，Active MQ</h5><h5 id="项目构建：Maven"><a href="#项目构建：Maven" class="headerlink" title="项目构建：Maven"></a>项目构建：Maven</h5><h5 id="软件环境：Spring，Spring-JMS，Active-MQ"><a href="#软件环境：Spring，Spring-JMS，Active-MQ" class="headerlink" title="软件环境：Spring，Spring JMS，Active MQ"></a>软件环境：Spring，Spring JMS，Active MQ</h5><h5 id="项目描述：Spring-JMS与Active-MQ进行通讯"><a href="#项目描述：Spring-JMS与Active-MQ进行通讯" class="headerlink" title="项目描述：Spring JMS与Active MQ进行通讯"></a>项目描述：Spring JMS与Active MQ进行通讯</h5><p>目的</p>
-<h5 id="入门Spring-JMS、Active-MQ，使用Spring-JMS向Active-MQ的Message-Queue发消息和读消息。"><a href="#入门Spring-JMS、Active-MQ，使用Spring-JMS向Active-MQ的Message-Queue发消息和读消息。" class="headerlink" title="入门Spring JMS、Active MQ，使用Spring JMS向Active MQ的Message Queue发消息和读消息。"></a>入门Spring JMS、Active MQ，使用Spring JMS向Active MQ的Message Queue发消息和读消息。</h5><p>注：</p>
+<h5 id="入门Spring-JMS、Active-MQ，使用Spring-JMS向Active-MQ的Message-Queue发消息和读消息。"><a href="#入门Spring-JMS、Active-MQ，使用Spring-JMS向Active-MQ的Message-Queue发消息和读消息。" class="headerlink" title="入门Spring JMS、Active MQ，使用Spring JMS向Active MQ的Message Queue发消息和读消息。"></a>入门Spring JMS、Active MQ，使用Spring JMS向Active MQ的Message Queue发消息和读消息。</h5><a id="more"></a>
+<p>注：</p>
 <ul>
 <li>demo整合过程均亲测，按顺序编码已测试通过</li>
 <li>项目代码有注释，可供理清各个class和各个方法块及属性的作用。</li>
