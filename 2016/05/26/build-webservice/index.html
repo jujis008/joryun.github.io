@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="java,webservice,php," />
+  <meta name="keywords" content="php,java,webservice," />
 
 
 
@@ -370,8 +370,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2016/05/26/build-webservice/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/05/26/build-webservice/" itemprop="commentCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/26/build-webservice/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -434,7 +433,7 @@
 <h4 id="然后接下来一直next，可选择生成web-xml"><a href="#然后接下来一直next，可选择生成web-xml" class="headerlink" title="然后接下来一直next，可选择生成web.xml."></a>然后接下来一直next，可选择生成web.xml.</h4><h4 id="这是刚新建的项目结构"><a href="#这是刚新建的项目结构" class="headerlink" title="这是刚新建的项目结构"></a>这是刚新建的项目结构</h4><p><img src="http://img.blog.csdn.net/20160526145130186" alt=""></p>
 <h4 id="然后新建一类文件UserInfo-java"><a href="#然后新建一类文件UserInfo-java" class="headerlink" title="然后新建一类文件UserInfo.java"></a>然后新建一类文件UserInfo.java</h4><p><img src="http://img.blog.csdn.net/20160526145457078" alt=""></p>
 <p>示例源码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">package com.yuan.webservice;</div><div class="line">/**</div><div class="line"> * </div><div class="line"> * @author Joryun</div><div class="line"> *</div><div class="line"> */</div><div class="line">public class UserInfo &#123;</div><div class="line">	public String GetUserInfo()&#123;</div><div class="line">		return &quot;源哥&quot;;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	public String ParameterTest(String user, String pwd)&#123;</div><div class="line">		return user+&quot;：&quot;+pwd;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.yuan.webservice;</div><div class="line"><span class="comment">/**</span></div><div class="line"> * </div><div class="line"> * @author Joryun</div><div class="line"> *</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserInfo</span> </span>&#123;</div><div class="line">	<span class="keyword">public</span> <span class="keyword">String</span> GetUserInfo()&#123;</div><div class="line">		<span class="keyword">return</span> <span class="string">"源哥"</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="keyword">public</span> <span class="keyword">String</span> ParameterTest(<span class="keyword">String</span> user, <span class="keyword">String</span> pwd)&#123;</div><div class="line">		<span class="keyword">return</span> user+<span class="string">"："</span>+pwd;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="接下来发布web-service"><a href="#接下来发布web-service" class="headerlink" title="接下来发布web service"></a>接下来发布web service</h4><p><img src="http://img.blog.csdn.net/20160526145727673" alt=""></p>
 <h4 id="选择从java类创建web-service"><a href="#选择从java类创建web-service" class="headerlink" title="选择从java类创建web service"></a>选择从java类创建web service</h4><p><img src="http://img.blog.csdn.net/20160526150314214" alt=""></p>
 <h4 id="选择访问的java-class"><a href="#选择访问的java-class" class="headerlink" title="选择访问的java class"></a>选择访问的java class</h4><p><img src="http://img.blog.csdn.net/20160526150649656" alt=""></p>
@@ -452,13 +451,13 @@
 <p><img src="http://img.blog.csdn.net/20160526153659648" alt=""></p>
 <p><img src="http://img.blog.csdn.net/20160526153815525" alt=""></p>
 <p><img src="http://img.blog.csdn.net/20160526153842572" alt=""></p>
-<h3 id="测试webservice"><a href="#测试webservice" class="headerlink" title="测试webservice"></a>测试webservice</h3><h4 id="输入URL，出现图式效果即为发布成功"><a href="#输入URL，出现图式效果即为发布成功" class="headerlink" title="输入URL，出现图式效果即为发布成功."></a>输入URL，出现图式效果即为发布成功.</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">URL : http://localhost:8080/WebServiceDemo/UserInfoPort?wsdl</div></pre></td></tr></table></figure>
+<h3 id="测试webservice"><a href="#测试webservice" class="headerlink" title="测试webservice"></a>测试webservice</h3><h4 id="输入URL，出现图式效果即为发布成功"><a href="#输入URL，出现图式效果即为发布成功" class="headerlink" title="输入URL，出现图式效果即为发布成功."></a>输入URL，出现图式效果即为发布成功.</h4><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">URL :</span> <span class="string">http:</span><span class="comment">//localhost:8080/WebServiceDemo/UserInfoPort?wsdl</span></div></pre></td></tr></table></figure>
 <p><img src="http://img.blog.csdn.net/20160526154324689" alt=""></p>
 <hr>
 <h2 id="PHP调用webservice"><a href="#PHP调用webservice" class="headerlink" title="PHP调用webservice"></a>PHP调用webservice</h2><h4 id="注：博主采用CI框架测试，但不用框架也一样。并且php项目文件发布到了xampp上，直接访问本地即可查看效果。"><a href="#注：博主采用CI框架测试，但不用框架也一样。并且php项目文件发布到了xampp上，直接访问本地即可查看效果。" class="headerlink" title="注：博主采用CI框架测试，但不用框架也一样。并且php项目文件发布到了xampp上，直接访问本地即可查看效果。"></a>注：博主采用CI框架测试，但不用框架也一样。并且php项目文件发布到了xampp上，直接访问本地即可查看效果。</h4><h4 id="关于php调用webservice，亲测过两种方法："><a href="#关于php调用webservice，亲测过两种方法：" class="headerlink" title="关于php调用webservice，亲测过两种方法："></a>关于php调用webservice，亲测过两种方法：</h4><h4 id="1-引入nusoap-php，调用call-方法"><a href="#1-引入nusoap-php，调用call-方法" class="headerlink" title="1. 引入nusoap.php，调用call()方法"></a><strong>1. 引入nusoap.php，调用call()方法</strong></h4><h4 id="特别注意：以下两处圈红圈的是坑点，一开始测试的时候用的是webservice接口名的参数，即user，pwd-但实际上打印到网页上之后才发现参数是arg0和arg1。。。"><a href="#特别注意：以下两处圈红圈的是坑点，一开始测试的时候用的是webservice接口名的参数，即user，pwd-但实际上打印到网页上之后才发现参数是arg0和arg1。。。" class="headerlink" title="特别注意：以下两处圈红圈的是坑点，一开始测试的时候用的是webservice接口名的参数，即user，pwd.但实际上打印到网页上之后才发现参数是arg0和arg1。。。"></a>特别注意：以下两处圈红圈的是坑点，一开始测试的时候用的是webservice接口名的参数，即user，pwd.但实际上打印到网页上之后才发现参数是arg0和arg1。。。</h4><p><img src="http://img.blog.csdn.net/20160526155851882" alt=""></p>
 <p><img src="http://img.blog.csdn.net/20160526160147935" alt=""></p>
 <h4 id="2-php5自带函数测试，classMap方式传值"><a href="#2-php5自带函数测试，classMap方式传值" class="headerlink" title="2. php5自带函数测试，classMap方式传值"></a><strong>2. php5自带函数测试，classMap方式传值</strong></h4><p><img src="http://img.blog.csdn.net/20160526160403623" alt=""></p>
-<h4 id="以下贴PHP实现源码："><a href="#以下贴PHP实现源码：" class="headerlink" title="以下贴PHP实现源码："></a>以下贴PHP实现源码：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">header(&apos;Content-Type: text/html; charset=UTF-8&apos;);</div><div class="line">/**</div><div class="line"> * Class Test</div><div class="line"> * Joryun</div><div class="line"> *</div><div class="line"> * 调用webservice测试类</div><div class="line"> */</div><div class="line">class Test extends CI_Controller</div><div class="line">&#123;</div><div class="line">    public function __construct()</div><div class="line">    &#123;</div><div class="line">        parent::__construct();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public function index()</div><div class="line">    &#123;</div><div class="line">        /**</div><div class="line">         * nusoap.php需在网上下载，并将该php文件包含进项目空间</div><div class="line">         * 引入nusoap.php，调用call()方法</div><div class="line">         */</div><div class="line">//        require_once (&quot;libs/nusoap.php&quot;);</div><div class="line">//</div><div class="line">//        // Create the client instance</div><div class="line">//        $client = new nusoap_client(&apos;http://localhost:8080/WeixinDemo/UserInfoPort?wsdl&apos;, true);</div><div class="line">//        $client-&gt;soap_defencoding = &apos;utf-8&apos;;</div><div class="line">//        $client-&gt;decode_utf8 = false;</div><div class="line">//        $client-&gt;xml_encoding = &apos;utf-8&apos;;</div><div class="line">//</div><div class="line">//        $param = array(&apos;arg0&apos;=&gt;&apos;Joryun&apos;, &apos;arg1&apos;=&gt;&apos;666666&apos;);//webservice参数数组</div><div class="line">//        $result = $client-&gt;call(&apos;ParameterTest&apos;, $param);//接口和参数</div><div class="line">//        print_r($result);</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">        /**</div><div class="line">         * php5自带函数测试</div><div class="line">         * classMap方式传值</div><div class="line">         */</div><div class="line">        $client = new SoapClient(&quot;http://localhost:8080/WeixinDemo/UserInfoPort?wsdl&quot;);</div><div class="line"></div><div class="line">        echo (&quot;SOAP服务器提供的开放Function:&quot;);</div><div class="line">        echo &apos;&lt;pre&gt;&apos;;</div><div class="line">        var_dump ( $client-&gt;__getFunctions () );//获取服务器上提供的方法</div><div class="line">        echo &apos;&lt;/pre&gt;&apos;;</div><div class="line"></div><div class="line">        echo &apos;&lt;br&gt;&apos;;</div><div class="line"></div><div class="line">        echo (&quot;SOAP服务器提供的Type:&quot;);</div><div class="line">        echo &apos;&lt;pre&gt;&apos;;</div><div class="line">        var_dump ( $client-&gt;__getTypes () );//获取服务器上数据类型</div><div class="line">        echo &apos;&lt;/pre&gt;&apos;;</div><div class="line"></div><div class="line">        $object=new stdclass;</div><div class="line">        $object-&gt;arg0=&apos;Joryun&apos;;</div><div class="line">        $object-&gt;arg1=&apos;666666&apos;;</div><div class="line">        $result = $client-&gt;ParameterTest($object);</div><div class="line">        //$result=get_object_vars($result);   //将object转换为array</div><div class="line">        var_dump($result);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+<h4 id="以下贴PHP实现源码："><a href="#以下贴PHP实现源码：" class="headerlink" title="以下贴PHP实现源码："></a>以下贴PHP实现源码：</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"><span class="php"><span class="meta">&lt;?php</span></span></div><div class="line">header(<span class="string">'Content-Type: text/html; charset=UTF-8'</span>);</div><div class="line"><span class="comment">/**</span></div><div class="line"> * Class Test</div><div class="line"> * Joryun</div><div class="line"> *</div><div class="line"> * 调用webservice测试类</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">CI_Controller</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">parent</span>::__construct();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="comment">/**</span></div><div class="line">         * nusoap.php需在网上下载，并将该php文件包含进项目空间</div><div class="line">         * 引入nusoap.php，调用call()方法</div><div class="line">         */</div><div class="line"><span class="comment">//        require_once ("libs/nusoap.php");</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//        // Create the client instance</span></div><div class="line"><span class="comment">//        $client = new nusoap_client('http://localhost:8080/WeixinDemo/UserInfoPort?wsdl', true);</span></div><div class="line"><span class="comment">//        $client-&gt;soap_defencoding = 'utf-8';</span></div><div class="line"><span class="comment">//        $client-&gt;decode_utf8 = false;</span></div><div class="line"><span class="comment">//        $client-&gt;xml_encoding = 'utf-8';</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//        $param = array('arg0'=&gt;'Joryun', 'arg1'=&gt;'666666');//webservice参数数组</span></div><div class="line"><span class="comment">//        $result = $client-&gt;call('ParameterTest', $param);//接口和参数</span></div><div class="line"><span class="comment">//        print_r($result);</span></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">        <span class="comment">/**</span></div><div class="line">         * php5自带函数测试</div><div class="line">         * classMap方式传值</div><div class="line">         */</div><div class="line">        $client = <span class="keyword">new</span> SoapClient(<span class="string">"http://localhost:8080/WeixinDemo/UserInfoPort?wsdl"</span>);</div><div class="line"></div><div class="line">        <span class="keyword">echo</span> (<span class="string">"SOAP服务器提供的开放Function:"</span>);</div><div class="line">        <span class="keyword">echo</span> <span class="string">'&lt;pre&gt;'</span>;</div><div class="line">        var_dump ( $client-&gt;__getFunctions () );<span class="comment">//获取服务器上提供的方法</span></div><div class="line">        <span class="keyword">echo</span> <span class="string">'&lt;/pre&gt;'</span>;</div><div class="line"></div><div class="line">        <span class="keyword">echo</span> <span class="string">'&lt;br&gt;'</span>;</div><div class="line"></div><div class="line">        <span class="keyword">echo</span> (<span class="string">"SOAP服务器提供的Type:"</span>);</div><div class="line">        <span class="keyword">echo</span> <span class="string">'&lt;pre&gt;'</span>;</div><div class="line">        var_dump ( $client-&gt;__getTypes () );<span class="comment">//获取服务器上数据类型</span></div><div class="line">        <span class="keyword">echo</span> <span class="string">'&lt;/pre&gt;'</span>;</div><div class="line"></div><div class="line">        $object=<span class="keyword">new</span> stdclass;</div><div class="line">        $object-&gt;arg0=<span class="string">'Joryun'</span>;</div><div class="line">        $object-&gt;arg1=<span class="string">'666666'</span>;</div><div class="line">        $result = $client-&gt;ParameterTest($object);</div><div class="line">        <span class="comment">//$result=get_object_vars($result);   //将object转换为array</span></div><div class="line">        var_dump($result);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
 <h4 id="好了，今天的教程就说到这里了-lt-￣︶￣-gt"><a href="#好了，今天的教程就说到这里了-lt-￣︶￣-gt" class="headerlink" title="好了，今天的教程就说到这里了&lt;(￣︶￣)&gt;"></a>好了，今天的教程就说到这里了&lt;(￣︶￣)&gt;</h4><h4 id="当然了，之所以想分享是因为其中是有一些坑在，搞了一天多才搞定了。欢迎大家交流，有啥指导直说无妨哈哈哈哈"><a href="#当然了，之所以想分享是因为其中是有一些坑在，搞了一天多才搞定了。欢迎大家交流，有啥指导直说无妨哈哈哈哈" class="headerlink" title="当然了，之所以想分享是因为其中是有一些坑在，搞了一天多才搞定了。欢迎大家交流，有啥指导直说无妨哈哈哈哈~~"></a>当然了，之所以想分享是因为其中是有一些坑在，搞了一天多才搞定了。欢迎大家交流，有啥指导直说无妨哈哈哈哈~~</h4>
       
     </div>
@@ -488,11 +487,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/php/" rel="tag"># php</a>
+          
             <a href="/tags/java/" rel="tag"># java</a>
           
             <a href="/tags/webservice/" rel="tag"># webservice</a>
-          
-            <a href="/tags/php/" rel="tag"># php</a>
           
         </div>
       
@@ -539,11 +538,8 @@
           
   <div class="comments" id="comments">
     
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
+      <div class="ds-thread" data-thread-key="2016/05/26/build-webservice/"
+           data-title="新手搭建调用webservice那些坑" data-url="http://joryun.com/2016/05/26/build-webservice/">
       </div>
     
   </div>
@@ -847,45 +843,37 @@
 
   
 
-
+  
+    
   
 
-    
-      <script id="dsq-count-scr" src="https://Joryun.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'http://joryun.com/2016/05/26/build-webservice/';
-          this.page.identifier = '2016/05/26/build-webservice/';
-          this.page.title = '新手搭建调用webservice那些坑';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://Joryun.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
-    
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"joryun"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
 
   
-
-
-
-
-	
-
-
-
-
-
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
 
 
 
-  
+
+
+
 
 
 

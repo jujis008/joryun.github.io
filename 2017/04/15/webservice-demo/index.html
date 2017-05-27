@@ -106,7 +106,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2929536-1a6ca77b85376765.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2929536-203d30b3fd49012a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2929536-590d9b117d0bda5e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-05-25T15:56:54.000Z">
+<meta property="og:updated_time" content="2017-05-25T15:59:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webservice(1)：体验查询号码归属地demo">
 <meta name="twitter:description" content="对于webservice的介绍，本文就不再赘余讲述。详见文章 新手搭建调用webservice那些坑
@@ -356,8 +356,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2017/04/15/webservice-demo/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/04/15/webservice-demo/" itemprop="commentCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/15/webservice-demo/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -415,16 +414,16 @@
 <p>以下即为相应WSDL，一份xml文档</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/2929536-44fab3a2cf49aab2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>copy该站点的URL，如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://ws.webxml.com.cn/WebServices/MobileCodeWS.asmx?WSDL</div></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://<span class="keyword">ws</span>.webxml.<span class="keyword">com</span>.<span class="keyword">cn</span>/WebServices/MobileCodeWS.asmx?WSDL</div></pre></td></tr></table></figure>
 <h4 id="2-使用JDK目录下的工具-wsimport，生成调用webservice相应的代码"><a href="#2-使用JDK目录下的工具-wsimport，生成调用webservice相应的代码" class="headerlink" title="2.使用JDK目录下的工具-wsimport，生成调用webservice相应的代码"></a>2.使用JDK目录下的工具-wsimport，生成调用webservice相应的代码</h4><p>wsimport是一个命令，jdk1.6及以上才可以使用，ws针对不同的语言都会有个wsimport命令，我们可以在自己安装的jdk的bin目录下找到这个wsimport.exe，正因为有了这个，所以我们可以在命令行中使用wsimport命令。<br>输入以下命令，会在特定的包中生成java与class文件，接着将其copy至项目路径下即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wsimport -s . -p ws.client.c http://ws.webxml.com.cn/WebServices/MobileCodeWS.asmx?WSDL</div></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wsimport -s . -<span class="selector-tag">p</span> ws<span class="selector-class">.client</span><span class="selector-class">.c</span> http:<span class="comment">//ws.webxml.com.cn/WebServices/MobileCodeWS.asmx?WSDL</span></div></pre></td></tr></table></figure>
 <p>Problem：在mac下的终端，若使用到了zsh，可能会出现以下情况。</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/2929536-1a6ca77b85376765.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>这是由于zsh不兼容的问题！！！<br>具体原因：<br>因为zsh缺省情况下始终自己解释这个 *.h，而不会传递给 find 来解释。<br>解决方案：<br>打开terminal，在~/.zshrc中加入:<br>setopt no_nomatch, 然后进行source .zshrc命令即可</p>
 <p>以下为copy入项目空间的示例图<br>注：ws.client.test下的WebserviceTest为webservice测试类，暂时忽略。</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/2929536-203d30b3fd49012a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>这样就有了号码归属地查询这个ws服务相关的API了，且是通过官方的WSDL来生成的。接着，便是编写测试类测试功能了。</p>
-<h4 id="3-编写测试类测试"><a href="#3-编写测试类测试" class="headerlink" title="3.编写测试类测试"></a>3.编写测试类测试</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">package ws.client.test;</div><div class="line">import ws.client.c.MobileCodeWS;</div><div class="line">import ws.client.c.MobileCodeWSSoap;</div><div class="line"></div><div class="line">public class WebserviceTest &#123;</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line"></div><div class="line">		//获取一个webservice服务</div><div class="line">		MobileCodeWS ws = new MobileCodeWS();	</div><div class="line"></div><div class="line">		//获取具体服务类型：get post soap1.1 and soap1.2</div><div class="line">		MobileCodeWSSoap wsSoap = ws.getMobileCodeWSSoap();</div><div class="line">		String address = wsSoap.getMobileCodeInfo(&quot;你的手机号码&quot;, null);</div><div class="line">		</div><div class="line">		System.out.println(&quot;手机归属地信息：&quot;+ address);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="3-编写测试类测试"><a href="#3-编写测试类测试" class="headerlink" title="3.编写测试类测试"></a>3.编写测试类测试</h4><figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> ws.client.test;</div><div class="line"><span class="keyword">import</span> ws.client.c.MobileCodeWS;</div><div class="line"><span class="keyword">import</span> ws.client.c.MobileCodeWSSoap;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebserviceTest</span> </span>&#123;</div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="keyword">String</span>[] args) &#123;</div><div class="line"></div><div class="line">		<span class="comment">//获取一个webservice服务</span></div><div class="line">		MobileCodeWS ws = <span class="keyword">new</span> <span class="type">MobileCodeWS</span>();	</div><div class="line"></div><div class="line">		<span class="comment">//获取具体服务类型：get post soap1.1 and soap1.2</span></div><div class="line">		MobileCodeWSSoap wsSoap = ws.getMobileCodeWSSoap();</div><div class="line">		<span class="keyword">String</span> address = wsSoap.getMobileCodeInfo(<span class="string">"你的手机号码"</span>, <span class="literal">null</span>);</div><div class="line">		</div><div class="line">		System.out.println(<span class="string">"手机归属地信息："</span>+ address);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>测试结果示例</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/2929536-590d9b117d0bda5e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>OK！！！到这里我们就体验完了该webservice。</p>
@@ -512,11 +511,8 @@
           
   <div class="comments" id="comments">
     
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
+      <div class="ds-thread" data-thread-key="2017/04/15/webservice-demo/"
+           data-title="webservice(1)：体验查询号码归属地demo" data-url="http://joryun.com/2017/04/15/webservice-demo/">
       </div>
     
   </div>
@@ -820,45 +816,37 @@
 
   
 
-
+  
+    
   
 
-    
-      <script id="dsq-count-scr" src="https://Joryun.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'http://joryun.com/2017/04/15/webservice-demo/';
-          this.page.identifier = '2017/04/15/webservice-demo/';
-          this.page.title = 'webservice(1)：体验查询号码归属地demo';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://Joryun.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
-    
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"joryun"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
 
   
-
-
-
-
-	
-
-
-
-
-
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
 
 
 
-  
+
+
+
 
 
 

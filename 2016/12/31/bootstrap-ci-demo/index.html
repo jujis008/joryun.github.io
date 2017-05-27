@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="php,bootstrap,codeigniter," />
+  <meta name="keywords" content="bootstrap,codeigniter,php," />
 
 
 
@@ -360,8 +360,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2016/12/31/bootstrap-ci-demo/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/12/31/bootstrap-ci-demo/" itemprop="commentCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/31/bootstrap-ci-demo/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -492,11 +491,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/php/" rel="tag"># php</a>
-          
             <a href="/tags/bootstrap/" rel="tag"># bootstrap</a>
           
             <a href="/tags/codeigniter/" rel="tag"># codeigniter</a>
+          
+            <a href="/tags/php/" rel="tag"># php</a>
           
         </div>
       
@@ -547,11 +546,8 @@
           
   <div class="comments" id="comments">
     
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
+      <div class="ds-thread" data-thread-key="2016/12/31/bootstrap-ci-demo/"
+           data-title="与Bootstrap和CI框架纠缠的三天" data-url="http://joryun.com/2016/12/31/bootstrap-ci-demo/">
       </div>
     
   </div>
@@ -855,45 +851,37 @@
 
   
 
-
+  
+    
   
 
-    
-      <script id="dsq-count-scr" src="https://Joryun.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'http://joryun.com/2016/12/31/bootstrap-ci-demo/';
-          this.page.identifier = '2016/12/31/bootstrap-ci-demo/';
-          this.page.title = '与Bootstrap和CI框架纠缠的三天';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://Joryun.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
-    
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"joryun"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
 
   
-
-
-
-
-	
-
-
-
-
-
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
 
 
 
-  
+
+
+
 
 
 

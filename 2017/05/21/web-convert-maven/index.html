@@ -360,8 +360,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2017/05/21/web-convert-maven/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/05/21/web-convert-maven/" itemprop="commentCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/21/web-convert-maven/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -409,7 +408,7 @@
 <p>接着备份lib，再移除项目的lib，将项目置于“空jar”状态</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/2929536-108599e17672f33a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>补充pom.xml的头，自动生成的会略掉好几项必须的配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</div><div class="line"></div><div class="line">    &lt;groupId&gt;com.shop&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;Shop&lt;/artifactId&gt;</div><div class="line">    &lt;packaging&gt;war&lt;/packaging&gt;</div><div class="line">    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;</div><div class="line">    &lt;name&gt;Shop Maven Webapp&lt;/name&gt;</div><div class="line">    &lt;url&gt;http://maven.apache.org&lt;/url&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.shop<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>Shop<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>Shop Maven Webapp<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.apache.org<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>接着是个体力活，进入每个java、properties、xml、jsp等文件使用Add Maven依赖方式自动导入（快捷键：alt+enter），当然前提是网速要好哈！</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/2929536-8080ae209ae8b181.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>经过上步，已经初步导入了大部份必需的依赖，接着，将一些其它依赖（可参考之前备份的lib）随之导入，千万别忽略这一步，因为类似mysql-connector-java等这些依赖一般是还未导入的！</p>
@@ -500,11 +499,8 @@
           
   <div class="comments" id="comments">
     
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
+      <div class="ds-thread" data-thread-key="2017/05/21/web-convert-maven/"
+           data-title="Java奇技淫巧之普通web项目转换为Maven项目" data-url="http://joryun.com/2017/05/21/web-convert-maven/">
       </div>
     
   </div>
@@ -808,45 +804,37 @@
 
   
 
-
+  
+    
   
 
-    
-      <script id="dsq-count-scr" src="https://Joryun.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'http://joryun.com/2017/05/21/web-convert-maven/';
-          this.page.identifier = '2017/05/21/web-convert-maven/';
-          this.page.title = 'Java奇技淫巧之普通web项目转换为Maven项目';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://Joryun.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
-    
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"joryun"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
 
   
-
-
-
-
-	
-
-
-
-
-
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
 
 
 
-  
+
+
+
 
 
 

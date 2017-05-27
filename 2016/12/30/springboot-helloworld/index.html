@@ -356,8 +356,7 @@ Spring Boot基本概念由Pivotal团队提供的全新框架，其设计目的�
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2016/12/30/springboot-helloworld/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/12/30/springboot-helloworld/" itemprop="commentCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/30/springboot-helloworld/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -423,8 +422,8 @@ Spring Boot基本概念由Pivotal团队提供的全新框架，其设计目的�
 <p><img src="http://upload-images.jianshu.io/upload_images/2929536-3c464c343b654f48.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>添加spring-boot-starter-web配置后，运行maven-&gt;Reimport，更新pom.xml</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/2929536-967c3fa98fa476dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>添加完spring-boot-starter-web后,项目支持web注解<br>基本上有利用SpringMVC开发项目的，很多都接触过注解式开发，而这也是spring的首选开发方式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@RestController</div><div class="line">RequestMapping(&quot;/hello&quot;)</div></pre></td></tr></table></figure></p>
-<h3 id="添加HelloWord服务"><a href="#添加HelloWord服务" class="headerlink" title="添加HelloWord服务"></a>添加HelloWord服务</h3><p>在默认生成的com.example包下创建一个web文件夹，并新建一个controller，用于输出“Hello World”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@RestController</div><div class="line">public class HelloController &#123;    </div><div class="line">    @RequestMapping(&quot;/hello&quot;)    </div><div class="line">    public String index()&#123;        </div><div class="line">        return &quot;Hello World&quot;;    </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>添加完spring-boot-starter-web后,项目支持web注解<br>基本上有利用SpringMVC开发项目的，很多都接触过注解式开发，而这也是spring的首选开发方式<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@RestController</div><div class="line"><span class="function"><span class="title">RequestMapping</span><span class="params">(<span class="string">"/hello"</span>)</span></span></div></pre></td></tr></table></figure></p>
+<h3 id="添加HelloWord服务"><a href="#添加HelloWord服务" class="headerlink" title="添加HelloWord服务"></a>添加HelloWord服务</h3><p>在默认生成的com.example包下创建一个web文件夹，并新建一个controller，用于输出“Hello World”<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RestController</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;    </div><div class="line">    <span class="meta">@RequestMapping(<span class="meta-string">"/hello"</span>)</span>    </div><div class="line">    <span class="keyword">public</span> String index()&#123;        </div><div class="line">        <span class="keyword">return</span> <span class="string">"Hello World"</span>;    </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p><img src="http://upload-images.jianshu.io/upload_images/2929536-f57e7e0b731e7bef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <h3 id="启动主程序"><a href="#启动主程序" class="headerlink" title="启动主程序"></a>启动主程序</h3><p>点击IDEA右上角的启动服务器图标启动主程序</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/2929536-1faaaf2c4f1c51fc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
@@ -515,11 +514,8 @@ Spring Boot基本概念由Pivotal团队提供的全新框架，其设计目的�
           
   <div class="comments" id="comments">
     
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
+      <div class="ds-thread" data-thread-key="2016/12/30/springboot-helloworld/"
+           data-title="玩转Spring Boot之Hello World篇" data-url="http://joryun.com/2016/12/30/springboot-helloworld/">
       </div>
     
   </div>
@@ -823,45 +819,37 @@ Spring Boot基本概念由Pivotal团队提供的全新框架，其设计目的�
 
   
 
-
+  
+    
   
 
-    
-      <script id="dsq-count-scr" src="https://Joryun.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'http://joryun.com/2016/12/30/springboot-helloworld/';
-          this.page.identifier = '2016/12/30/springboot-helloworld/';
-          this.page.title = '玩转Spring Boot之Hello World篇';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://Joryun.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
-    
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"joryun"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
 
   
-
-
-
-
-	
-
-
-
-
-
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
 
 
 
-  
+
+
+
 
 
 
