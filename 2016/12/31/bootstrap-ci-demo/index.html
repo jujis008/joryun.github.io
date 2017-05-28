@@ -108,7 +108,7 @@
 <meta property="og:image" content="http://img.blog.csdn.net/20161230211556129?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20161230211727535?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20161230211047278?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2017-05-28T02:34:09.000Z">
+<meta property="og:updated_time" content="2017-05-28T08:27:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="与Bootstrap和CI框架纠缠的三天">
 <meta name="twitter:description" content="前言如题，博主为交附个课程设计，只得用三天时间运用不熟悉的语言完成一个不靠谱的网站开发。一直以来，前台都是自己的硬伤，在平时很少接触bootstrap等优秀的前端框架，而对于我而言，只单单熟悉后台的业务实现，却无法设计出相映衬的前台UI，这点确实是烦恼已久。刚好，趁这次机会，稍微接触下完全不熟悉的bootstrap框架以及许久没用的CI框架，完成一次基本的整合。当然，实现的功能并不复杂，但若是想试">
@@ -444,18 +444,16 @@
 <p>ps:留言功能还未完善.</p>
 <p><strong>Data页面</strong></p>
 <p><img src="http://img.blog.csdn.net/20161230211727535?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>ps:下载文件功能还未完善.</p>
-<p>#####系统基本思路</p>
-<ol>
+<h5 id="系统基本思路"><a href="#系统基本思路" class="headerlink" title="系统基本思路"></a>系统基本思路</h5><ol>
 <li>默认进系统的为Notice页面，即通过控制器load Notice页面.</li>
 <li>接着触发Choosable页面，而这过程先是action至该页面的控制器，然后传Choosable所需的数据，并以数组的形式返回，接着在目标页面（即Choosable页面）遍历即可</li>
 <li>其余页面的控制思路大同小异，但在form表单action的时候要注意路径问题，一般可调用ci内置的url helper函数获取服务器路径，可避免URL出错</li>
 </ol>
-<p>#####注意</p>
-<ol>
+<h5 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h5><ol>
 <li>务必按照ci的编程规范编写，否则易出bug</li>
 <li>加载数据库，使用url helper以及session等功能，记得在构造函数那儿定义好，这样即可在控制器的全局使用<br><img src="http://img.blog.csdn.net/20161230211047278?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></li>
 </ol>
-<h1 id="系统源码"><a href="#系统源码" class="headerlink" title="系统源码"></a>系统源码</h1><p>详细的源码可访问博主Github：[毕业设计选题系统]<br>(<a href="https://github.com/Joryun/BiShe.git" target="_blank" rel="external">https://github.com/Joryun/BiShe.git</a>)</p>
+<h1 id="系统源码"><a href="#系统源码" class="headerlink" title="系统源码"></a>系统源码</h1><p>详细的源码可访问博主Github：<a href="https://github.com/Joryun/BiShe.git" target="_blank" rel="external">毕业设计选题系统</a></p>
 <h1 id="系统总结"><a href="#系统总结" class="headerlink" title="系统总结"></a>系统总结</h1><p>博主三天捣鼓的简单整合系统，基本上完成了大致的整合以及一些基本功能，由于时间有限，后续的一些基本功能都没加上，但实现的思路都是类似的。这次为了应付课程设计也是拼了，随便捣鼓了这些原本不是很熟悉的东西，但总体来说还是挺好玩的。有兴趣加入更多模块和安全机制或功能的朋友大可以尝试下，博主仅在玩玩儿哈哈~~~</p>
 <p>新的一年将至，这个就算一个纪念吧！新的一年，博主会着重游走于Github，强化自身项目经验，做出更好的项目与大家一起交流学习，希望新的一年，程序猿们一起共勉！！</p>
 <hr>
@@ -674,7 +672,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统介绍"><span class="nav-number">2.</span> <span class="nav-text">系统介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编码"><span class="nav-number">3.</span> <span class="nav-text">编码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-Bootstrap框架整合进CI"><span class="nav-number">3.0.1.</span> <span class="nav-text">(一) Bootstrap框架整合进CI</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#官网下载ci环境包"><span class="nav-number">3.0.1.1.</span> <span class="nav-text">官网下载ci环境包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ci框架的基本配置"><span class="nav-number">3.0.1.2.</span> <span class="nav-text">ci框架的基本配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#初步整合"><span class="nav-number">3.0.1.3.</span> <span class="nav-text">初步整合</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-系统设计"><span class="nav-number">3.0.2.</span> <span class="nav-text">(二) 系统设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#界面UI"><span class="nav-number">3.0.2.1.</span> <span class="nav-text">界面UI</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#以学生端为示例"><span class="nav-number">3.0.2.2.</span> <span class="nav-text">以学生端为示例</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统源码"><span class="nav-number">4.</span> <span class="nav-text">系统源码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统总结"><span class="nav-number">5.</span> <span class="nav-text">系统总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统介绍"><span class="nav-number">2.</span> <span class="nav-text">系统介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编码"><span class="nav-number">3.</span> <span class="nav-text">编码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-Bootstrap框架整合进CI"><span class="nav-number">3.0.1.</span> <span class="nav-text">(一) Bootstrap框架整合进CI</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#官网下载ci环境包"><span class="nav-number">3.0.1.1.</span> <span class="nav-text">官网下载ci环境包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ci框架的基本配置"><span class="nav-number">3.0.1.2.</span> <span class="nav-text">ci框架的基本配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#初步整合"><span class="nav-number">3.0.1.3.</span> <span class="nav-text">初步整合</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-系统设计"><span class="nav-number">3.0.2.</span> <span class="nav-text">(二) 系统设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#界面UI"><span class="nav-number">3.0.2.1.</span> <span class="nav-text">界面UI</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#以学生端为示例"><span class="nav-number">3.0.2.2.</span> <span class="nav-text">以学生端为示例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#系统基本思路"><span class="nav-number">3.0.2.2.1.</span> <span class="nav-text">系统基本思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#注意"><span class="nav-number">3.0.2.2.2.</span> <span class="nav-text">注意</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统源码"><span class="nav-number">4.</span> <span class="nav-text">系统源码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统总结"><span class="nav-number">5.</span> <span class="nav-text">系统总结</span></a></li></ol></div>
             
 
           </div>
