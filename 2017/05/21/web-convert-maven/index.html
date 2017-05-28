@@ -90,32 +90,37 @@
 
 
 
-<meta name="description" content="前言
-网上有许多普通web项目转换为maven项目的博文，但由于项目的不同，所需的步骤及必须的转换步骤也不同。因此，本文章将以一个基于SpringMVC，Spring，Hibernate的商城项目为例，详述转换过程。项目介绍
-开发环境：IDEA，MySQL项目构建：暂无（已通过本文章成功转换为maven）软件环境：SpringMVC，Spring，Hibernate项目描述：商城系统目的
-将普通D">
+<meta name="description" content="前言网上有许多普通web项目转换为maven项目的博文，但由于项目的不同，所需的步骤及必须的转换步骤也不同。因此，本文章将以一个基于SpringMVC，Spring，Hibernate的商城项目为例，详述转换过程。
+具体实例说明
+开发环境：IDEA，MySQL
+项目构建：暂无（已通过本文章成功转换为maven）
+软件环境：SpringMVC，Spring，Hibernate
+项目描述：商城系统">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java奇技淫巧之普通web项目转换为Maven项目">
 <meta property="og:url" content="http://joryun.com/2017/05/21/web-convert-maven/index.html">
 <meta property="og:site_name" content="刘家源">
-<meta property="og:description" content="前言
-网上有许多普通web项目转换为maven项目的博文，但由于项目的不同，所需的步骤及必须的转换步骤也不同。因此，本文章将以一个基于SpringMVC，Spring，Hibernate的商城项目为例，详述转换过程。项目介绍
-开发环境：IDEA，MySQL项目构建：暂无（已通过本文章成功转换为maven）软件环境：SpringMVC，Spring，Hibernate项目描述：商城系统目的
-将普通D">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2929536-9c0437043624d7e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:description" content="前言网上有许多普通web项目转换为maven项目的博文，但由于项目的不同，所需的步骤及必须的转换步骤也不同。因此，本文章将以一个基于SpringMVC，Spring，Hibernate的商城项目为例，详述转换过程。
+具体实例说明
+开发环境：IDEA，MySQL
+项目构建：暂无（已通过本文章成功转换为maven）
+软件环境：SpringMVC，Spring，Hibernate
+项目描述：商城系统">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2929536-a2d6d000abfcd82c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2929536-108599e17672f33a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2929536-8080ae209ae8b181.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2929536-0e6a86553e02ce73.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2929536-7c1f90494c85e0a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-05-27T02:27:58.000Z">
+<meta property="og:updated_time" content="2017-05-28T02:35:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java奇技淫巧之普通web项目转换为Maven项目">
-<meta name="twitter:description" content="前言
-网上有许多普通web项目转换为maven项目的博文，但由于项目的不同，所需的步骤及必须的转换步骤也不同。因此，本文章将以一个基于SpringMVC，Spring，Hibernate的商城项目为例，详述转换过程。项目介绍
-开发环境：IDEA，MySQL项目构建：暂无（已通过本文章成功转换为maven）软件环境：SpringMVC，Spring，Hibernate项目描述：商城系统目的
-将普通D">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2929536-9c0437043624d7e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:description" content="前言网上有许多普通web项目转换为maven项目的博文，但由于项目的不同，所需的步骤及必须的转换步骤也不同。因此，本文章将以一个基于SpringMVC，Spring，Hibernate的商城项目为例，详述转换过程。
+具体实例说明
+开发环境：IDEA，MySQL
+项目构建：暂无（已通过本文章成功转换为maven）
+软件环境：SpringMVC，Spring，Hibernate
+项目描述：商城系统">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2929536-a2d6d000abfcd82c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -396,31 +401,38 @@
       
 
       
-        <p>前言</p>
-<h5 id="网上有许多普通web项目转换为maven项目的博文，但由于项目的不同，所需的步骤及必须的转换步骤也不同。因此，本文章将以一个基于SpringMVC，Spring，Hibernate的商城项目为例，详述转换过程。"><a href="#网上有许多普通web项目转换为maven项目的博文，但由于项目的不同，所需的步骤及必须的转换步骤也不同。因此，本文章将以一个基于SpringMVC，Spring，Hibernate的商城项目为例，详述转换过程。" class="headerlink" title="网上有许多普通web项目转换为maven项目的博文，但由于项目的不同，所需的步骤及必须的转换步骤也不同。因此，本文章将以一个基于SpringMVC，Spring，Hibernate的商城项目为例，详述转换过程。"></a>网上有许多普通web项目转换为maven项目的博文，但由于项目的不同，所需的步骤及必须的转换步骤也不同。因此，本文章将以一个基于SpringMVC，Spring，Hibernate的商城项目为例，详述转换过程。</h5><p>项目介绍</p>
-<h5 id="开发环境：IDEA，MySQL"><a href="#开发环境：IDEA，MySQL" class="headerlink" title="开发环境：IDEA，MySQL"></a>开发环境：IDEA，MySQL</h5><h5 id="项目构建：暂无（已通过本文章成功转换为maven）"><a href="#项目构建：暂无（已通过本文章成功转换为maven）" class="headerlink" title="项目构建：暂无（已通过本文章成功转换为maven）"></a>项目构建：暂无（已通过本文章成功转换为maven）</h5><h5 id="软件环境：SpringMVC，Spring，Hibernate"><a href="#软件环境：SpringMVC，Spring，Hibernate" class="headerlink" title="软件环境：SpringMVC，Spring，Hibernate"></a>软件环境：SpringMVC，Spring，Hibernate</h5><h5 id="项目描述：商城系统"><a href="#项目描述：商城系统" class="headerlink" title="项目描述：商城系统"></a>项目描述：商城系统</h5><p>目的</p>
-<h5 id="将普通Dynamic-Web项目转换为Maven项目"><a href="#将普通Dynamic-Web项目转换为Maven项目" class="headerlink" title="将普通Dynamic Web项目转换为Maven项目"></a>将普通Dynamic Web项目转换为Maven项目</h5><a id="more"></a>
-<h3 id="转换步骤"><a href="#转换步骤" class="headerlink" title="转换步骤"></a>转换步骤</h3><p>前提</p>
-<h5 id="转换之前将项目置于Github上，并clone到IDEA上，防止最后不成功而导致项目bug难以补救，毕竟git的revision功能相当棒呢！！"><a href="#转换之前将项目置于Github上，并clone到IDEA上，防止最后不成功而导致项目bug难以补救，毕竟git的revision功能相当棒呢！！" class="headerlink" title="转换之前将项目置于Github上，并clone到IDEA上，防止最后不成功而导致项目bug难以补救，毕竟git的revision功能相当棒呢！！"></a>转换之前将项目置于Github上，并clone到IDEA上，防止最后不成功而导致项目bug难以补救，毕竟git的revision功能相当棒呢！！</h5><h4 id="1-将项目初步convert为Maven项目"><a href="#1-将项目初步convert为Maven项目" class="headerlink" title="1.将项目初步convert为Maven项目"></a>1.将项目初步convert为Maven项目</h4><p>选择“Add framework support”，并勾选导入“Maven”依赖</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2929536-9c0437043624d7e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h4 id="2-备份lib接着移除lib，然后编写pom-xml"><a href="#2-备份lib接着移除lib，然后编写pom-xml" class="headerlink" title="2.备份lib接着移除lib，然后编写pom.xml"></a>2.备份lib接着移除lib，然后编写pom.xml</h4><p>看到下面的一大片“红”，勿担心，那只是你“颠覆世界”的第一步，千万不能退缩</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>网上有许多普通web项目转换为maven项目的博文，但由于项目的不同，所需的步骤及必须的转换步骤也不同。因此，本文章将以一个基于SpringMVC，Spring，Hibernate的商城项目为例，详述转换过程。</p>
+<h1 id="具体实例"><a href="#具体实例" class="headerlink" title="具体实例"></a>具体实例</h1><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ul>
+<li>开发环境：IDEA，MySQL</li>
+<li>项目构建：暂无（已通过本文章成功转换为maven）</li>
+<li>软件环境：SpringMVC，Spring，Hibernate</li>
+<li>项目描述：商城系统</li>
+</ul>
+<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>将普通Dynamic Web项目转换为Maven项目</p>
+<a id="more"></a>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><h4 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h4><p>转换之前将项目置于Github上，并clone到IDEA上，防止最后不成功而导致项目bug难以补救，毕竟git的revision功能相当棒呢！！</p>
+<h4 id="1-将项目初步convert为"><a href="#1-将项目初步convert为" class="headerlink" title="1. 将项目初步convert为"></a>1. 将项目初步convert为<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">选择```Add framework support```，并勾选导入“Maven”依赖</div><div class="line"></div><div class="line">![](http://upload-images.jianshu.io/upload_images/2929536-9c0437043624d7e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</div><div class="line"></div><div class="line">#### 2. 备份lib接着移除lib，然后编写```pom.xml</div></pre></td></tr></table></figure></h4><p>看到下面的一大片“红”，勿担心，那只是你“颠覆世界”的第一步，千万不能退缩</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/2929536-a2d6d000abfcd82c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>接着备份lib，再移除项目的lib，将项目置于“空jar”状态</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/2929536-108599e17672f33a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>补充pom.xml的头，自动生成的会略掉好几项必须的配置</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.shop<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>Shop<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>Shop Maven Webapp<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.apache.org<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>接着是个体力活，进入每个java、properties、xml、jsp等文件使用Add Maven依赖方式自动导入（快捷键：alt+enter），当然前提是网速要好哈！</p>
+<p>接着是个体力活，进入每个java、properties、xml、jsp等文件使用Add Maven依赖方式自动导入（快捷键：<code>alt+enter</code>），当然前提是网速要好哈！</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/2929536-8080ae209ae8b181.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>经过上步，已经初步导入了大部份必需的依赖，接着，将一些其它依赖（可参考之前备份的lib）随之导入，千万别忽略这一步，因为类似mysql-connector-java等这些依赖一般是还未导入的！</p>
-<h4 id="3-将spring配置文件、数据库属性文件、日志配置文件等剪切至src-main-resources之下"><a href="#3-将spring配置文件、数据库属性文件、日志配置文件等剪切至src-main-resources之下" class="headerlink" title="3.将spring配置文件、数据库属性文件、日志配置文件等剪切至src/main/resources之下"></a>3.将spring配置文件、数据库属性文件、日志配置文件等剪切至src/main/resources之下</h4><p><img src="http://upload-images.jianshu.io/upload_images/2929536-0e6a86553e02ce73.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>经过上步，已经初步导入了大部份必需的依赖，接着，将一些其它依赖（可参考之前备份的lib）随之导入，千万别忽略这一步，因为类似<code>mysql-connector-java</code>等这些依赖一般是还未导入的！</p>
+<h4 id="3-将spring配置文件、数据库属性文件、日志配置文件等剪切至src-main-resources之下"><a href="#3-将spring配置文件、数据库属性文件、日志配置文件等剪切至src-main-resources之下" class="headerlink" title="3. 将spring配置文件、数据库属性文件、日志配置文件等剪切至src/main/resources之下"></a>3. 将spring配置文件、数据库属性文件、日志配置文件等剪切至src/main/resources之下</h4><p><img src="http://upload-images.jianshu.io/upload_images/2929536-0e6a86553e02ce73.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>若是里面配置文件的映射路径有差错，记得进入改正，idea下cmd+鼠标可测试大部份不正确的路径。</p>
-<h4 id="4-将原来放置在WebRoot路径下的文件（包括js，css，jsp等）都剪切至webapp文件夹之下，并删除WebRoot文件夹"><a href="#4-将原来放置在WebRoot路径下的文件（包括js，css，jsp等）都剪切至webapp文件夹之下，并删除WebRoot文件夹" class="headerlink" title="4.将原来放置在WebRoot路径下的文件（包括js，css，jsp等）都剪切至webapp文件夹之下，并删除WebRoot文件夹"></a>4.将原来放置在WebRoot路径下的文件（包括js，css，jsp等）都剪切至webapp文件夹之下，并删除WebRoot文件夹</h4><p>重要的是WEB-INF文件夹</p>
+<h4 id="4-将原来放置在WebRoot路径下的文件（包括js，css，jsp等）都剪切至webapp文件夹之下，并删除WebRoot文件夹"><a href="#4-将原来放置在WebRoot路径下的文件（包括js，css，jsp等）都剪切至webapp文件夹之下，并删除WebRoot文件夹" class="headerlink" title="4.将原来放置在WebRoot路径下的文件（包括js，css，jsp等）都剪切至webapp文件夹之下，并删除WebRoot文件夹"></a>4.将原来放置在WebRoot路径下的文件（包括js，css，jsp等）都剪切至webapp文件夹之下，并删除WebRoot文件夹</h4><p>重要的是<code>WEB-INF</code>文件夹</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/2929536-7c1f90494c85e0a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h4 id="5-重新部署并测试"><a href="#5-重新部署并测试" class="headerlink" title="5.重新部署并测试"></a>5.重新部署并测试</h4><p>重新部署至Tomcat（或Jetty）测试效果。</p>
+<h4 id="5-重新部署并测试"><a href="#5-重新部署并测试" class="headerlink" title="5.重新部署并测试"></a>5.重新部署并测试</h4><p>重新部署至<code>Tomcat（或Jetty）</code>测试效果。</p>
 <p>基本上，到这一步离成功也就不远了（而我已经成功了）。若是…若是还有bug，多调调，看看日志，看看控制台输出，直至转换成功也不失为一次很棒的尝试。</p>
 <p>若有不明白的参见商城系统：<a href="https://github.com/Joryun/Shop" target="_blank" rel="external">Shop</a></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Maven是一套相当不错的软件项目管理工具，因此很多程序猿可能会频频遇到Dynamic Web项目转换Maven项目的情况，这时大家便可以学习起来，以备不时之需！共勉！！</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>Maven是一套相当不错的软件项目管理工具，因此很多程序猿可能会频频遇到Dynamic Web项目转换Maven项目的情况，这时大家便可以学习起来，以备不时之需！共勉！！</p>
 <hr>
+<p>编程是一门事业。互励共勉！！！</p>
+<p>Github：<a href="https://github.com/Joryun" target="_blank" rel="external">Joryun’s Github</a></p>
+<p>CSDN：<a href="http://blog.csdn.net/joryun" target="_blank" rel="external">Joryun’s CSDN</a></p>
+<p>个人网站：<a href="http://joryun.com">Joryun’s Website</a></p>
 
       
     </div>
@@ -465,8 +477,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/21/spring-jms-activemq-start/" rel="next" title="Spring全家桶(1)：Spring JMS + ActiveMQ起步">
-                <i class="fa fa-chevron-left"></i> Spring全家桶(1)：Spring JMS + ActiveMQ起步
+              <a href="/2017/05/21/spring-jms-activemq-start/" rel="next" title="Spring全家桶:(1)Spring JMS + ActiveMQ起步">
+                <i class="fa fa-chevron-left"></i> Spring全家桶:(1)Spring JMS + ActiveMQ起步
               </a>
             
           </div>
@@ -630,7 +642,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#网上有许多普通web项目转换为maven项目的博文，但由于项目的不同，所需的步骤及必须的转换步骤也不同。因此，本文章将以一个基于SpringMVC，Spring，Hibernate的商城项目为例，详述转换过程。"><span class="nav-number">1.</span> <span class="nav-text">网上有许多普通web项目转换为maven项目的博文，但由于项目的不同，所需的步骤及必须的转换步骤也不同。因此，本文章将以一个基于SpringMVC，Spring，Hibernate的商城项目为例，详述转换过程。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#开发环境：IDEA，MySQL"><span class="nav-number">2.</span> <span class="nav-text">开发环境：IDEA，MySQL</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#项目构建：暂无（已通过本文章成功转换为maven）"><span class="nav-number">3.</span> <span class="nav-text">项目构建：暂无（已通过本文章成功转换为maven）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件环境：SpringMVC，Spring，Hibernate"><span class="nav-number">4.</span> <span class="nav-text">软件环境：SpringMVC，Spring，Hibernate</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#项目描述：商城系统"><span class="nav-number">5.</span> <span class="nav-text">项目描述：商城系统</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#将普通Dynamic-Web项目转换为Maven项目"><span class="nav-number">6.</span> <span class="nav-text">将普通Dynamic Web项目转换为Maven项目</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#转换步骤"><span class="nav-number"></span> <span class="nav-text">转换步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#转换之前将项目置于Github上，并clone到IDEA上，防止最后不成功而导致项目bug难以补救，毕竟git的revision功能相当棒呢！！"><span class="nav-number">1.</span> <span class="nav-text">转换之前将项目置于Github上，并clone到IDEA上，防止最后不成功而导致项目bug难以补救，毕竟git的revision功能相当棒呢！！</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-将项目初步convert为Maven项目"><span class="nav-number"></span> <span class="nav-text">1.将项目初步convert为Maven项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-备份lib接着移除lib，然后编写pom-xml"><span class="nav-number"></span> <span class="nav-text">2.备份lib接着移除lib，然后编写pom.xml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-将spring配置文件、数据库属性文件、日志配置文件等剪切至src-main-resources之下"><span class="nav-number"></span> <span class="nav-text">3.将spring配置文件、数据库属性文件、日志配置文件等剪切至src/main/resources之下</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-将原来放置在WebRoot路径下的文件（包括js，css，jsp等）都剪切至webapp文件夹之下，并删除WebRoot文件夹"><span class="nav-number"></span> <span class="nav-text">4.将原来放置在WebRoot路径下的文件（包括js，css，jsp等）都剪切至webapp文件夹之下，并删除WebRoot文件夹</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-重新部署并测试"><span class="nav-number"></span> <span class="nav-text">5.重新部署并测试</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number"></span> <span class="nav-text">总结</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#具体实例"><span class="nav-number">2.</span> <span class="nav-text">具体实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#说明"><span class="nav-number">2.0.1.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目的"><span class="nav-number">2.0.2.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤"><span class="nav-number">2.0.3.</span> <span class="nav-text">步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#前提"><span class="nav-number">2.0.3.1.</span> <span class="nav-text">前提</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-将项目初步convert为"><span class="nav-number">2.0.3.2.</span> <span class="nav-text">1. 将项目初步convert为123456选择```Add framework support```，并勾选导入“Maven”依赖![](http://upload-images.jianshu.io/upload_images/2929536-9c0437043624d7e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)#### 2. 备份lib接着移除lib，然后编写```pom.xml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-将spring配置文件、数据库属性文件、日志配置文件等剪切至src-main-resources之下"><span class="nav-number">2.0.3.3.</span> <span class="nav-text">3. 将spring配置文件、数据库属性文件、日志配置文件等剪切至src/main/resources之下</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-将原来放置在WebRoot路径下的文件（包括js，css，jsp等）都剪切至webapp文件夹之下，并删除WebRoot文件夹"><span class="nav-number">2.0.3.4.</span> <span class="nav-text">4.将原来放置在WebRoot路径下的文件（包括js，css，jsp等）都剪切至webapp文件夹之下，并删除WebRoot文件夹</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-重新部署并测试"><span class="nav-number">2.0.3.5.</span> <span class="nav-text">5.重新部署并测试</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
