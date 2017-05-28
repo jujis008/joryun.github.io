@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="java,webservice,php," />
+  <meta name="keywords" content="php,java,webservice," />
 
 
 
@@ -121,7 +121,7 @@
 <meta property="og:image" content="http://img.blog.csdn.net/20160526155851882">
 <meta property="og:image" content="http://img.blog.csdn.net/20160526160147935">
 <meta property="og:image" content="http://img.blog.csdn.net/20160526160403623">
-<meta property="og:updated_time" content="2017-05-28T02:35:25.000Z">
+<meta property="og:updated_time" content="2017-05-28T02:49:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webservice:(1)新手搭建调用webservice那些坑">
 <meta name="twitter:description" content="前言今天主要和大家分享搭建java版webservice，以及php调用webservice遇到的一些坑。博客内容大部分纯手打，纯亲测。注：网上有很多使用Eclipse构建webservice的教程，不过配置较麻烦，而且最后可能还访问不了。因此，此博客采用MyEclipse搭建。需注意一点，MyEclipse10及以下的支持不了pattern库，因此发布的项目如果包含Pattern则无法支持，这也">
@@ -450,7 +450,8 @@
 <p><img src="http://img.blog.csdn.net/20160526153659648" alt=""></p>
 <p><img src="http://img.blog.csdn.net/20160526153815525" alt=""></p>
 <p><img src="http://img.blog.csdn.net/20160526153842572" alt=""></p>
-<h3 id="测试webservice"><a href="#测试webservice" class="headerlink" title="测试webservice"></a>测试webservice</h3><p>输入URL，出现图式效果即为发布成功.<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http:<span class="regexp">//</span>localhost:<span class="number">8080</span><span class="regexp">/WebServiceDemo/</span>UserInfoPort?wsdl</div></pre></td></tr></table></figure></p>
+<h3 id="测试webservice"><a href="#测试webservice" class="headerlink" title="测试webservice"></a>测试webservice</h3><p>输入URL，出现图式效果即为发布成功.</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http:<span class="regexp">//</span>localhost:<span class="number">8080</span><span class="regexp">/WebServiceDemo/</span>UserInfoPort?wsdl</div></pre></td></tr></table></figure>
 <p><img src="http://img.blog.csdn.net/20160526154324689" alt=""></p>
 <h2 id="PHP调用webservice"><a href="#PHP调用webservice" class="headerlink" title="PHP调用webservice"></a>PHP调用webservice</h2><h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>博主采用CI框架测试，但不用框架也一样。并且php项目文件发布到了xampp上，直接访问本地即可查看效果。</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">关于php调用webservice，亲测过两种方法：</div><div class="line"><span class="bullet">1. </span>引入nusoap.php，调用call()方法</div><div class="line"><span class="bullet">2. </span>php5自带函数测试，classMap方式传值</div></pre></td></tr></table></figure>
@@ -494,11 +495,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/php/" rel="tag"># php</a>
+          
             <a href="/tags/java/" rel="tag"># java</a>
           
             <a href="/tags/webservice/" rel="tag"># webservice</a>
-          
-            <a href="/tags/php/" rel="tag"># php</a>
           
         </div>
       
