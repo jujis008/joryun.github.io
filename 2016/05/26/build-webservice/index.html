@@ -16,6 +16,8 @@
     <title>webservice:(1)新手搭建调用webservice那些坑 | 刘家源 | TO BE IS TO DO</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
+    <meta name="theme-color" content="#3F51B5">
+    
     
     <meta name="keywords" content="php,java,webservice">
     <meta name="description" content="前言今天主要和大家分享搭建java版webservice，以及php调用webservice遇到的一些坑。博客内容大部分纯手打，纯亲测。注：网上有很多使用Eclipse构建webservice的教程，不过配置较麻烦，而且最后可能还访问不了。因此，此博客采用MyEclipse搭建。需注意一点，MyEclipse10及以下的支持不了pattern库，因此发布的项目如果包含Pattern则无法支持，这也">
@@ -59,8 +61,8 @@
     
         <link rel="alternate" type="application/atom+xml" title="刘家源" href="/atom.xml">
     
-    <link rel="shortcut icon" href="/">
-    <link rel="stylesheet" href="/css/style.css?v=1.6.13">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
     <script>window.lazyScripts=[]</script>
 
     <!-- custom head -->
@@ -71,15 +73,15 @@
 <body>
     <div id="loading" class="active"></div>
 
-    <aside id="menu"  >
+    <aside id="menu" class="hide" >
   <div class="inner flex-row-vertical">
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
     </a>
-    <div class="brand-wrap" style="background-image:url(/)">
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
       <div class="brand">
         <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/">
+          <img src="/img/avatar.jpg">
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">Joryun</h5>
@@ -89,6 +91,55 @@
     </div>
     <div class="scroll-wrap flex-col">
       <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Joryun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
         
       </ul>
     </div>
@@ -103,6 +154,20 @@
         </a>
         <div class="flex-col header-title ellipsis">webservice:(1)新手搭建调用webservice那些坑</div>
         
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
         
     </div>
 </header>
@@ -131,6 +196,13 @@
 
 <div class="container body-wrap">
     
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#开发环境：MyEclipse2014，JAX-WS构建（容易使用），Tomcat-7"><span class="post-toc-number">1.0.0.1.</span> <span class="post-toc-text">开发环境：MyEclipse2014，JAX-WS构建（容易使用），Tomcat 7</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#何为WebService？"><span class="post-toc-number">1.0.0.2.</span> <span class="post-toc-text">何为WebService？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#关键的技术和规则"><span class="post-toc-number">1.0.0.3.</span> <span class="post-toc-text">关键的技术和规则</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#XML"><span class="post-toc-number">1.0.0.4.</span> <span class="post-toc-text">XML</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#SOAP"><span class="post-toc-number">1.0.0.5.</span> <span class="post-toc-text">SOAP</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#WSDL"><span class="post-toc-number">1.0.0.6.</span> <span class="post-toc-text">WSDL</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#UDDI"><span class="post-toc-number">1.0.0.7.</span> <span class="post-toc-text">UDDI</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#具体实例"><span class="post-toc-number">2.</span> <span class="post-toc-text">具体实例</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一-开始搭建webservice"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">(一) 开始搭建webservice</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#前提"><span class="post-toc-number">2.1.0.1.</span> <span class="post-toc-text">前提</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#编码"><span class="post-toc-number">2.1.0.2.</span> <span class="post-toc-text">编码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-创建发布webservice"><span class="post-toc-number">2.1.0.2.1.</span> <span class="post-toc-text">1. 创建发布webservice</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2-然后新建一类文件UserInfo-java"><span class="post-toc-number">2.1.0.2.2.</span> <span class="post-toc-text">2. 然后新建一类文件UserInfo.java</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#3-接下来发布web-service"><span class="post-toc-number">2.1.0.2.3.</span> <span class="post-toc-text">3. 接下来发布web service</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#4-选择从java类创建web-service"><span class="post-toc-number">2.1.0.2.4.</span> <span class="post-toc-text">4. 选择从java类创建web service</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#5-选择访问的java-class"><span class="post-toc-number">2.1.0.2.5.</span> <span class="post-toc-text">5. 选择访问的java class</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#6-生成WSDL（WSDL以上有介绍，不懂可以回去看）"><span class="post-toc-number">2.1.0.2.6.</span> <span class="post-toc-text">6. 生成WSDL（WSDL以上有介绍，不懂可以回去看）</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#7-发布后的项目结构如下"><span class="post-toc-number">2.1.0.2.7.</span> <span class="post-toc-text">7. 发布后的项目结构如下</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#二-配置Tomcat"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">(二) 配置Tomcat</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#前提-1"><span class="post-toc-number">2.2.0.1.</span> <span class="post-toc-text">前提</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#过程"><span class="post-toc-number">2.2.0.2.</span> <span class="post-toc-text">过程</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#部署项目并启动Tomcat服务器"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">部署项目并启动Tomcat服务器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#添加JAX-WS库"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">添加JAX-WS库</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#测试webservice"><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">测试webservice</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PHP调用webservice"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">PHP调用webservice</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#说明"><span class="post-toc-number">2.3.0.1.</span> <span class="post-toc-text">说明</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-引入nusoap-php，调用call-方法"><span class="post-toc-number">2.3.0.2.</span> <span class="post-toc-text">1. 引入nusoap.php，调用call()方法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-php5自带函数测试，classMap方式传值"><span class="post-toc-number">2.3.0.3.</span> <span class="post-toc-text">2. php5自带函数测试，classMap方式传值</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">3.</span> <span class="post-toc-text">总结</span></a></li></ol>
+        </nav>
+    </aside>
+    
 <article id="post-build-webservice"
   class="post-article article-type-post fade" itemprop="blogPost">
 
@@ -145,6 +217,10 @@
 
 
             
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
@@ -171,34 +247,180 @@
 <li>添加JAX-WS库</li>
 <li>测试webservice</li>
 </ul>
-<h4 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h4><h5 id="1-创建发布webservice"><a href="#1-创建发布webservice" class="headerlink" title="1. 创建发布webservice"></a>1. 创建发布webservice</h5><p>新建Web Service Project<br><img src="http://img.blog.csdn.net/20160526144616800" alt=""><br>然后填好信息并next<br><img src="http://img.blog.csdn.net/20160526144930826" alt=""><br>然后接下来一直next，可选择生成web.xml.<br>这是刚新建的项目结构<br><img src="http://img.blog.csdn.net/20160526145130186" alt=""></p>
-<h5 id="2-然后新建一类文件UserInfo-java"><a href="#2-然后新建一类文件UserInfo-java" class="headerlink" title="2. 然后新建一类文件UserInfo.java"></a>2. 然后新建一类文件UserInfo.java</h5><p><img src="http://img.blog.csdn.net/20160526145457078" alt=""></p>
+<h4 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h4><h5 id="1-创建发布webservice"><a href="#1-创建发布webservice" class="headerlink" title="1. 创建发布webservice"></a>1. 创建发布webservice</h5><p>新建Web Service Project<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526144616800" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>然后填好信息并next<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526144930826" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>然后接下来一直next，可选择生成web.xml.<br>这是刚新建的项目结构<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526145130186" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<h5 id="2-然后新建一类文件UserInfo-java"><a href="#2-然后新建一类文件UserInfo-java" class="headerlink" title="2. 然后新建一类文件UserInfo.java"></a>2. 然后新建一类文件UserInfo.java</h5><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526145457078" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>示例源码：</p>
 <figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.yuan.webservice;</div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * </span></div><div class="line"><span class="comment"> * @author Joryun</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserInfo</span> </span>&#123;</div><div class="line">	<span class="keyword">public</span> <span class="keyword">String</span> GetUserInfo()&#123;</div><div class="line">		<span class="keyword">return</span> <span class="string">"源哥"</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="keyword">public</span> <span class="keyword">String</span> ParameterTest(<span class="keyword">String</span> user, <span class="keyword">String</span> pwd)&#123;</div><div class="line">		<span class="keyword">return</span> user+<span class="string">"："</span>+pwd;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h5 id="3-接下来发布web-service"><a href="#3-接下来发布web-service" class="headerlink" title="3. 接下来发布web service"></a>3. 接下来发布web service</h5><p><img src="http://img.blog.csdn.net/20160526145727673" alt=""></p>
-<h5 id="4-选择从java类创建web-service"><a href="#4-选择从java类创建web-service" class="headerlink" title="4. 选择从java类创建web service"></a>4. 选择从java类创建web service</h5><p><img src="http://img.blog.csdn.net/20160526150314214" alt=""></p>
-<h5 id="5-选择访问的java-class"><a href="#5-选择访问的java-class" class="headerlink" title="5. 选择访问的java class"></a>5. 选择访问的java class</h5><p><img src="http://img.blog.csdn.net/20160526150649656" alt=""></p>
-<p><img src="http://img.blog.csdn.net/20160526150700662" alt=""></p>
-<h5 id="6-生成WSDL（WSDL以上有介绍，不懂可以回去看）"><a href="#6-生成WSDL（WSDL以上有介绍，不懂可以回去看）" class="headerlink" title="6. 生成WSDL（WSDL以上有介绍，不懂可以回去看）"></a>6. 生成WSDL（WSDL以上有介绍，不懂可以回去看）</h5><p><img src="http://img.blog.csdn.net/20160526150713032" alt=""></p>
-<h5 id="7-发布后的项目结构如下"><a href="#7-发布后的项目结构如下" class="headerlink" title="7. 发布后的项目结构如下"></a>7. 发布后的项目结构如下</h5><p><img src="http://img.blog.csdn.net/20160526151228211" alt=""></p>
+<h5 id="3-接下来发布web-service"><a href="#3-接下来发布web-service" class="headerlink" title="3. 接下来发布web service"></a>3. 接下来发布web service</h5><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526145727673" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h5 id="4-选择从java类创建web-service"><a href="#4-选择从java类创建web-service" class="headerlink" title="4. 选择从java类创建web service"></a>4. 选择从java类创建web service</h5><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526150314214" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h5 id="5-选择访问的java-class"><a href="#5-选择访问的java-class" class="headerlink" title="5. 选择访问的java class"></a>5. 选择访问的java class</h5><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526150649656" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526150700662" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h5 id="6-生成WSDL（WSDL以上有介绍，不懂可以回去看）"><a href="#6-生成WSDL（WSDL以上有介绍，不懂可以回去看）" class="headerlink" title="6. 生成WSDL（WSDL以上有介绍，不懂可以回去看）"></a>6. 生成WSDL（WSDL以上有介绍，不懂可以回去看）</h5><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526150713032" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h5 id="7-发布后的项目结构如下"><a href="#7-发布后的项目结构如下" class="headerlink" title="7. 发布后的项目结构如下"></a>7. 发布后的项目结构如下</h5><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526151228211" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h2 id="二-配置Tomcat"><a href="#二-配置Tomcat" class="headerlink" title="(二) 配置Tomcat"></a>(二) 配置Tomcat</h2><h4 id="前提-1"><a href="#前提-1" class="headerlink" title="前提"></a>前提</h4><p>假定你需要使用自己本机Tomcat的情况下</p>
-<h4 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h4><p>Window-Preferences-MyEclipse-Servers-Tomcat<br><img src="http://img.blog.csdn.net/20160526151910516" alt=""></p>
-<p><img src="http://img.blog.csdn.net/20160526152006074" alt=""><br>配置好后Apply-OK.</p>
-<h3 id="部署项目并启动Tomcat服务器"><a href="#部署项目并启动Tomcat服务器" class="headerlink" title="部署项目并启动Tomcat服务器"></a>部署项目并启动Tomcat服务器</h3><p>部署此项目到服务器<br><img src="http://img.blog.csdn.net/20160526152648665" alt=""></p>
-<p><img src="http://img.blog.csdn.net/20160526152701654" alt=""></p>
-<p><img src="http://img.blog.csdn.net/20160526152710686" alt=""><br>选择完后Finish</p>
-<p>接下来启动Tomcat服务器<br><img src="http://img.blog.csdn.net/20160526153044203" alt=""><br>服务器已启动的图例<br><img src="http://img.blog.csdn.net/20160526153052937" alt=""></p>
-<h3 id="添加JAX-WS库"><a href="#添加JAX-WS库" class="headerlink" title="添加JAX-WS库"></a>添加JAX-WS库</h3><p>在项目的构建路径中添加库文件<br><img src="http://img.blog.csdn.net/20160526153640221" alt=""></p>
-<p><img src="http://img.blog.csdn.net/20160526153659648" alt=""></p>
-<p><img src="http://img.blog.csdn.net/20160526153815525" alt=""></p>
-<p><img src="http://img.blog.csdn.net/20160526153842572" alt=""></p>
+<h4 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h4><p>Window-Preferences-MyEclipse-Servers-Tomcat<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526151910516" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526152006074" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>配置好后Apply-OK.</p>
+<h3 id="部署项目并启动Tomcat服务器"><a href="#部署项目并启动Tomcat服务器" class="headerlink" title="部署项目并启动Tomcat服务器"></a>部署项目并启动Tomcat服务器</h3><p>部署此项目到服务器<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526152648665" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526152701654" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526152710686" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>选择完后Finish</p>
+<p>接下来启动Tomcat服务器<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526153044203" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>服务器已启动的图例<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526153052937" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<h3 id="添加JAX-WS库"><a href="#添加JAX-WS库" class="headerlink" title="添加JAX-WS库"></a>添加JAX-WS库</h3><p>在项目的构建路径中添加库文件<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526153640221" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526153659648" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526153815525" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526153842572" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h3 id="测试webservice"><a href="#测试webservice" class="headerlink" title="测试webservice"></a>测试webservice</h3><p>输入URL，出现图式效果即为发布成功.</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http:<span class="regexp">//</span>localhost:<span class="number">8080</span><span class="regexp">/WebServiceDemo/</span>UserInfoPort?wsdl</div></pre></td></tr></table></figure>
-<p><img src="http://img.blog.csdn.net/20160526154324689" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526154324689" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h2 id="PHP调用webservice"><a href="#PHP调用webservice" class="headerlink" title="PHP调用webservice"></a>PHP调用webservice</h2><h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>博主采用CI框架测试，但不用框架也一样。并且php项目文件发布到了xampp上，直接访问本地即可查看效果。</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">关于php调用webservice，亲测过两种方法：</div><div class="line"><span class="bullet">1. </span>引入nusoap.php，调用call()方法</div><div class="line"><span class="bullet">2. </span>php5自带函数测试，classMap方式传值</div></pre></td></tr></table></figure>
-<h4 id="1-引入nusoap-php，调用call-方法"><a href="#1-引入nusoap-php，调用call-方法" class="headerlink" title="1. 引入nusoap.php，调用call()方法"></a>1. 引入nusoap.php，调用call()方法</h4><p>特别注意：以下两处圈红圈的是坑点，一开始测试的时候用的是webservice接口名的参数，即user，pwd.但实际上打印到网页上之后才发现参数是arg0和arg1。。。<br><img src="http://img.blog.csdn.net/20160526155851882" alt=""></p>
-<p><img src="http://img.blog.csdn.net/20160526160147935" alt=""></p>
+<h4 id="1-引入nusoap-php，调用call-方法"><a href="#1-引入nusoap-php，调用call-方法" class="headerlink" title="1. 引入nusoap.php，调用call()方法"></a>1. 引入nusoap.php，调用call()方法</h4><p>特别注意：以下两处圈红圈的是坑点，一开始测试的时候用的是webservice接口名的参数，即user，pwd.但实际上打印到网页上之后才发现参数是arg0和arg1。。。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526155851882" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526160147935" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h4 id="2-php5自带函数测试，classMap方式传值"><a href="#2-php5自带函数测试，classMap方式传值" class="headerlink" title="2. php5自带函数测试，classMap方式传值"></a>2. php5自带函数测试，classMap方式传值</h4><p><img src="http://img.blog.csdn.net/20160526160403623" alt=""></p>
 <p>以下贴PHP实现源码：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"><span class="php"><span class="meta">&lt;?php</span></span></div><div class="line"><span class="php">header(<span class="string">'Content-Type: text/html; charset=UTF-8'</span>);</span></div><div class="line">/**</div><div class="line"> * Class Test</div><div class="line"> * Joryun</div><div class="line"> *</div><div class="line"> * 调用webservice测试类</div><div class="line"><span class="php"> */</span></div><div class="line"><span class="php"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">CI_Controller</span></span></span></div><div class="line"><span class="php">&#123;</span></div><div class="line"><span class="php">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span></span></div><div class="line"><span class="php">    &#123;</span></div><div class="line"><span class="php">        <span class="keyword">parent</span>::__construct();</span></div><div class="line"><span class="php">    &#125;</span></div><div class="line"><span class="php"></span></div><div class="line"><span class="php">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span><span class="params">()</span></span></span></div><div class="line"><span class="php">    &#123;</span></div><div class="line">        /**</div><div class="line">         * nusoap.php需在网上下载，并将该php文件包含进项目空间</div><div class="line">         * 引入nusoap.php，调用call()方法</div><div class="line"><span class="php">         */</span></div><div class="line"><span class="php"><span class="comment">//        require_once ("libs/nusoap.php");</span></span></div><div class="line"><span class="php"><span class="comment">//</span></span></div><div class="line"><span class="php"><span class="comment">//        // Create the client instance</span></span></div><div class="line"><span class="php"><span class="comment">//        $client = new nusoap_client('http://localhost:8080/WeixinDemo/UserInfoPort?wsdl', true);</span></span></div><div class="line"><span class="php"><span class="comment">//        $client-&gt;soap_defencoding = 'utf-8';</span></span></div><div class="line"><span class="php"><span class="comment">//        $client-&gt;decode_utf8 = false;</span></span></div><div class="line"><span class="php"><span class="comment">//        $client-&gt;xml_encoding = 'utf-8';</span></span></div><div class="line"><span class="php"><span class="comment">//</span></span></div><div class="line"><span class="php"><span class="comment">//        $param = array('arg0'=&gt;'Joryun', 'arg1'=&gt;'666666');//webservice参数数组</span></span></div><div class="line"><span class="php"><span class="comment">//        $result = $client-&gt;call('ParameterTest', $param);//接口和参数</span></span></div><div class="line"><span class="php"><span class="comment">//        print_r($result);</span></span></div><div class="line"><span class="php"></span></div><div class="line"><span class="php"></span></div><div class="line"><span class="php"></span></div><div class="line">        /**</div><div class="line">         * php5自带函数测试</div><div class="line">         * classMap方式传值</div><div class="line"><span class="php">         */</span></div><div class="line"><span class="php">        $client = <span class="keyword">new</span> SoapClient(<span class="string">"http://localhost:8080/WeixinDemo/UserInfoPort?wsdl"</span>);</span></div><div class="line"><span class="php"></span></div><div class="line"><span class="php">        <span class="keyword">echo</span> (<span class="string">"SOAP服务器提供的开放Function:"</span>);</span></div><div class="line"><span class="php">        <span class="keyword">echo</span> <span class="string">'&lt;pre&gt;'</span>;</span></div><div class="line"><span class="php">        var_dump ( $client-&gt;__getFunctions () );<span class="comment">//获取服务器上提供的方法</span></span></div><div class="line"><span class="php">        <span class="keyword">echo</span> <span class="string">'&lt;/pre&gt;'</span>;</span></div><div class="line"><span class="php"></span></div><div class="line"><span class="php">        <span class="keyword">echo</span> <span class="string">'&lt;br&gt;'</span>;</span></div><div class="line"><span class="php"></span></div><div class="line"><span class="php">        <span class="keyword">echo</span> (<span class="string">"SOAP服务器提供的Type:"</span>);</span></div><div class="line"><span class="php">        <span class="keyword">echo</span> <span class="string">'&lt;pre&gt;'</span>;</span></div><div class="line"><span class="php">        var_dump ( $client-&gt;__getTypes () );<span class="comment">//获取服务器上数据类型</span></span></div><div class="line"><span class="php">        <span class="keyword">echo</span> <span class="string">'&lt;/pre&gt;'</span>;</span></div><div class="line"><span class="php"></span></div><div class="line"><span class="php">        $object=<span class="keyword">new</span> stdclass;</span></div><div class="line"><span class="php">        $object-&gt;arg0=<span class="string">'Joryun'</span>;</span></div><div class="line"><span class="php">        $object-&gt;arg1=<span class="string">'666666'</span>;</span></div><div class="line"><span class="php">        $result = $client-&gt;ParameterTest($object);</span></div><div class="line"><span class="php">        <span class="comment">//$result=get_object_vars($result);   //将object转换为array</span></span></div><div class="line"><span class="php">        var_dump($result);</span></div><div class="line"><span class="php">    &#125;</span></div><div class="line"><span class="php">&#125;</span></div><div class="line"><span class="php"></span></div><div class="line"><span class="php"><span class="meta">?&gt;</span></span></div></pre></td></tr></table></figure>
@@ -214,18 +436,28 @@
         <blockquote class="post-copyright">
     <div class="content">
         
+<span class="post-time">
+    Last updated: <time datetime="2017-05-28T02:49:18.000Z" itemprop="dateUpdated">2017-05-28 10:49:18</time>
+</span><br>
 
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2016/05/26/build-webservice/" target="_blank" rel="external">http://joryun.com/2016/05/26/build-webservice/</a>
         
     </div>
     <footer>
         <a href="http://joryun.com">
-            <img src="/" alt="Joryun">
+            <img src="/img/avatar.jpg" alt="Joryun">
             Joryun
         </a>
     </footer>
 </blockquote>
 
         
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
 
 
         <div class="post-footer">
@@ -234,6 +466,51 @@
 
 
             
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://joryun.com/2016/05/26/build-webservice/&title=《webservice:(1)新手搭建调用webservice那些坑》 — 刘家源&pic=http://joryun.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://joryun.com/2016/05/26/build-webservice/&title=《webservice:(1)新手搭建调用webservice那些坑》 — 刘家源&source=前言今天主要和大家分享搭建java版webservice，以及php调用webservice遇到的一些坑。博客内容大部分纯手打，纯亲测。注：网上有很多使用..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://joryun.com/2016/05/26/build-webservice/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《webservice:(1)新手搭建调用webservice那些坑》 — 刘家源&url=http://joryun.com/2016/05/26/build-webservice/&via=http://joryun.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://joryun.com/2016/05/26/build-webservice/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
 
 
         </div>
@@ -272,6 +549,32 @@
 
 </article>
 
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
 
 
 </div>
@@ -279,16 +582,25 @@
         <footer class="footer">
     <div class="top">
         
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
 
         <p>
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>Joryun &copy; 2017</span>
+        <p><span>Joryun &copy; 2016 - 2017</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
@@ -302,21 +614,106 @@
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://joryun.com/2016/05/26/build-webservice/&title=《webservice:(1)新手搭建调用webservice那些坑》 — 刘家源&pic=http://joryun.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://joryun.com/2016/05/26/build-webservice/&title=《webservice:(1)新手搭建调用webservice那些坑》 — 刘家源&source=前言今天主要和大家分享搭建java版webservice，以及php调用webservice遇到的一些坑。博客内容大部分纯手打，纯亲测。注：网上有很多使用..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://joryun.com/2016/05/26/build-webservice/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《webservice:(1)新手搭建调用webservice那些坑》 — 刘家源&url=http://joryun.com/2016/05/26/build-webservice/&via=http://joryun.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://joryun.com/2016/05/26/build-webservice/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKklEQVR42u3aQY7DIAwF0N7/0p3tSBX02zAjBR6rqE0DLwsX27xe8XgPxu9vP+/8fML8evTJtoGBgfFYxns6RvfMFz2fZfTt/KWM1oCBgXEPo/foPOD2vk3WhoGBgbHrOg/WGBgYGOuM+SdJaM5hGBgYGNUkdn0ztxKUt+XiGBgYD2TkVff/v/6T/gYGBsajGO/iSJLPfGuYbDGjVWFgYBzNyANcb0PWO3LRXA8GBsbRjDxoVg9MJKG5GqAjKgYGxkGMZLJqclttDKyU/IY7XAwMjOMY1eC7XvRPEuDCjBgYGBcweiW2veW2JRgGBsYFjJWeYF6MS5bVezIGBsY9jHyh+XKrm8W8nDdMYjEwMI5j5LfmkyVhND921gzEGBgYBzF6jYHkzmpToYrZ0MLEwMB4CCMveK2ntdVGZvk1YWBgXMOYT9xLaKtJcrUVgYGBcTYjKaslm7zqb1eOX2BgYNzG6CWZvaS391LyVigGBsbZjDzk5QW4ZMOXb/6iNgMGBsY1jJXjDsmvkuv8X+JLLo6BgXEBI28Y5Mcseq+p2RjAwMA4jrErpewd/1pPbjEwME5l9A5SVJuUeXO011LFwMA4m5GPvHBWTXTz+/NWBAYGxnmMXohcSWWrhzYwMDAwqgX9lSblLiQGBgZGNWnsNRKSFkK56IaBgYHRCsTlTV6xqIeBgXEPI5m42iSobv6SWYbPxMDAOJrRSx3Xj38Vjny1to8YGBhHMH4AmF+Jh1xnoTcAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
     <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
-var BLOG = { ROOT: '/', SHARE: , REWARD: false };
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
 </script>
 
-<script src="/js/main.min.js?v=1.6.13"></script>
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
 
 
 
 
 
 
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
 
 
 

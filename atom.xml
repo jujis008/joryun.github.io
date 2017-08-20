@@ -58,7 +58,13 @@
 <figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//LinkedBuffer：缓存器</span></div><div class="line"><span class="built_in">byte</span>[] bytes = ProtobufIOUtil.toByteArray(seckill, schema,</div><div class="line">        LinkedBuffer.allocate(LinkedBuffer.DEFAULT_BUFFER_SIZE));</div><div class="line"></div><div class="line"><span class="comment">//超时缓存</span></div><div class="line"><span class="built_in">int</span> timeout = <span class="number">60</span> * <span class="number">60</span>;  <span class="comment">//1小时</span></div><div class="line"><span class="keyword">String</span> result = jedis.setex(<span class="built_in">key</span>.getBytes(), timeout, bytes);</div></pre></td></tr></table></figure>
 <p><strong>get -&gt; byte[] -&gt; 反序列化 -&gt; Object()</strong></p>
 <figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">byte[] bytes = jedis.<span class="keyword">get</span>(key.getBytes());</div><div class="line"></div><div class="line"><span class="comment">//从缓存获取到</span></div><div class="line"><span class="keyword">if</span> (bytes != <span class="literal">null</span>) &#123;</div><div class="line">    <span class="comment">//空对象</span></div><div class="line">    Seckill seckill = schema.<span class="keyword">new</span><span class="type">Message</span>();</div><div class="line">    ProtobufIOUtil.mergeFrom(bytes, seckill, schema);</div><div class="line">        <span class="keyword">return</span> seckill;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p><img src="http://upload-images.jianshu.io/upload_images/2929536-5b62dec1e427308b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-5b62dec1e427308b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>结果表明，字节数被压缩得极小，在并发系统效率确实不错，很值得学习的一个序列化库！</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本博文的内容均为自己的总结，想深入学习的朋友可参考《Thinking in Java》和《Effective Java》，里面写的内容非常详细的。共勉！！</p>
 <hr>
@@ -103,20 +109,56 @@
 <a id="more"></a>
 <h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><h4 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h4><p>转换之前将项目置于Github上，并clone到IDEA上，防止最后不成功而导致项目bug难以补救，毕竟git的revision功能相当棒呢！！</p>
 <h4 id="1-将项目初步convert为Maven项目"><a href="#1-将项目初步convert为Maven项目" class="headerlink" title="1. 将项目初步convert为Maven项目"></a>1. 将项目初步convert为Maven项目</h4><p>选择 <strong>Add framework support</strong> ，并勾选导入“Maven”依赖</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2929536-9c0437043624d7e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-9c0437043624d7e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h4 id="2-备份lib接着移除lib，然后编写pom-xml"><a href="#2-备份lib接着移除lib，然后编写pom-xml" class="headerlink" title="2. 备份lib接着移除lib，然后编写pom.xml"></a>2. 备份lib接着移除lib，然后编写pom.xml</h4><p>看到下面的一大片“红”，勿担心，那只是你“颠覆世界”的第一步，千万不能退缩</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2929536-a2d6d000abfcd82c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-a2d6d000abfcd82c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>接着备份lib，再移除项目的lib，将项目置于“空jar”状态</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2929536-108599e17672f33a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-108599e17672f33a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>补充pom.xml的头，自动生成的会略掉好几项必须的配置</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.shop<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>Shop<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>Shop Maven Webapp<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.apache.org<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>接着是个体力活，进入每个java、properties、xml、jsp等文件使用Add Maven依赖方式自动导入（快捷键： <strong>alt+enter</strong>），当然前提是网速要好哈！</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2929536-8080ae209ae8b181.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-8080ae209ae8b181.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>经过上步，已经初步导入了大部份必需的依赖，接着，将一些其它依赖（可参考之前备份的lib）随之导入，千万别忽略这一步，因为类似 <strong>mysql-connector-java</strong> 等这些依赖一般是还未导入的！</p>
-<h4 id="3-将spring配置文件、数据库属性文件、日志配置文件等剪切至src-main-resources之下"><a href="#3-将spring配置文件、数据库属性文件、日志配置文件等剪切至src-main-resources之下" class="headerlink" title="3. 将spring配置文件、数据库属性文件、日志配置文件等剪切至src/main/resources之下"></a>3. 将spring配置文件、数据库属性文件、日志配置文件等剪切至src/main/resources之下</h4><p><img src="http://upload-images.jianshu.io/upload_images/2929536-0e6a86553e02ce73.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h4 id="3-将spring配置文件、数据库属性文件、日志配置文件等剪切至src-main-resources之下"><a href="#3-将spring配置文件、数据库属性文件、日志配置文件等剪切至src-main-resources之下" class="headerlink" title="3. 将spring配置文件、数据库属性文件、日志配置文件等剪切至src/main/resources之下"></a>3. 将spring配置文件、数据库属性文件、日志配置文件等剪切至src/main/resources之下</h4><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-0e6a86553e02ce73.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>若是里面配置文件的映射路径有差错，记得进入改正，idea下cmd+鼠标可测试大部份不正确的路径。</p>
 <h4 id="4-将原来放置在WebRoot路径下的文件（包括js，css，jsp等）都剪切至webapp文件夹之下，并删除WebRoot文件夹"><a href="#4-将原来放置在WebRoot路径下的文件（包括js，css，jsp等）都剪切至webapp文件夹之下，并删除WebRoot文件夹" class="headerlink" title="4.将原来放置在WebRoot路径下的文件（包括js，css，jsp等）都剪切至webapp文件夹之下，并删除WebRoot文件夹"></a>4.将原来放置在WebRoot路径下的文件（包括js，css，jsp等）都剪切至webapp文件夹之下，并删除WebRoot文件夹</h4><p>重要的是 <strong>WEB-INF</strong> 文件夹</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2929536-7c1f90494c85e0a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-7c1f90494c85e0a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h4 id="5-重新部署并测试"><a href="#5-重新部署并测试" class="headerlink" title="5.重新部署并测试"></a>5.重新部署并测试</h4><p>重新部署至 <strong>Tomcat（或Jetty）</strong> 测试效果。</p>
 <p>基本上，到这一步离成功也就不远了（而我已经成功了）。若是…若是还有bug，多调调，看看日志，看看控制台输出，直至转换成功也不失为一次很棒的尝试。</p>
 <p>若有不明白的参见商城系统：<a href="https://github.com/Joryun/Shop" target="_blank" rel="external">Shop</a></p>
@@ -164,7 +206,13 @@
 <h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>入门Spring JMS、Active MQ，使用Spring JMS向Active MQ的Message Queue发消息和读消息。</p>
 <a id="more"></a>
 <figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">PS：</div><div class="line">demo整合过程均亲测，按顺序编码已测试通过</div><div class="line">项目代码有注释，可供理清各个<span class="class"><span class="keyword">class</span>和各个方法块及属性的作用。</span></div></pre></td></tr></table></figure>
-<h1 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h1><h3 id="1-开启Active-MQ服务"><a href="#1-开启Active-MQ服务" class="headerlink" title="1. 开启Active MQ服务"></a>1. 开启Active MQ服务</h3><p><img src="http://upload-images.jianshu.io/upload_images/2929536-6252514d22150dc9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h1 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h1><h3 id="1-开启Active-MQ服务"><a href="#1-开启Active-MQ服务" class="headerlink" title="1. 开启Active MQ服务"></a>1. 开启Active MQ服务</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-6252514d22150dc9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h3 id="2-使用maven导入依赖库"><a href="#2-使用maven导入依赖库" class="headerlink" title="2. 使用maven导入依赖库"></a>2. 使用maven导入依赖库</h3><p><strong>pom.xml</strong></p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.activemq<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>activemq-all<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.9.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-jms<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.0.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.0.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.0.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.xbean<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>xbean-spring<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.16<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div></pre></td></tr></table></figure>
 <h3 id="3-创建application-properties，封装Message-Queue的配置"><a href="#3-创建application-properties，封装Message-Queue的配置" class="headerlink" title="3. 创建application.properties，封装Message Queue的配置"></a>3. 创建application.properties，封装Message Queue的配置</h3><p><strong>application.properties</strong></p>
@@ -190,8 +238,20 @@
 <figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.net;</div><div class="line"></div><div class="line"><span class="keyword">import</span> com.net.jms.MessageSender;</div><div class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</div><div class="line"><span class="keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;</div><div class="line"><span class="keyword">import</span> org.springframework.util.StringUtils;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.<span class="keyword">BufferedReader</span>;</div><div class="line"><span class="keyword">import</span> java.io.IOException;</div><div class="line"><span class="keyword">import</span> java.io.InputStreamReader;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 发送消息到ActiveMQ的Message Queue</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> class SenderApp &#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) <span class="keyword">throws</span> IOException &#123;</div><div class="line"></div><div class="line">        start(<span class="string">"JMSConfiguration.xml"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> start(<span class="keyword">String</span> configLocation) <span class="keyword">throws</span> IOException &#123;</div><div class="line"></div><div class="line">        MessageSender sender = getMessageSender(configLocation);</div><div class="line">        <span class="keyword">BufferedReader</span> br = <span class="keyword">new</span> <span class="keyword">BufferedReader</span>(<span class="keyword">new</span> InputStreamReader(System.in));</div><div class="line"></div><div class="line">        System.out.<span class="built_in">println</span>(<span class="string">"Please input your message:"</span>);</div><div class="line">        <span class="keyword">String</span> <span class="built_in">text</span> = br.readLine();</div><div class="line">        <span class="keyword">while</span> (!StringUtils.isEmpty(<span class="built_in">text</span>)) &#123;</div><div class="line"></div><div class="line">            System.out.<span class="built_in">println</span>(<span class="keyword">String</span>.format(<span class="string">"send message: %s"</span>, <span class="built_in">text</span>));</div><div class="line">            sender.send(<span class="built_in">text</span>);</div><div class="line">            <span class="built_in">text</span> = br.readLine();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> MessageSender getMessageSender(<span class="keyword">String</span> configLocation) &#123;</div><div class="line"></div><div class="line">        ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(configLocation);</div><div class="line">        <span class="keyword">return</span> (MessageSender) context.getBean(<span class="string">"messageSender"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><strong>ReceiverApp.java</strong></p>
 <figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.net;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 从Message Queue中读取消息</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReceiverApp</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="keyword">String</span>[] args) &#123;</div><div class="line"></div><div class="line">        <span class="keyword">new</span> <span class="type">ClassPathXmlApplicationContext</span>(<span class="string">"JMSConfiguration.xml"</span>, <span class="string">"JMSReceiver.xml"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="9-测试：运行SenderApp-java，在控制台输入消息，接着运行ReceiverApp-java，结果如下"><a href="#9-测试：运行SenderApp-java，在控制台输入消息，接着运行ReceiverApp-java，结果如下" class="headerlink" title="9. 测试：运行SenderApp.java，在控制台输入消息，接着运行ReceiverApp.java，结果如下"></a>9. 测试：运行SenderApp.java，在控制台输入消息，接着运行ReceiverApp.java，结果如下</h3><p><img src="http://upload-images.jianshu.io/upload_images/2929536-614e2114819e2d91.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2929536-97f7795b44b3a896.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="9-测试：运行SenderApp-java，在控制台输入消息，接着运行ReceiverApp-java，结果如下"><a href="#9-测试：运行SenderApp-java，在控制台输入消息，接着运行ReceiverApp-java，结果如下" class="headerlink" title="9. 测试：运行SenderApp.java，在控制台输入消息，接着运行ReceiverApp.java，结果如下"></a>9. 测试：运行SenderApp.java，在控制台输入消息，接着运行ReceiverApp.java，结果如下</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-614e2114819e2d91.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-97f7795b44b3a896.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>到此，spring jms与activemq的通信就已经集成结束了。共勉！！！</p>
 <hr>
 <p>编程是一门事业。互励共勉！！！</p>
@@ -317,30 +377,66 @@
     
     <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>对于webservice的介绍，本文就不再赘余讲述。<br>详见文章 <a href="http://joryun.com/2016/05/26/build-webservice/">webservice:(1)新手搭建调用webservice那些坑</a></p>
 <p>首先，先给出一个站点，该站点提供了许多webservice服务，可供调用测试。<br>站点： <strong><a href="http://www.webxml.com.cn/zh_cn/index.aspx" target="_blank" rel="external">http://www.webxml.com.cn/zh_cn/index.aspx</a></strong></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2929536-af65f5ffb80d2fc0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-af65f5ffb80d2fc0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <a id="more"></a>
 <p>如上图所示，我们本文将测试归属地webservice。<br>我们先查询该webservice相关服务。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2929536-9af27cda29ec84f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2929536-32812af9e617e56c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-9af27cda29ec84f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-32812af9e617e56c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>大家可以在该文本框中输入手机号，userID忽略，点击调用即可查询手机归属地。<br>接下来我们通过代码测试该ws。</p>
 <p>注：请求方式有很多种，分别为post、get、soap、wsimport。在这里，使用wsimport方式请求！！！</p>
 <h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h4 id="1-记录所调用webservice的WSDL"><a href="#1-记录所调用webservice的WSDL" class="headerlink" title="1.记录所调用webservice的WSDL"></a>1.记录所调用webservice的WSDL</h4><p>进入之前的站点，找到相应webservice，点击服务说明</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/2929536-1da007cd96f3c75e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>以下即为相应WSDL，一份xml文档</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2929536-44fab3a2cf49aab2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-44fab3a2cf49aab2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>copy该站点的URL，如下</p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://<span class="keyword">ws</span>.webxml.<span class="keyword">com</span>.<span class="keyword">cn</span>/WebServices/MobileCodeWS.asmx?WSDL</div></pre></td></tr></table></figure>
 <h4 id="2-使用JDK目录下的工具-wsimport，生成调用webservice相应的代码"><a href="#2-使用JDK目录下的工具-wsimport，生成调用webservice相应的代码" class="headerlink" title="2.使用JDK目录下的工具-wsimport，生成调用webservice相应的代码"></a>2.使用JDK目录下的工具-wsimport，生成调用webservice相应的代码</h4><p><strong>wsimport</strong> 是一个命令，jdk1.6及以上才可以使用，ws针对不同的语言都会有个wsimport命令，我们可以在自己安装的jdk的bin目录下找到这个 <strong>wsimport.exe</strong> ，正因为有了这个，所以我们可以在命令行中使用wsimport命令。<br>输入以下命令，会在特定的包中生成java与class文件，接着将其copy至项目路径下即可。</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wsimport -s . -<span class="selector-tag">p</span> ws<span class="selector-class">.client</span><span class="selector-class">.c</span> http:<span class="comment">//ws.webxml.com.cn/WebServices/MobileCodeWS.asmx?WSDL</span></div></pre></td></tr></table></figure>
 <p>Problem：在mac下的终端，若使用到了zsh，可能会出现以下情况。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2929536-1a6ca77b85376765.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-1a6ca77b85376765.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>这是由于 <strong>zsh</strong> 不兼容的问题！！！<br>具体原因：<br>因为zsh缺省情况下始终自己解释这个 <em>.h，而不会传递给 find 来解释。<br>解决方案：<br>打开 <strong>terminal</strong>，在~/.zshrc中加入:<br><strong>setopt no_nomatch</strong>, 然后进行 <em>*source .zshrc</em></em> 命令即可</p>
 <p>以下为copy入项目空间的示例图<br>注：ws.client.test下的WebserviceTest为webservice测试类，暂时忽略。</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/2929536-203d30b3fd49012a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>这样就有了号码归属地查询这个ws服务相关的API了，且是通过官方的WSDL来生成的。接着，便是编写测试类测试功能了。</p>
 <h4 id="3-编写测试类测试"><a href="#3-编写测试类测试" class="headerlink" title="3.编写测试类测试"></a>3.编写测试类测试</h4><figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> ws.client.test;</div><div class="line"><span class="keyword">import</span> ws.client.c.MobileCodeWS;</div><div class="line"><span class="keyword">import</span> ws.client.c.MobileCodeWSSoap;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebserviceTest</span> </span>&#123;</div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="keyword">String</span>[] args) &#123;</div><div class="line"></div><div class="line">		<span class="comment">//获取一个webservice服务</span></div><div class="line">		MobileCodeWS ws = <span class="keyword">new</span> <span class="type">MobileCodeWS</span>();	</div><div class="line"></div><div class="line">		<span class="comment">//获取具体服务类型：get post soap1.1 and soap1.2</span></div><div class="line">		MobileCodeWSSoap wsSoap = ws.getMobileCodeWSSoap();</div><div class="line">		<span class="keyword">String</span> address = wsSoap.getMobileCodeInfo(<span class="string">"你的手机号码"</span>, <span class="literal">null</span>);</div><div class="line">		</div><div class="line">		System.out.println(<span class="string">"手机归属地信息："</span>+ address);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>测试结果示例</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2929536-590d9b117d0bda5e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-590d9b117d0bda5e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>OK！！！到这里我们就体验完了该webservice。</p>
 <h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><p>webservice中WSDL很重要，里面用xml描述了webservice的信息，所以我们可以通过解析WSDL来获取该webservice相关的API，然后在自己的项目中调用这些API即可调用该webservice。</p>
 <hr>
@@ -354,7 +450,13 @@
     
       &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;对于webservice的介绍，本文就不再赘余讲述。&lt;br&gt;详见文章 &lt;a href=&quot;http://joryun.com/2016/05/26/build-webservice/&quot;&gt;webservice:(1)新手搭建调用webservice那些坑&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;首先，先给出一个站点，该站点提供了许多webservice服务，可供调用测试。&lt;br&gt;站点： &lt;strong&gt;&lt;a href=&quot;http://www.webxml.com.cn/zh_cn/index.aspx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.webxml.com.cn/zh_cn/index.aspx&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/2929536-af65f5ffb80d2fc0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;figure class=&quot;image-bubble&quot;&gt;
+                &lt;div class=&quot;img-lightbox&quot;&gt;
+                    &lt;div class=&quot;overlay&quot;&gt;&lt;/div&gt;
+                    &lt;img src=&quot;http://upload-images.jianshu.io/upload_images/2929536-af65f5ffb80d2fc0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; title=&quot;&quot;&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;image-caption&quot;&gt;&lt;/div&gt;
+            &lt;/figure&gt;
     
     </summary>
     
@@ -379,18 +481,56 @@
 <a id="more"></a>
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><h3 id="1-用-git-内置代理，直接走系统中运行的代理工具中转，比如，你的-SS-本地端口是-1080（一般port均为1080），那么可以如下方式走代理："><a href="#1-用-git-内置代理，直接走系统中运行的代理工具中转，比如，你的-SS-本地端口是-1080（一般port均为1080），那么可以如下方式走代理：" class="headerlink" title="1. 用 git 内置代理，直接走系统中运行的代理工具中转，比如，你的 SS 本地端口是 1080（一般port均为1080），那么可以如下方式走代理："></a>1. 用 git 内置代理，直接走系统中运行的代理工具中转，比如，你的 SS 本地端口是 1080（一般port均为1080），那么可以如下方式走代理：</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global http<span class="selector-class">.proxy</span> socks5:<span class="comment">//127.0.0.1:1080</span></div><div class="line">git config --global https<span class="selector-class">.proxy</span> socks5:<span class="comment">//127.0.0.1:1080</span></div></pre></td></tr></table></figure>
 <p>编辑.gitconfig文件</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2929536-a7f7b544c5a7bd2a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br> Enter之后进入vim，按i进行insert</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2929536-d3c0ee4dc2458ab2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-a7f7b544c5a7bd2a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p> Enter之后进入vim，按i进行insert</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-d3c0ee4dc2458ab2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>按Esc退出，输入:wq保存</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2929536-9d55728b6ce9727a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-9d55728b6ce9727a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h3 id="2-此外，git-clone或者git-push特别慢，并不是因为-http-github-com-的这个域名被限制了。而是-http-github-global-ssl-fastly-Net-这个域名被限制了。那么可以在hosts文件里进行绑定映射。"><a href="#2-此外，git-clone或者git-push特别慢，并不是因为-http-github-com-的这个域名被限制了。而是-http-github-global-ssl-fastly-Net-这个域名被限制了。那么可以在hosts文件里进行绑定映射。" class="headerlink" title="2. 此外，git clone或者git push特别慢，并不是因为 http://github.com 的这个域名被限制了。而是 http://github.global.ssl.fastly.Net 这个域名被限制了。那么可以在hosts文件里进行绑定映射。"></a>2. 此外，git clone或者git push特别慢，并不是因为 <strong><a href="http://github.com" target="_blank" rel="external">http://github.com</a></strong> 的这个域名被限制了。而是 <strong><a href="http://github.global.ssl.fastly.Net" target="_blank" rel="external">http://github.global.ssl.fastly.Net</a></strong> 这个域名被限制了。那么可以在hosts文件里进行绑定映射。</h3><h4 id="具体步骤如下："><a href="#具体步骤如下：" class="headerlink" title="具体步骤如下："></a>具体步骤如下：</h4><p>在terminal输入命令并输入开机密码，Enter确认</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo vi <span class="regexp">/etc/</span>hosts</div></pre></td></tr></table></figure>
-<p><img src="http://upload-images.jianshu.io/upload_images/2929536-2ce00e80a7acc931.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br> 然后依旧在vim上编辑，命令如下</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-2ce00e80a7acc931.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p> 然后依旧在vim上编辑，命令如下</p>
 <figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">151.101</span><span class="meta">.72</span><span class="meta">.249</span> http://<span class="meta">global</span>-ssl.fastly.Net</div><div class="line"><span class="number">192.30</span><span class="meta">.253</span><span class="meta">.112</span> http://github.com</div></pre></td></tr></table></figure>
-<p><img src="http://upload-images.jianshu.io/upload_images/2929536-0e21c4563955dc87.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-0e21c4563955dc87.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>保存之后就可以了。</p>
 <p>接下来，你可以在clone一次，ssh或https协议都行，速度翻了好几倍！！！</p>
-<p>以下正是亲测的结果，速度已经到达了200多KiB/s！！！<br><img src="http://upload-images.jianshu.io/upload_images/2929536-3a6d1c8f13abf48c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>以下正是亲测的结果，速度已经到达了200多KiB/s！！！<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-3a6d1c8f13abf48c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>虽说是细节部分，但是随手优化，不仅能接触更多新奇的东西，还能提高效率，何乐而不为呢…</p>
 <hr>
 <p>编程是一门事业。互励共勉！！！</p>
@@ -429,8 +569,20 @@
 <h4 id="安装Package-Control"><a href="#安装Package-Control" class="headerlink" title="安装Package Control"></a>安装Package Control</h4><p>首先通过快捷键 <strong>ctrl+` (~)</strong> 或者 <strong>View &gt; Show Console</strong> 打开控制台(注：安装有QQ输入法的这个快捷键会有冲突的，输入法属性设置-输入法管理-取消热键切换至QQ拼音)，输入以下代码，enter即可.</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import urllib.request,<span class="built_in">os</span>; pf = <span class="string">'Package Control.sublime-package'</span>; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); <span class="built_in">open</span>(<span class="built_in">os</span>.<span class="built_in">path</span>.join(ipp, pf), <span class="string">'wb'</span>).<span class="built_in">write</span>(urllib.request.urlopen( <span class="string">'http://sublime.wbond.net/'</span> + pf.replace(<span class="string">' '</span>,<span class="string">'%20'</span>)).<span class="built_in">read</span>())</div></pre></td></tr></table></figure>
 <h4 id="使用Package-Control组件安装插件"><a href="#使用Package-Control组件安装插件" class="headerlink" title="使用Package Control组件安装插件"></a>使用Package Control组件安装插件</h4><p><strong>Cmd+Shift+P</strong>（菜单 – Tools – Command Paletter，Windows快捷键：<strong>Ctrl+Shift+P</strong>），输入 <strong>install</strong> 选中 <strong>Install Package</strong> 并回车，输入或选择你需要的插件回车就安装了（注意左下角的小文字变化，会提示安装成功），安装其它插件也类似.</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2929536-b225e9401d781431.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2929536-74525aee8b1e4988.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-b225e9401d781431.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-74525aee8b1e4988.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h4 id="常用插件推荐"><a href="#常用插件推荐" class="headerlink" title="常用插件推荐"></a>常用插件推荐</h4><ul>
 <li><strong>Emmet</strong><br>——Emmet 官方提供的 Sublime Text 扩展；//即zencoding，写html先装这一个就够了</li>
 <li><strong>SublimeLinter</strong><br>——代码校验插件，支持 HTML、CSS、JS、PHP、Java、C++ 等16种语言；</li>
@@ -501,36 +653,106 @@
 <h1 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h1><h3 id="一-Bootstrap框架整合进CI"><a href="#一-Bootstrap框架整合进CI" class="headerlink" title="(一) Bootstrap框架整合进CI"></a>(一) Bootstrap框架整合进CI</h3><p>Bootstrap：简洁、直观、强悍的前端开发框架，让web开发更迅速、简单。</p>
 <p>CI：CodeIgniter 是一个小巧但功能强大的 PHP 框架，作为一个简单而“优雅”的工具包，它可以为开发者们建立功能完善的 Web 应用程序。</p>
 <p>单从快速开发来说的话，bootstrap+ci确实是很方便，毕竟都是快速开发，而且很容易上手。但由于博主擅长的是j2ee，因此也不过多解释了。严格意义上来说，这两个框架确实只是会用（当然前提是给看官方文档哈哈）.</p>
-<h4 id="官网下载ci环境包"><a href="#官网下载ci环境包" class="headerlink" title="官网下载ci环境包"></a>官网下载ci环境包</h4><p>下载下来的ci环境包内容如下：<br><img src="http://img.blog.csdn.net/20161229225623292?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<h4 id="官网下载ci环境包"><a href="#官网下载ci环境包" class="headerlink" title="官网下载ci环境包"></a>官网下载ci环境包</h4><p>下载下来的ci环境包内容如下：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20161229225623292?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
 <h4 id="ci框架的基本配置"><a href="#ci框架的基本配置" class="headerlink" title="ci框架的基本配置"></a>ci框架的基本配置</h4><ol>
 <li>解压缩安装包</li>
 <li>将 CodeIgniter 文件夹及里面的文件上传到服务器，通常 index.php 文件将位于网站的根目录（ps：博主仅为了练手，因此将其部署于本地服务器，即xampp-htdocs）</li>
-<li><p>使用文本编辑器打开 application/config/config.php 文件设置你网站的根 URL<br><img src="http://img.blog.csdn.net/20161229230748496?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<li><p>使用文本编辑器打开 application/config/config.php 文件设置你网站的根 URL</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20161229230748496?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 </li>
-<li><p>配置数据库参数，打开application/config/database.php<br><img src="http://img.blog.csdn.net/20161229231026060?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<li><p>配置数据库参数，打开application/config/database.php</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20161229231026060?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 </li>
 </ol>
 <h4 id="初步整合"><a href="#初步整合" class="headerlink" title="初步整合"></a>初步整合</h4><ol>
 <li>准备好bootstrap demo</li>
-<li>将demo的html页面置于ci框架的view层<br><img src="http://img.blog.csdn.net/20161230111919590?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></li>
-<li><p>将js，css，font等资源文件置于_static目录下<br><img src="http://img.blog.csdn.net/20161230112039179?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<li>将demo的html页面置于ci框架的view层<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20161230111919590?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></li>
+<li><p>将js，css，font等资源文件置于_static目录下</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20161230112039179?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 </li>
 <li><p>修改下主页面css和js的link链接，完成基本的整合</p>
 </li>
 </ol>
 <h3 id="二-系统设计"><a href="#二-系统设计" class="headerlink" title="(二) 系统设计"></a>(二) 系统设计</h3><h4 id="界面UI"><a href="#界面UI" class="headerlink" title="界面UI"></a>界面UI</h4><p>首先，在view层分两文件夹，分别为student和teacher,用于存放各自相应的php文件。</p>
-<p><img src="http://img.blog.csdn.net/20161230205159288?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20161230205159288?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h4 id="以学生端为示例"><a href="#以学生端为示例" class="headerlink" title="以学生端为示例"></a>以学生端为示例</h4><p>中间的内容显示内嵌了iframe.</p>
-<p><img src="http://img.blog.csdn.net/20161230205507743?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20161230205507743?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p><strong>Choosable页面</strong></p>
-<p><img src="http://img.blog.csdn.net/20161230211326565?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
-<p><img src="http://img.blog.csdn.net/20161230211410565?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20161230211326565?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20161230211410565?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>ps：选题按钮还没添加控制器.</p>
 <p><strong>Selected页面</strong></p>
-<p><img src="http://img.blog.csdn.net/20161230211556129?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20161230211556129?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>ps:留言功能还未完善.</p>
 <p><strong>Data页面</strong></p>
-<p><img src="http://img.blog.csdn.net/20161230211727535?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>ps:下载文件功能还未完善.</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20161230211727535?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>ps:下载文件功能还未完善.</p>
 <h5 id="系统基本思路"><a href="#系统基本思路" class="headerlink" title="系统基本思路"></a>系统基本思路</h5><ol>
 <li>默认进系统的为Notice页面，即通过控制器load Notice页面.</li>
 <li>接着触发Choosable页面，而这过程先是action至该页面的控制器，然后传Choosable所需的数据，并以数组的形式返回，接着在目标页面（即Choosable页面）遍历即可</li>
@@ -538,7 +760,14 @@
 </ol>
 <h5 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h5><ol>
 <li>务必按照ci的编程规范编写，否则易出bug</li>
-<li>加载数据库，使用url helper以及session等功能，记得在构造函数那儿定义好，这样即可在控制器的全局使用<br><img src="http://img.blog.csdn.net/20161230211047278?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></li>
+<li>加载数据库，使用url helper以及session等功能，记得在构造函数那儿定义好，这样即可在控制器的全局使用<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20161230211047278?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+</li>
 </ol>
 <h1 id="系统源码"><a href="#系统源码" class="headerlink" title="系统源码"></a>系统源码</h1><p>详细的源码可访问博主Github：<a href="https://github.com/Joryun/BiShe.git" target="_blank" rel="external">毕业设计选题系统</a></p>
 <h1 id="系统总结"><a href="#系统总结" class="headerlink" title="系统总结"></a>系统总结</h1><p>博主三天捣鼓的简单整合系统，基本上完成了大致的整合以及一些基本功能，由于时间有限，后续的一些基本功能都没加上，但实现的思路都是类似的。这次为了应付课程设计也是拼了，随便捣鼓了这些原本不是很熟悉的东西，但总体来说还是挺好玩的。有兴趣加入更多模块和安全机制或功能的朋友大可以尝试下，博主仅在玩玩儿哈哈~~~</p>
@@ -595,24 +824,72 @@
 <li>了解Spring Boot项目创建,运行过程,项目结构,简单、开发快速的特性</li>
 </ul>
 <h3 id="编码-1"><a href="#编码-1" class="headerlink" title="编码"></a>编码</h3><h4 id="1-创建SpringBoot项目"><a href="#1-创建SpringBoot项目" class="headerlink" title="1. 创建SpringBoot项目"></a>1. 创建SpringBoot项目</h4><p>访问：<a href="http://start.spring.io/" target="_blank" rel="external">http://start.spring.io/</a> , 通过SPRING INITIALIZR工具生成基础项目</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2929536-2e1c95d2249e5988.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-2e1c95d2249e5988.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>下载到本地之后，文件夹里的内容如下：</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2929536-84265d7f3fe6643b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-84265d7f3fe6643b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h4 id="2-导入IDEA"><a href="#2-导入IDEA" class="headerlink" title="2. 导入IDEA"></a>2. 导入IDEA</h4><p>将生成的demo以Maven项目的形式导入IDEA<br>项目结构如下：</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2929536-9265efb37f1bcbd8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-9265efb37f1bcbd8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h4 id="3-引入Web模块"><a href="#3-引入Web模块" class="headerlink" title="3. 引入Web模块"></a>3. 引入Web模块</h4><p>新建工程的pom.xml,已经引入了2个依赖模块<br>分别为：spring-boot-starter（核心模块）  spring-boot-starter-test（测试模块）<br>接下来需要引入Web模块 : spring-boot-starter-web</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2929536-3c464c343b654f48.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-3c464c343b654f48.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>添加spring-boot-starter-web配置后，运行maven-&gt;Reimport，更新pom.xml</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2929536-967c3fa98fa476dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-967c3fa98fa476dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>添加完spring-boot-starter-web后,项目支持web注解<br>基本上有利用SpringMVC开发项目的，很多都接触过注解式开发，而这也是spring的首选开发方式</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@RestController</div><div class="line"><span class="function"><span class="title">RequestMapping</span><span class="params">(<span class="string">"/hello"</span>)</span></span></div></pre></td></tr></table></figure>
 <h4 id="4-添加HelloWord服务"><a href="#4-添加HelloWord服务" class="headerlink" title="4. 添加HelloWord服务"></a>4. 添加HelloWord服务</h4><p>在默认生成的com.example包下创建一个web文件夹，并新建一个controller，用于输出“Hello World”</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RestController</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;    </div><div class="line">    <span class="meta">@RequestMapping(<span class="meta-string">"/hello"</span>)</span>    </div><div class="line">    <span class="keyword">public</span> String index()&#123;        </div><div class="line">        <span class="keyword">return</span> <span class="string">"Hello World"</span>;    </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><img src="http://upload-images.jianshu.io/upload_images/2929536-f57e7e0b731e7bef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-f57e7e0b731e7bef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h4 id="5-启动主程序"><a href="#5-启动主程序" class="headerlink" title="5. 启动主程序"></a>5. 启动主程序</h4><p>点击IDEA右上角的启动服务器图标启动主程序</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2929536-1faaaf2c4f1c51fc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-1faaaf2c4f1c51fc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>打开浏览器访问 <strong><a href="http://localhost:8080/hello" target="_blank" rel="external">http://localhost:8080/hello</a></strong> ，页面输出Hello World<br>默认启动端口：8080</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2929536-4149737ff78d1ff0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2929536-4149737ff78d1ff0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>至此，Spring Boot Demo创建完成.<br>有啥问题可以一起讨论哈！！！</p>
 <hr>
 <p>编程是一门事业。互励共勉！！！</p>
@@ -669,34 +946,180 @@
 <li>添加JAX-WS库</li>
 <li>测试webservice</li>
 </ul>
-<h4 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h4><h5 id="1-创建发布webservice"><a href="#1-创建发布webservice" class="headerlink" title="1. 创建发布webservice"></a>1. 创建发布webservice</h5><p>新建Web Service Project<br><img src="http://img.blog.csdn.net/20160526144616800" alt=""><br>然后填好信息并next<br><img src="http://img.blog.csdn.net/20160526144930826" alt=""><br>然后接下来一直next，可选择生成web.xml.<br>这是刚新建的项目结构<br><img src="http://img.blog.csdn.net/20160526145130186" alt=""></p>
-<h5 id="2-然后新建一类文件UserInfo-java"><a href="#2-然后新建一类文件UserInfo-java" class="headerlink" title="2. 然后新建一类文件UserInfo.java"></a>2. 然后新建一类文件UserInfo.java</h5><p><img src="http://img.blog.csdn.net/20160526145457078" alt=""></p>
+<h4 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h4><h5 id="1-创建发布webservice"><a href="#1-创建发布webservice" class="headerlink" title="1. 创建发布webservice"></a>1. 创建发布webservice</h5><p>新建Web Service Project<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526144616800" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>然后填好信息并next<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526144930826" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>然后接下来一直next，可选择生成web.xml.<br>这是刚新建的项目结构<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526145130186" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<h5 id="2-然后新建一类文件UserInfo-java"><a href="#2-然后新建一类文件UserInfo-java" class="headerlink" title="2. 然后新建一类文件UserInfo.java"></a>2. 然后新建一类文件UserInfo.java</h5><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526145457078" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>示例源码：</p>
 <figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.yuan.webservice;</div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * </span></div><div class="line"><span class="comment"> * @author Joryun</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserInfo</span> </span>&#123;</div><div class="line">	<span class="keyword">public</span> <span class="keyword">String</span> GetUserInfo()&#123;</div><div class="line">		<span class="keyword">return</span> <span class="string">"源哥"</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="keyword">public</span> <span class="keyword">String</span> ParameterTest(<span class="keyword">String</span> user, <span class="keyword">String</span> pwd)&#123;</div><div class="line">		<span class="keyword">return</span> user+<span class="string">"："</span>+pwd;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h5 id="3-接下来发布web-service"><a href="#3-接下来发布web-service" class="headerlink" title="3. 接下来发布web service"></a>3. 接下来发布web service</h5><p><img src="http://img.blog.csdn.net/20160526145727673" alt=""></p>
-<h5 id="4-选择从java类创建web-service"><a href="#4-选择从java类创建web-service" class="headerlink" title="4. 选择从java类创建web service"></a>4. 选择从java类创建web service</h5><p><img src="http://img.blog.csdn.net/20160526150314214" alt=""></p>
-<h5 id="5-选择访问的java-class"><a href="#5-选择访问的java-class" class="headerlink" title="5. 选择访问的java class"></a>5. 选择访问的java class</h5><p><img src="http://img.blog.csdn.net/20160526150649656" alt=""></p>
-<p><img src="http://img.blog.csdn.net/20160526150700662" alt=""></p>
-<h5 id="6-生成WSDL（WSDL以上有介绍，不懂可以回去看）"><a href="#6-生成WSDL（WSDL以上有介绍，不懂可以回去看）" class="headerlink" title="6. 生成WSDL（WSDL以上有介绍，不懂可以回去看）"></a>6. 生成WSDL（WSDL以上有介绍，不懂可以回去看）</h5><p><img src="http://img.blog.csdn.net/20160526150713032" alt=""></p>
-<h5 id="7-发布后的项目结构如下"><a href="#7-发布后的项目结构如下" class="headerlink" title="7. 发布后的项目结构如下"></a>7. 发布后的项目结构如下</h5><p><img src="http://img.blog.csdn.net/20160526151228211" alt=""></p>
+<h5 id="3-接下来发布web-service"><a href="#3-接下来发布web-service" class="headerlink" title="3. 接下来发布web service"></a>3. 接下来发布web service</h5><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526145727673" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h5 id="4-选择从java类创建web-service"><a href="#4-选择从java类创建web-service" class="headerlink" title="4. 选择从java类创建web service"></a>4. 选择从java类创建web service</h5><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526150314214" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h5 id="5-选择访问的java-class"><a href="#5-选择访问的java-class" class="headerlink" title="5. 选择访问的java class"></a>5. 选择访问的java class</h5><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526150649656" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526150700662" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h5 id="6-生成WSDL（WSDL以上有介绍，不懂可以回去看）"><a href="#6-生成WSDL（WSDL以上有介绍，不懂可以回去看）" class="headerlink" title="6. 生成WSDL（WSDL以上有介绍，不懂可以回去看）"></a>6. 生成WSDL（WSDL以上有介绍，不懂可以回去看）</h5><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526150713032" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h5 id="7-发布后的项目结构如下"><a href="#7-发布后的项目结构如下" class="headerlink" title="7. 发布后的项目结构如下"></a>7. 发布后的项目结构如下</h5><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526151228211" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h2 id="二-配置Tomcat"><a href="#二-配置Tomcat" class="headerlink" title="(二) 配置Tomcat"></a>(二) 配置Tomcat</h2><h4 id="前提-1"><a href="#前提-1" class="headerlink" title="前提"></a>前提</h4><p>假定你需要使用自己本机Tomcat的情况下</p>
-<h4 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h4><p>Window-Preferences-MyEclipse-Servers-Tomcat<br><img src="http://img.blog.csdn.net/20160526151910516" alt=""></p>
-<p><img src="http://img.blog.csdn.net/20160526152006074" alt=""><br>配置好后Apply-OK.</p>
-<h3 id="部署项目并启动Tomcat服务器"><a href="#部署项目并启动Tomcat服务器" class="headerlink" title="部署项目并启动Tomcat服务器"></a>部署项目并启动Tomcat服务器</h3><p>部署此项目到服务器<br><img src="http://img.blog.csdn.net/20160526152648665" alt=""></p>
-<p><img src="http://img.blog.csdn.net/20160526152701654" alt=""></p>
-<p><img src="http://img.blog.csdn.net/20160526152710686" alt=""><br>选择完后Finish</p>
-<p>接下来启动Tomcat服务器<br><img src="http://img.blog.csdn.net/20160526153044203" alt=""><br>服务器已启动的图例<br><img src="http://img.blog.csdn.net/20160526153052937" alt=""></p>
-<h3 id="添加JAX-WS库"><a href="#添加JAX-WS库" class="headerlink" title="添加JAX-WS库"></a>添加JAX-WS库</h3><p>在项目的构建路径中添加库文件<br><img src="http://img.blog.csdn.net/20160526153640221" alt=""></p>
-<p><img src="http://img.blog.csdn.net/20160526153659648" alt=""></p>
-<p><img src="http://img.blog.csdn.net/20160526153815525" alt=""></p>
-<p><img src="http://img.blog.csdn.net/20160526153842572" alt=""></p>
+<h4 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h4><p>Window-Preferences-MyEclipse-Servers-Tomcat<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526151910516" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526152006074" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>配置好后Apply-OK.</p>
+<h3 id="部署项目并启动Tomcat服务器"><a href="#部署项目并启动Tomcat服务器" class="headerlink" title="部署项目并启动Tomcat服务器"></a>部署项目并启动Tomcat服务器</h3><p>部署此项目到服务器<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526152648665" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526152701654" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526152710686" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>选择完后Finish</p>
+<p>接下来启动Tomcat服务器<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526153044203" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>服务器已启动的图例<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526153052937" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<h3 id="添加JAX-WS库"><a href="#添加JAX-WS库" class="headerlink" title="添加JAX-WS库"></a>添加JAX-WS库</h3><p>在项目的构建路径中添加库文件<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526153640221" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526153659648" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526153815525" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526153842572" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h3 id="测试webservice"><a href="#测试webservice" class="headerlink" title="测试webservice"></a>测试webservice</h3><p>输入URL，出现图式效果即为发布成功.</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http:<span class="regexp">//</span>localhost:<span class="number">8080</span><span class="regexp">/WebServiceDemo/</span>UserInfoPort?wsdl</div></pre></td></tr></table></figure>
-<p><img src="http://img.blog.csdn.net/20160526154324689" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526154324689" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h2 id="PHP调用webservice"><a href="#PHP调用webservice" class="headerlink" title="PHP调用webservice"></a>PHP调用webservice</h2><h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>博主采用CI框架测试，但不用框架也一样。并且php项目文件发布到了xampp上，直接访问本地即可查看效果。</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">关于php调用webservice，亲测过两种方法：</div><div class="line"><span class="bullet">1. </span>引入nusoap.php，调用call()方法</div><div class="line"><span class="bullet">2. </span>php5自带函数测试，classMap方式传值</div></pre></td></tr></table></figure>
-<h4 id="1-引入nusoap-php，调用call-方法"><a href="#1-引入nusoap-php，调用call-方法" class="headerlink" title="1. 引入nusoap.php，调用call()方法"></a>1. 引入nusoap.php，调用call()方法</h4><p>特别注意：以下两处圈红圈的是坑点，一开始测试的时候用的是webservice接口名的参数，即user，pwd.但实际上打印到网页上之后才发现参数是arg0和arg1。。。<br><img src="http://img.blog.csdn.net/20160526155851882" alt=""></p>
-<p><img src="http://img.blog.csdn.net/20160526160147935" alt=""></p>
+<h4 id="1-引入nusoap-php，调用call-方法"><a href="#1-引入nusoap-php，调用call-方法" class="headerlink" title="1. 引入nusoap.php，调用call()方法"></a>1. 引入nusoap.php，调用call()方法</h4><p>特别注意：以下两处圈红圈的是坑点，一开始测试的时候用的是webservice接口名的参数，即user，pwd.但实际上打印到网页上之后才发现参数是arg0和arg1。。。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526155851882" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160526160147935" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h4 id="2-php5自带函数测试，classMap方式传值"><a href="#2-php5自带函数测试，classMap方式传值" class="headerlink" title="2. php5自带函数测试，classMap方式传值"></a>2. php5自带函数测试，classMap方式传值</h4><p><img src="http://img.blog.csdn.net/20160526160403623" alt=""></p>
 <p>以下贴PHP实现源码：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"><span class="php"><span class="meta">&lt;?php</span></span></div><div class="line"><span class="php">header(<span class="string">'Content-Type: text/html; charset=UTF-8'</span>);</span></div><div class="line">/**</div><div class="line"> * Class Test</div><div class="line"> * Joryun</div><div class="line"> *</div><div class="line"> * 调用webservice测试类</div><div class="line"><span class="php"> */</span></div><div class="line"><span class="php"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">CI_Controller</span></span></span></div><div class="line"><span class="php">&#123;</span></div><div class="line"><span class="php">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span></span></div><div class="line"><span class="php">    &#123;</span></div><div class="line"><span class="php">        <span class="keyword">parent</span>::__construct();</span></div><div class="line"><span class="php">    &#125;</span></div><div class="line"><span class="php"></span></div><div class="line"><span class="php">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span><span class="params">()</span></span></span></div><div class="line"><span class="php">    &#123;</span></div><div class="line">        /**</div><div class="line">         * nusoap.php需在网上下载，并将该php文件包含进项目空间</div><div class="line">         * 引入nusoap.php，调用call()方法</div><div class="line"><span class="php">         */</span></div><div class="line"><span class="php"><span class="comment">//        require_once ("libs/nusoap.php");</span></span></div><div class="line"><span class="php"><span class="comment">//</span></span></div><div class="line"><span class="php"><span class="comment">//        // Create the client instance</span></span></div><div class="line"><span class="php"><span class="comment">//        $client = new nusoap_client('http://localhost:8080/WeixinDemo/UserInfoPort?wsdl', true);</span></span></div><div class="line"><span class="php"><span class="comment">//        $client-&gt;soap_defencoding = 'utf-8';</span></span></div><div class="line"><span class="php"><span class="comment">//        $client-&gt;decode_utf8 = false;</span></span></div><div class="line"><span class="php"><span class="comment">//        $client-&gt;xml_encoding = 'utf-8';</span></span></div><div class="line"><span class="php"><span class="comment">//</span></span></div><div class="line"><span class="php"><span class="comment">//        $param = array('arg0'=&gt;'Joryun', 'arg1'=&gt;'666666');//webservice参数数组</span></span></div><div class="line"><span class="php"><span class="comment">//        $result = $client-&gt;call('ParameterTest', $param);//接口和参数</span></span></div><div class="line"><span class="php"><span class="comment">//        print_r($result);</span></span></div><div class="line"><span class="php"></span></div><div class="line"><span class="php"></span></div><div class="line"><span class="php"></span></div><div class="line">        /**</div><div class="line">         * php5自带函数测试</div><div class="line">         * classMap方式传值</div><div class="line"><span class="php">         */</span></div><div class="line"><span class="php">        $client = <span class="keyword">new</span> SoapClient(<span class="string">"http://localhost:8080/WeixinDemo/UserInfoPort?wsdl"</span>);</span></div><div class="line"><span class="php"></span></div><div class="line"><span class="php">        <span class="keyword">echo</span> (<span class="string">"SOAP服务器提供的开放Function:"</span>);</span></div><div class="line"><span class="php">        <span class="keyword">echo</span> <span class="string">'&lt;pre&gt;'</span>;</span></div><div class="line"><span class="php">        var_dump ( $client-&gt;__getFunctions () );<span class="comment">//获取服务器上提供的方法</span></span></div><div class="line"><span class="php">        <span class="keyword">echo</span> <span class="string">'&lt;/pre&gt;'</span>;</span></div><div class="line"><span class="php"></span></div><div class="line"><span class="php">        <span class="keyword">echo</span> <span class="string">'&lt;br&gt;'</span>;</span></div><div class="line"><span class="php"></span></div><div class="line"><span class="php">        <span class="keyword">echo</span> (<span class="string">"SOAP服务器提供的Type:"</span>);</span></div><div class="line"><span class="php">        <span class="keyword">echo</span> <span class="string">'&lt;pre&gt;'</span>;</span></div><div class="line"><span class="php">        var_dump ( $client-&gt;__getTypes () );<span class="comment">//获取服务器上数据类型</span></span></div><div class="line"><span class="php">        <span class="keyword">echo</span> <span class="string">'&lt;/pre&gt;'</span>;</span></div><div class="line"><span class="php"></span></div><div class="line"><span class="php">        $object=<span class="keyword">new</span> stdclass;</span></div><div class="line"><span class="php">        $object-&gt;arg0=<span class="string">'Joryun'</span>;</span></div><div class="line"><span class="php">        $object-&gt;arg1=<span class="string">'666666'</span>;</span></div><div class="line"><span class="php">        $result = $client-&gt;ParameterTest($object);</span></div><div class="line"><span class="php">        <span class="comment">//$result=get_object_vars($result);   //将object转换为array</span></span></div><div class="line"><span class="php">        var_dump($result);</span></div><div class="line"><span class="php">    &#125;</span></div><div class="line"><span class="php">&#125;</span></div><div class="line"><span class="php"></span></div><div class="line"><span class="php"><span class="meta">?&gt;</span></span></div></pre></td></tr></table></figure>

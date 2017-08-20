@@ -16,6 +16,8 @@
     <title>与Bootstrap和CI框架纠缠的三天 | 刘家源 | TO BE IS TO DO</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
+    <meta name="theme-color" content="#3F51B5">
+    
     
     <meta name="keywords" content="bootstrap,codeigniter,php">
     <meta name="description" content="前言如题，博主为交附个课程设计，只得用三天时间运用不熟悉的语言完成一个不靠谱的网站开发。一直以来，前台都是自己的硬伤，在平时很少接触bootstrap等优秀的前端框架，而对于我而言，只单单熟悉后台的业务实现，却无法设计出相映衬的前台UI，这点确实是烦恼已久。刚好，趁这次机会，稍微接触下完全不熟悉的bootstrap框架以及许久没用的CI框架，完成一次基本的整合。当然，实现的功能并不复杂，但若是想试">
@@ -46,8 +48,8 @@
     
         <link rel="alternate" type="application/atom+xml" title="刘家源" href="/atom.xml">
     
-    <link rel="shortcut icon" href="/">
-    <link rel="stylesheet" href="/css/style.css?v=1.6.13">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
     <script>window.lazyScripts=[]</script>
 
     <!-- custom head -->
@@ -58,15 +60,15 @@
 <body>
     <div id="loading" class="active"></div>
 
-    <aside id="menu"  >
+    <aside id="menu" class="hide" >
   <div class="inner flex-row-vertical">
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
     </a>
-    <div class="brand-wrap" style="background-image:url(/)">
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
       <div class="brand">
         <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/">
+          <img src="/img/avatar.jpg">
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">Joryun</h5>
@@ -76,6 +78,55 @@
     </div>
     <div class="scroll-wrap flex-col">
       <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Joryun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
         
       </ul>
     </div>
@@ -90,6 +141,20 @@
         </a>
         <div class="flex-col header-title ellipsis">与Bootstrap和CI框架纠缠的三天</div>
         
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
         
     </div>
 </header>
@@ -118,6 +183,13 @@
 
 <div class="container body-wrap">
     
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#系统介绍"><span class="post-toc-number">2.</span> <span class="post-toc-text">系统介绍</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#编码"><span class="post-toc-number">3.</span> <span class="post-toc-text">编码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一-Bootstrap框架整合进CI"><span class="post-toc-number">3.0.1.</span> <span class="post-toc-text">(一) Bootstrap框架整合进CI</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#官网下载ci环境包"><span class="post-toc-number">3.0.1.1.</span> <span class="post-toc-text">官网下载ci环境包</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ci框架的基本配置"><span class="post-toc-number">3.0.1.2.</span> <span class="post-toc-text">ci框架的基本配置</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#初步整合"><span class="post-toc-number">3.0.1.3.</span> <span class="post-toc-text">初步整合</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二-系统设计"><span class="post-toc-number">3.0.2.</span> <span class="post-toc-text">(二) 系统设计</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#界面UI"><span class="post-toc-number">3.0.2.1.</span> <span class="post-toc-text">界面UI</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#以学生端为示例"><span class="post-toc-number">3.0.2.2.</span> <span class="post-toc-text">以学生端为示例</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#系统基本思路"><span class="post-toc-number">3.0.2.2.1.</span> <span class="post-toc-text">系统基本思路</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#注意"><span class="post-toc-number">3.0.2.2.2.</span> <span class="post-toc-text">注意</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#系统源码"><span class="post-toc-number">4.</span> <span class="post-toc-text">系统源码</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#系统总结"><span class="post-toc-number">5.</span> <span class="post-toc-text">系统总结</span></a></li></ol>
+        </nav>
+    </aside>
+    
 <article id="post-bootstrap-ci-demo"
   class="post-article article-type-post fade" itemprop="blogPost">
 
@@ -132,6 +204,10 @@
 
 
             
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
@@ -156,36 +232,106 @@
 <h1 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h1><h3 id="一-Bootstrap框架整合进CI"><a href="#一-Bootstrap框架整合进CI" class="headerlink" title="(一) Bootstrap框架整合进CI"></a>(一) Bootstrap框架整合进CI</h3><p>Bootstrap：简洁、直观、强悍的前端开发框架，让web开发更迅速、简单。</p>
 <p>CI：CodeIgniter 是一个小巧但功能强大的 PHP 框架，作为一个简单而“优雅”的工具包，它可以为开发者们建立功能完善的 Web 应用程序。</p>
 <p>单从快速开发来说的话，bootstrap+ci确实是很方便，毕竟都是快速开发，而且很容易上手。但由于博主擅长的是j2ee，因此也不过多解释了。严格意义上来说，这两个框架确实只是会用（当然前提是给看官方文档哈哈）.</p>
-<h4 id="官网下载ci环境包"><a href="#官网下载ci环境包" class="headerlink" title="官网下载ci环境包"></a>官网下载ci环境包</h4><p>下载下来的ci环境包内容如下：<br><img src="http://img.blog.csdn.net/20161229225623292?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<h4 id="官网下载ci环境包"><a href="#官网下载ci环境包" class="headerlink" title="官网下载ci环境包"></a>官网下载ci环境包</h4><p>下载下来的ci环境包内容如下：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20161229225623292?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
 <h4 id="ci框架的基本配置"><a href="#ci框架的基本配置" class="headerlink" title="ci框架的基本配置"></a>ci框架的基本配置</h4><ol>
 <li>解压缩安装包</li>
 <li>将 CodeIgniter 文件夹及里面的文件上传到服务器，通常 index.php 文件将位于网站的根目录（ps：博主仅为了练手，因此将其部署于本地服务器，即xampp-htdocs）</li>
-<li><p>使用文本编辑器打开 application/config/config.php 文件设置你网站的根 URL<br><img src="http://img.blog.csdn.net/20161229230748496?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<li><p>使用文本编辑器打开 application/config/config.php 文件设置你网站的根 URL</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20161229230748496?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 </li>
-<li><p>配置数据库参数，打开application/config/database.php<br><img src="http://img.blog.csdn.net/20161229231026060?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<li><p>配置数据库参数，打开application/config/database.php</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20161229231026060?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 </li>
 </ol>
 <h4 id="初步整合"><a href="#初步整合" class="headerlink" title="初步整合"></a>初步整合</h4><ol>
 <li>准备好bootstrap demo</li>
-<li>将demo的html页面置于ci框架的view层<br><img src="http://img.blog.csdn.net/20161230111919590?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></li>
-<li><p>将js，css，font等资源文件置于_static目录下<br><img src="http://img.blog.csdn.net/20161230112039179?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<li>将demo的html页面置于ci框架的view层<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20161230111919590?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></li>
+<li><p>将js，css，font等资源文件置于_static目录下</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20161230112039179?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 </li>
 <li><p>修改下主页面css和js的link链接，完成基本的整合</p>
 </li>
 </ol>
 <h3 id="二-系统设计"><a href="#二-系统设计" class="headerlink" title="(二) 系统设计"></a>(二) 系统设计</h3><h4 id="界面UI"><a href="#界面UI" class="headerlink" title="界面UI"></a>界面UI</h4><p>首先，在view层分两文件夹，分别为student和teacher,用于存放各自相应的php文件。</p>
-<p><img src="http://img.blog.csdn.net/20161230205159288?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20161230205159288?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h4 id="以学生端为示例"><a href="#以学生端为示例" class="headerlink" title="以学生端为示例"></a>以学生端为示例</h4><p>中间的内容显示内嵌了iframe.</p>
-<p><img src="http://img.blog.csdn.net/20161230205507743?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20161230205507743?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p><strong>Choosable页面</strong></p>
-<p><img src="http://img.blog.csdn.net/20161230211326565?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
-<p><img src="http://img.blog.csdn.net/20161230211410565?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20161230211326565?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20161230211410565?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>ps：选题按钮还没添加控制器.</p>
 <p><strong>Selected页面</strong></p>
-<p><img src="http://img.blog.csdn.net/20161230211556129?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20161230211556129?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>ps:留言功能还未完善.</p>
 <p><strong>Data页面</strong></p>
-<p><img src="http://img.blog.csdn.net/20161230211727535?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>ps:下载文件功能还未完善.</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20161230211727535?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>ps:下载文件功能还未完善.</p>
 <h5 id="系统基本思路"><a href="#系统基本思路" class="headerlink" title="系统基本思路"></a>系统基本思路</h5><ol>
 <li>默认进系统的为Notice页面，即通过控制器load Notice页面.</li>
 <li>接着触发Choosable页面，而这过程先是action至该页面的控制器，然后传Choosable所需的数据，并以数组的形式返回，接着在目标页面（即Choosable页面）遍历即可</li>
@@ -193,7 +339,14 @@
 </ol>
 <h5 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h5><ol>
 <li>务必按照ci的编程规范编写，否则易出bug</li>
-<li>加载数据库，使用url helper以及session等功能，记得在构造函数那儿定义好，这样即可在控制器的全局使用<br><img src="http://img.blog.csdn.net/20161230211047278?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></li>
+<li>加载数据库，使用url helper以及session等功能，记得在构造函数那儿定义好，这样即可在控制器的全局使用<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20161230211047278?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSm9yeXVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+</li>
 </ol>
 <h1 id="系统源码"><a href="#系统源码" class="headerlink" title="系统源码"></a>系统源码</h1><p>详细的源码可访问博主Github：<a href="https://github.com/Joryun/BiShe.git" target="_blank" rel="external">毕业设计选题系统</a></p>
 <h1 id="系统总结"><a href="#系统总结" class="headerlink" title="系统总结"></a>系统总结</h1><p>博主三天捣鼓的简单整合系统，基本上完成了大致的整合以及一些基本功能，由于时间有限，后续的一些基本功能都没加上，但实现的思路都是类似的。这次为了应付课程设计也是拼了，随便捣鼓了这些原本不是很熟悉的东西，但总体来说还是挺好玩的。有兴趣加入更多模块和安全机制或功能的朋友大可以尝试下，博主仅在玩玩儿哈哈~~~</p>
@@ -209,18 +362,28 @@
         <blockquote class="post-copyright">
     <div class="content">
         
+<span class="post-time">
+    Last updated: <time datetime="2017-05-28T08:27:43.000Z" itemprop="dateUpdated">2017-05-28 16:27:43</time>
+</span><br>
 
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2016/12/31/bootstrap-ci-demo/" target="_blank" rel="external">http://joryun.com/2016/12/31/bootstrap-ci-demo/</a>
         
     </div>
     <footer>
         <a href="http://joryun.com">
-            <img src="/" alt="Joryun">
+            <img src="/img/avatar.jpg" alt="Joryun">
             Joryun
         </a>
     </footer>
 </blockquote>
 
         
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
 
 
         <div class="post-footer">
@@ -229,6 +392,51 @@
 
 
             
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://joryun.com/2016/12/31/bootstrap-ci-demo/&title=《与Bootstrap和CI框架纠缠的三天》 — 刘家源&pic=http://joryun.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://joryun.com/2016/12/31/bootstrap-ci-demo/&title=《与Bootstrap和CI框架纠缠的三天》 — 刘家源&source=前言如题，博主为交附个课程设计，只得用三天时间运用不熟悉的语言完成一个不靠谱的网站开发。一直以来，前台都是自己的硬伤，在平时很少接触bootstrap等优..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://joryun.com/2016/12/31/bootstrap-ci-demo/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《与Bootstrap和CI框架纠缠的三天》 — 刘家源&url=http://joryun.com/2016/12/31/bootstrap-ci-demo/&via=http://joryun.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://joryun.com/2016/12/31/bootstrap-ci-demo/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
 
 
         </div>
@@ -274,6 +482,32 @@
 
 </article>
 
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
 
 
 </div>
@@ -281,16 +515,25 @@
         <footer class="footer">
     <div class="top">
         
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
 
         <p>
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>Joryun &copy; 2017</span>
+        <p><span>Joryun &copy; 2016 - 2017</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
@@ -304,21 +547,106 @@
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://joryun.com/2016/12/31/bootstrap-ci-demo/&title=《与Bootstrap和CI框架纠缠的三天》 — 刘家源&pic=http://joryun.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://joryun.com/2016/12/31/bootstrap-ci-demo/&title=《与Bootstrap和CI框架纠缠的三天》 — 刘家源&source=前言如题，博主为交附个课程设计，只得用三天时间运用不熟悉的语言完成一个不靠谱的网站开发。一直以来，前台都是自己的硬伤，在平时很少接触bootstrap等优..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://joryun.com/2016/12/31/bootstrap-ci-demo/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《与Bootstrap和CI框架纠缠的三天》 — 刘家源&url=http://joryun.com/2016/12/31/bootstrap-ci-demo/&via=http://joryun.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://joryun.com/2016/12/31/bootstrap-ci-demo/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMUlEQVR42u3aQU7DQAwF0N7/0mWLRNN82wRR52WFQjqZVyRjj/14xNfz4Hr/zM/775/8/tvHFRcGBsbHMp5vr+SZfFtHWzx6Jn8LBgbGHRi9pd/fyYN1ss7JnjEwMDDipauBO38vBgYGxmS5PIxOAjcGBgZGEih7iWA1uby8FsfAwPhARn7q/vc/X9LfwMDA+CjG5Lg/b3D2PlvYFQYGxmpGHuAmm5sE8cL6GBgYSxm/9bLe0X/vAO7C7wwDA+NfMvJgenQnLzjz1mbenHjxfwMDA+NmjN4RfPLi5H51gAwDA2MrozrokCeR1UQwf9eLHWJgYNyM0RuMyFsC1SGMKA3FwMBYzUjK1Lzd2DsNqwb6kxYCBgbGUkaeulVTw5xdTRNPanEMDIx1jOrwRHIQ1muIJiMXhWwXAwNjEWMy7tALspNGZqEjgYGBsYjRO46vhsheGtpsVGBgYCxizDcxCbjVr68534GBgbGC0TtK67Uk58XqYfmKgYGxlDFvLlapPWT5b4KBgbGacV1Rmn9xzdYmBgbGLRmTUYy8tdBrP5RLWQwMjEWMPO2rDnI1N5d/CgMDYynjWbx67YE8ocxT1ZOkEAMDYxGjGuYmYXRSJJdnRjAwMNYx5uMR1ZK1d8R2siYGBsYNGHng6zU+e+3Pci2OgYGB0So1kwJ4EuIxMDAweqnhJH/rJa8YGBh3YOTNgF6bs1e4FgpgDAyM1Yxq6Zi0MPOEMh/XKB/AYWBgbGB8ATEMslBTKY1NAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
     <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
-var BLOG = { ROOT: '/', SHARE: , REWARD: false };
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
 </script>
 
-<script src="/js/main.min.js?v=1.6.13"></script>
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
 
 
 
 
 
 
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
 
 
 
