@@ -13,7 +13,7 @@
     
     
     
-    <title>谈谈Java对象序列化 | 刘家源 | TO BE IS TO DO</title>
+    <title>谈谈Java对象序列化 | Joryun&#39;s Blog | TO BE IS TO DO</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
@@ -25,7 +25,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="谈谈Java对象序列化">
 <meta property="og:url" content="http://joryun.com/2017/05/28/java-object-serialization/index.html">
-<meta property="og:site_name" content="刘家源">
+<meta property="og:site_name" content="Joryun&#39;s Blog">
 <meta property="og:description" content="前言创建对象时，只要我们需要，便会一直存在。而若是程序终止，那无论如何它都不会继续存在。但某些情况下，如果对象能够在程序不运行时仍能保存其信息，那将非常有用。这样，在下次运行程序时，该对象将被重建并且拥有的信息与在程序上次运行时它所拥有的信息相同。此时，对象序列化便隆重登场了…">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2929536-5b62dec1e427308b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -35,7 +35,7 @@
 <meta name="twitter:description" content="前言创建对象时，只要我们需要，便会一直存在。而若是程序终止，那无论如何它都不会继续存在。但某些情况下，如果对象能够在程序不运行时仍能保存其信息，那将非常有用。这样，在下次运行程序时，该对象将被重建并且拥有的信息与在程序上次运行时它所拥有的信息相同。此时，对象序列化便隆重登场了…">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2929536-5b62dec1e427308b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
     
-        <link rel="alternate" type="application/atom+xml" title="刘家源" href="/atom.xml">
+        <link rel="alternate" type="application/atom+xml" title="Joryun&#39;s Blog" href="/atom.xml">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
@@ -60,7 +60,7 @@
           <img src="/img/avatar.jpg">
         </a>
         <hgroup class="introduce">
-          <h5 class="nickname">Joryun</h5>
+          <h5 class="nickname">刘家源</h5>
           <a href="mailto:m18814128406@163.com" title="m18814128406@163.com" class="mail">m18814128406@163.com</a>
         </hgroup>
       </div>
@@ -78,28 +78,35 @@
             <li class="waves-block waves-effect">
               <a href="/archives"  >
                 <i class="icon icon-lg icon-archives"></i>
-                Archives
+                归档
               </a>
             </li>
         
             <li class="waves-block waves-effect">
               <a href="/tags"  >
                 <i class="icon icon-lg icon-tags"></i>
-                Tags
+                标签
               </a>
             </li>
         
             <li class="waves-block waves-effect">
               <a href="/categories"  >
                 <i class="icon icon-lg icon-th-list"></i>
-                Categories
+                分类
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="https://github.com/Joryun" target="_blank" >
+              <a href="https://github.com/yscoder" target="_blank" >
                 <i class="icon icon-lg icon-github"></i>
                 Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
               </a>
             </li>
         
@@ -127,7 +134,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="搜尋">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -250,7 +257,7 @@
     <div class="content">
         
 <span class="post-time">
-    最後更新時間：<time datetime="2017-05-28T09:36:20.000Z" itemprop="dateUpdated">2017-05-28 17:36:20</time>
+    Last updated: <time datetime="2017-05-28T09:36:20.000Z" itemprop="dateUpdated">2017-05-28 17:36:20</time>
 </span><br>
 
 
@@ -260,8 +267,8 @@
     </div>
     <footer>
         <a href="http://joryun.com">
-            <img src="/img/avatar.jpg" alt="Joryun">
-            Joryun
+            <img src="/img/avatar.jpg" alt="刘家源">
+            刘家源
         </a>
     </footer>
 </blockquote>
@@ -285,7 +292,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://joryun.com/2017/05/28/java-object-serialization/&title=《谈谈Java对象序列化》 — 刘家源&pic=http://joryun.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://joryun.com/2017/05/28/java-object-serialization/&title=《谈谈Java对象序列化》 — Joryun's Blog&pic=http://joryun.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -295,7 +302,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://joryun.com/2017/05/28/java-object-serialization/&title=《谈谈Java对象序列化》 — 刘家源&source=前言创建对象时，只要我们需要，便会一直存在。而若是程序终止，那无论如何它都不会继续存在。但某些情况下，如果对象能够在程序不运行时仍能保存其信息，那将非常有..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://joryun.com/2017/05/28/java-object-serialization/&title=《谈谈Java对象序列化》 — Joryun's Blog&source=前言创建对象时，只要我们需要，便会一直存在。而若是程序终止，那无论如何它都不会继续存在。但某些情况下，如果对象能够在程序不运行时仍能保存其信息，那将非常有..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -305,7 +312,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《谈谈Java对象序列化》 — 刘家源&url=http://joryun.com/2017/05/28/java-object-serialization/&via=http://joryun.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《谈谈Java对象序列化》 — Joryun's Blog&url=http://joryun.com/2017/05/28/java-object-serialization/&via=http://joryun.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -330,7 +337,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/09/18/java8-lambda/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Java8：Lambda表达式</h4>
+      </a>
+    </div>
   
 
   
@@ -409,11 +423,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>本部落格係採用<a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh_TW">創用 CC 姓名標示 4.0 國際 授權條款授權</a></span>
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>Joryun &copy; 2016 - 2017</span>
+        <p><span>刘家源 &copy; 2015 - 2017</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
@@ -431,7 +445,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://joryun.com/2017/05/28/java-object-serialization/&title=《谈谈Java对象序列化》 — 刘家源&pic=http://joryun.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://joryun.com/2017/05/28/java-object-serialization/&title=《谈谈Java对象序列化》 — Joryun's Blog&pic=http://joryun.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -441,7 +455,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://joryun.com/2017/05/28/java-object-serialization/&title=《谈谈Java对象序列化》 — 刘家源&source=前言创建对象时，只要我们需要，便会一直存在。而若是程序终止，那无论如何它都不会继续存在。但某些情况下，如果对象能够在程序不运行时仍能保存其信息，那将非常有..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://joryun.com/2017/05/28/java-object-serialization/&title=《谈谈Java对象序列化》 — Joryun's Blog&source=前言创建对象时，只要我们需要，便会一直存在。而若是程序终止，那无论如何它都不会继续存在。但某些情况下，如果对象能够在程序不运行时仍能保存其信息，那将非常有..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -451,7 +465,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《谈谈Java对象序列化》 — 刘家源&url=http://joryun.com/2017/05/28/java-object-serialization/&via=http://joryun.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《谈谈Java对象序列化》 — Joryun's Blog&url=http://joryun.com/2017/05/28/java-object-serialization/&via=http://joryun.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
