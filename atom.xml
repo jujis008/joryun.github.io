@@ -256,11 +256,11 @@
       <category term="Coding" scheme="http://joryun.com/categories/Coding/"/>
     
     
-      <category term="php" scheme="http://joryun.com/tags/php/"/>
-    
       <category term="bootstrap" scheme="http://joryun.com/tags/bootstrap/"/>
     
       <category term="codeigniter" scheme="http://joryun.com/tags/codeigniter/"/>
+    
+      <category term="php" scheme="http://joryun.com/tags/php/"/>
     
   </entry>
   
@@ -309,11 +309,11 @@
       <category term="Coding" scheme="http://joryun.com/categories/Coding/"/>
     
     
+      <category term="php" scheme="http://joryun.com/tags/php/"/>
+    
       <category term="java" scheme="http://joryun.com/tags/java/"/>
     
       <category term="webservice" scheme="http://joryun.com/tags/webservice/"/>
-    
-      <category term="php" scheme="http://joryun.com/tags/php/"/>
     
   </entry>
   
