@@ -16,6 +16,8 @@
     <title>webservice:(1)新手搭建调用webservice那些坑 | Joryun&#39;s Blog | 在最好的年纪做最对的事</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
+    <meta name="theme-color" content="#3F51B5">
+    
     
     <meta name="keywords" content="php,java,webservice">
     <meta name="description" content="前言今天主要和大家分享搭建java版webservice，以及php调用webservice遇到的一些坑。博客内容大部分纯手打，纯亲测。注：网上有很多使用Eclipse构建webservice的教程，不过配置较麻烦，而且最后可能还访问不了。因此，此博客采用MyEclipse搭建。需注意一点，MyEclipse10及以下的支持不了pattern库，因此发布的项目如果包含Pattern则无法支持，这也">
@@ -59,8 +61,8 @@
     
         <link rel="alternate" type="application/atom+xml" title="Joryun&#39;s Blog" href="/atom.xml">
     
-    <link rel="shortcut icon" href="/">
-    <link rel="stylesheet" href="/css/style.css?v=1.6.13">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
     <script>window.lazyScripts=[]</script>
 
     <!-- custom head -->
@@ -71,15 +73,15 @@
 <body>
     <div id="loading" class="active"></div>
 
-    <aside id="menu"  >
+    <aside id="menu" class="hide" >
   <div class="inner flex-row-vertical">
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
     </a>
-    <div class="brand-wrap" style="background-image:url(/)">
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
       <div class="brand">
         <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/">
+          <img src="/img/avatar.jpg">
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">刘家源</h5>
@@ -89,6 +91,41 @@
     </div>
     <div class="scroll-wrap flex-col">
       <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Joryun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://weibo.com/3961955479/profile?topnav=1&wvr=6" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
         
       </ul>
     </div>
@@ -103,6 +140,20 @@
         </a>
         <div class="flex-col header-title ellipsis">webservice:(1)新手搭建调用webservice那些坑</div>
         
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
         
     </div>
 </header>
@@ -131,6 +182,13 @@
 
 <div class="container body-wrap">
     
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#开发环境：MyEclipse2014，JAX-WS构建（容易使用），Tomcat-7"><span class="post-toc-number">1.0.0.1.</span> <span class="post-toc-text">开发环境：MyEclipse2014，JAX-WS构建（容易使用），Tomcat 7</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#何为WebService？"><span class="post-toc-number">1.0.0.2.</span> <span class="post-toc-text">何为WebService？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#关键的技术和规则"><span class="post-toc-number">1.0.0.3.</span> <span class="post-toc-text">关键的技术和规则</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#XML"><span class="post-toc-number">1.0.0.4.</span> <span class="post-toc-text">XML</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#SOAP"><span class="post-toc-number">1.0.0.5.</span> <span class="post-toc-text">SOAP</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#WSDL"><span class="post-toc-number">1.0.0.6.</span> <span class="post-toc-text">WSDL</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#UDDI"><span class="post-toc-number">1.0.0.7.</span> <span class="post-toc-text">UDDI</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#具体实例"><span class="post-toc-number">2.</span> <span class="post-toc-text">具体实例</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一-开始搭建webservice"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">(一) 开始搭建webservice</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#前提"><span class="post-toc-number">2.1.0.1.</span> <span class="post-toc-text">前提</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#编码"><span class="post-toc-number">2.1.0.2.</span> <span class="post-toc-text">编码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-创建发布webservice"><span class="post-toc-number">2.1.0.2.1.</span> <span class="post-toc-text">1. 创建发布webservice</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2-然后新建一类文件UserInfo-java"><span class="post-toc-number">2.1.0.2.2.</span> <span class="post-toc-text">2. 然后新建一类文件UserInfo.java</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#3-接下来发布web-service"><span class="post-toc-number">2.1.0.2.3.</span> <span class="post-toc-text">3. 接下来发布web service</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#4-选择从java类创建web-service"><span class="post-toc-number">2.1.0.2.4.</span> <span class="post-toc-text">4. 选择从java类创建web service</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#5-选择访问的java-class"><span class="post-toc-number">2.1.0.2.5.</span> <span class="post-toc-text">5. 选择访问的java class</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#6-生成WSDL（WSDL以上有介绍，不懂可以回去看）"><span class="post-toc-number">2.1.0.2.6.</span> <span class="post-toc-text">6. 生成WSDL（WSDL以上有介绍，不懂可以回去看）</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#7-发布后的项目结构如下"><span class="post-toc-number">2.1.0.2.7.</span> <span class="post-toc-text">7. 发布后的项目结构如下</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#二-配置Tomcat"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">(二) 配置Tomcat</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#前提-1"><span class="post-toc-number">2.2.0.1.</span> <span class="post-toc-text">前提</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#过程"><span class="post-toc-number">2.2.0.2.</span> <span class="post-toc-text">过程</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#部署项目并启动Tomcat服务器"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">部署项目并启动Tomcat服务器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#添加JAX-WS库"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">添加JAX-WS库</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#测试webservice"><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">测试webservice</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PHP调用webservice"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">PHP调用webservice</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#说明"><span class="post-toc-number">2.3.0.1.</span> <span class="post-toc-text">说明</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-引入nusoap-php，调用call-方法"><span class="post-toc-number">2.3.0.2.</span> <span class="post-toc-text">1. 引入nusoap.php，调用call()方法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-php5自带函数测试，classMap方式传值"><span class="post-toc-number">2.3.0.3.</span> <span class="post-toc-text">2. php5自带函数测试，classMap方式传值</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">3.</span> <span class="post-toc-text">总结</span></a></li></ol>
+        </nav>
+    </aside>
+    
 <article id="post-build-webservice"
   class="post-article article-type-post fade" itemprop="blogPost">
 
@@ -145,6 +203,10 @@
 
 
             
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
@@ -360,12 +422,18 @@
         <blockquote class="post-copyright">
     <div class="content">
         
+<span class="post-time">
+    Last updated: <time datetime="2017-05-28T02:49:18.000Z" itemprop="dateUpdated">2017-05-28 10:49:18</time>
+</span><br>
 
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2016/05/26/build-webservice/" target="_blank" rel="external">http://joryun.com/2016/05/26/build-webservice/</a>
         
     </div>
     <footer>
         <a href="http://joryun.com">
-            <img src="/" alt="刘家源">
+            <img src="/img/avatar.jpg" alt="刘家源">
             刘家源
         </a>
     </footer>
@@ -380,6 +448,51 @@
 
 
             
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://joryun.com/2016/05/26/build-webservice/&title=《webservice:(1)新手搭建调用webservice那些坑》 — Joryun's Blog&pic=http://joryun.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://joryun.com/2016/05/26/build-webservice/&title=《webservice:(1)新手搭建调用webservice那些坑》 — Joryun's Blog&source=前言今天主要和大家分享搭建java版webservice，以及php调用webservice遇到的一些坑。博客内容大部分纯手打，纯亲测。注：网上有很多使用..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://joryun.com/2016/05/26/build-webservice/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《webservice:(1)新手搭建调用webservice那些坑》 — Joryun's Blog&url=http://joryun.com/2016/05/26/build-webservice/&via=http://joryun.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://joryun.com/2016/05/26/build-webservice/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
 
 
         </div>
@@ -425,6 +538,15 @@
         <footer class="footer">
     <div class="top">
         
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
 
         <p>
             
@@ -434,7 +556,7 @@
         </p>
     </div>
     <div class="bottom">
-        <p><span>刘家源 &copy; 2017</span>
+        <p><span>刘家源 &copy; 2015 - 2017</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
@@ -448,21 +570,106 @@
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://joryun.com/2016/05/26/build-webservice/&title=《webservice:(1)新手搭建调用webservice那些坑》 — Joryun's Blog&pic=http://joryun.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://joryun.com/2016/05/26/build-webservice/&title=《webservice:(1)新手搭建调用webservice那些坑》 — Joryun's Blog&source=前言今天主要和大家分享搭建java版webservice，以及php调用webservice遇到的一些坑。博客内容大部分纯手打，纯亲测。注：网上有很多使用..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://joryun.com/2016/05/26/build-webservice/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《webservice:(1)新手搭建调用webservice那些坑》 — Joryun's Blog&url=http://joryun.com/2016/05/26/build-webservice/&via=http://joryun.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://joryun.com/2016/05/26/build-webservice/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKklEQVR42u3aQY7DIAwF0N7/0p3tSBX02zAjBR6rqE0DLwsX27xe8XgPxu9vP+/8fML8evTJtoGBgfFYxns6RvfMFz2fZfTt/KWM1oCBgXEPo/foPOD2vk3WhoGBgbHrOg/WGBgYGOuM+SdJaM5hGBgYGNUkdn0ztxKUt+XiGBgYD2TkVff/v/6T/gYGBsajGO/iSJLPfGuYbDGjVWFgYBzNyANcb0PWO3LRXA8GBsbRjDxoVg9MJKG5GqAjKgYGxkGMZLJqclttDKyU/IY7XAwMjOMY1eC7XvRPEuDCjBgYGBcweiW2veW2JRgGBsYFjJWeYF6MS5bVezIGBsY9jHyh+XKrm8W8nDdMYjEwMI5j5LfmkyVhND921gzEGBgYBzF6jYHkzmpToYrZ0MLEwMB4CCMveK2ntdVGZvk1YWBgXMOYT9xLaKtJcrUVgYGBcTYjKaslm7zqb1eOX2BgYNzG6CWZvaS391LyVigGBsbZjDzk5QW4ZMOXb/6iNgMGBsY1jJXjDsmvkuv8X+JLLo6BgXEBI28Y5Mcseq+p2RjAwMA4jrErpewd/1pPbjEwME5l9A5SVJuUeXO011LFwMA4m5GPvHBWTXTz+/NWBAYGxnmMXohcSWWrhzYwMDAwqgX9lSblLiQGBgZGNWnsNRKSFkK56IaBgYHRCsTlTV6xqIeBgXEPI5m42iSobv6SWYbPxMDAOJrRSx3Xj38Vjny1to8YGBhHMH4AmF+Jh1xnoTcAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
     <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
-var BLOG = { ROOT: '/', SHARE: , REWARD: false };
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
 
 
 </script>
 
-<script src="/js/main.min.js?v=1.6.13"></script>
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
 
 
 
 
 
 
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '别跑呀！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
 
 
 

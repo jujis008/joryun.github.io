@@ -16,6 +16,8 @@
     <title>Spring全家桶:(1)Spring JMS + ActiveMQ起步 | Joryun&#39;s Blog | 在最好的年纪做最对的事</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
+    <meta name="theme-color" content="#3F51B5">
+    
     
     <meta name="keywords" content="java,spring,jms,avtivemq">
     <meta name="description" content="前言说明开发环境：IDEA，Active MQ 项目构建：Maven 软件环境：Spring，Spring JMS，Active MQ 项目描述：Spring JMS与Active MQ进行通讯 目的入门Spring JMS、Active MQ，使用Spring JMS向Active MQ的Message Queue发消息和读消息。">
@@ -37,8 +39,8 @@
     
         <link rel="alternate" type="application/atom+xml" title="Joryun&#39;s Blog" href="/atom.xml">
     
-    <link rel="shortcut icon" href="/">
-    <link rel="stylesheet" href="/css/style.css?v=1.6.13">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
     <script>window.lazyScripts=[]</script>
 
     <!-- custom head -->
@@ -49,15 +51,15 @@
 <body>
     <div id="loading" class="active"></div>
 
-    <aside id="menu"  >
+    <aside id="menu" class="hide" >
   <div class="inner flex-row-vertical">
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
     </a>
-    <div class="brand-wrap" style="background-image:url(/)">
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
       <div class="brand">
         <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/">
+          <img src="/img/avatar.jpg">
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">刘家源</h5>
@@ -67,6 +69,41 @@
     </div>
     <div class="scroll-wrap flex-col">
       <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Joryun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://weibo.com/3961955479/profile?topnav=1&wvr=6" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
         
       </ul>
     </div>
@@ -81,6 +118,20 @@
         </a>
         <div class="flex-col header-title ellipsis">Spring全家桶:(1)Spring JMS + ActiveMQ起步</div>
         
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
         
     </div>
 </header>
@@ -109,6 +160,13 @@
 
 <div class="container body-wrap">
     
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#说明"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">说明</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#目的"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">目的</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#编码"><span class="post-toc-number">2.</span> <span class="post-toc-text">编码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-开启Active-MQ服务"><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">1. 开启Active MQ服务</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-使用maven导入依赖库"><span class="post-toc-number">2.0.2.</span> <span class="post-toc-text">2. 使用maven导入依赖库</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-创建application-properties，封装Message-Queue的配置"><span class="post-toc-number">2.0.3.</span> <span class="post-toc-text">3. 创建application.properties，封装Message Queue的配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-JMS全局配置，配置与ActiveMQ的连接"><span class="post-toc-number">2.0.4.</span> <span class="post-toc-text">4. JMS全局配置，配置与ActiveMQ的连接</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-创建MessageSender，提供发送消息的服务"><span class="post-toc-number">2.0.5.</span> <span class="post-toc-text">5. 创建MessageSender，提供发送消息的服务</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-配置一个Listener来监听和处理当前的Message-Queue"><span class="post-toc-number">2.0.6.</span> <span class="post-toc-text">6. 配置一个Listener来监听和处理当前的Message Queue</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-创建MessageListener的具体实现"><span class="post-toc-number">2.0.7.</span> <span class="post-toc-text">7. 创建MessageListener的具体实现</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-创建两个测试类，一个用于发送消息到ActiveMQ的MessageQueue中，一个用于从MessageQueue中读取消息"><span class="post-toc-number">2.0.8.</span> <span class="post-toc-text">8. 创建两个测试类，一个用于发送消息到ActiveMQ的MessageQueue中，一个用于从MessageQueue中读取消息</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-测试：运行SenderApp-java，在控制台输入消息，接着运行ReceiverApp-java，结果如下"><span class="post-toc-number">2.0.9.</span> <span class="post-toc-text">9. 测试：运行SenderApp.java，在控制台输入消息，接着运行ReceiverApp.java，结果如下</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">3.</span> <span class="post-toc-text">总结</span></a></li></ol>
+        </nav>
+    </aside>
+    
 <article id="post-spring-jms-activemq-start"
   class="post-article article-type-post fade" itemprop="blogPost">
 
@@ -123,6 +181,10 @@
 
 
             
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
@@ -191,12 +253,18 @@
         <blockquote class="post-copyright">
     <div class="content">
         
+<span class="post-time">
+    Last updated: <time datetime="2017-05-28T02:53:02.000Z" itemprop="dateUpdated">2017-05-28 10:53:02</time>
+</span><br>
 
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/05/21/spring-jms-activemq-start/" target="_blank" rel="external">http://joryun.com/2017/05/21/spring-jms-activemq-start/</a>
         
     </div>
     <footer>
         <a href="http://joryun.com">
-            <img src="/" alt="刘家源">
+            <img src="/img/avatar.jpg" alt="刘家源">
             刘家源
         </a>
     </footer>
@@ -211,6 +279,54 @@
 
 
             
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://joryun.com/2017/05/21/spring-jms-activemq-start/&title=《Spring全家桶:(1)Spring JMS + ActiveMQ起步》 — Joryun's Blog&pic=http://joryun.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://joryun.com/2017/05/21/spring-jms-activemq-start/&title=《Spring全家桶:(1)Spring JMS + ActiveMQ起步》 — Joryun's Blog&source=前言说明开发环境：IDEA，Active MQ
+项目构建：Maven
+软件环境：Spring，Spring JMS，Active MQ
+项目描述：Spri..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://joryun.com/2017/05/21/spring-jms-activemq-start/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Spring全家桶:(1)Spring JMS + ActiveMQ起步》 — Joryun's Blog&url=http://joryun.com/2017/05/21/spring-jms-activemq-start/&via=http://joryun.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://joryun.com/2017/05/21/spring-jms-activemq-start/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
 
 
         </div>
@@ -263,6 +379,15 @@
         <footer class="footer">
     <div class="top">
         
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
 
         <p>
             
@@ -272,7 +397,7 @@
         </p>
     </div>
     <div class="bottom">
-        <p><span>刘家源 &copy; 2017</span>
+        <p><span>刘家源 &copy; 2015 - 2017</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
@@ -286,21 +411,109 @@
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://joryun.com/2017/05/21/spring-jms-activemq-start/&title=《Spring全家桶:(1)Spring JMS + ActiveMQ起步》 — Joryun's Blog&pic=http://joryun.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://joryun.com/2017/05/21/spring-jms-activemq-start/&title=《Spring全家桶:(1)Spring JMS + ActiveMQ起步》 — Joryun's Blog&source=前言说明开发环境：IDEA，Active MQ
+项目构建：Maven
+软件环境：Spring，Spring JMS，Active MQ
+项目描述：Spri..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://joryun.com/2017/05/21/spring-jms-activemq-start/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Spring全家桶:(1)Spring JMS + ActiveMQ起步》 — Joryun's Blog&url=http://joryun.com/2017/05/21/spring-jms-activemq-start/&via=http://joryun.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://joryun.com/2017/05/21/spring-jms-activemq-start/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKElEQVR42u3ay2rkMBAF0P7/n+7AMIuBEM+9JXfA0tEqNI6l40Wherxe8Xr/Wd9/+XfNnvzp+dcnFgYGxmMZ78uVP5Mf5frow30xMDAOYFxvdh1Yk2B6fYjrN0efCQMDA6OkJsdqn8fAwMBoGdf/lVzv2rCOgYGBsbLZLDVtS3K35eIYGBgPZLSNgd/8+4P9DQwMjIcw3uVqqdeBdf08f9+DgYGxNaMdm2iL/rMGZx5dX7PpDwwMjAcy8tQ0D5crjc8b2gMYGBhbM9aL+0kBri29FTwMDIztGOvF/dmFMi+uRSQMDIwDGJ9oT7Zpav48BgbGmYx23CFPfe+6vf7nPBgYGFszVkavZg3L9qPkZ8DAwDiBMRsCay+Fs0tnMWyBgYGxHWNW9srbmS1m2PLEwMDYmpH0NpPLYvJ7Pswx3BcDA2NTxqx8nxfX6qAZB3oMDIxzGLPS2KzluZIkF6VADAyMYxh5CWy2ZTI6lpfnMDAwTmPMLnPt2ER+icyTZAwMjF0ZeUBsk8l28GIlecbAwMDIC/TXl8K7+hhRiQ0DA2MjRj4MkTc48wBapKYxGAMDYz/Gu1zrSWneVCj2xcDA2JrRjlmsHCgP5Xl6jIGBcQ4jD7JtWa1NgPNman1BxMDA2IIxm1vIRyvaD9Qm2BgYGBjJIWaBO0+Ybwu4GBgYRzJWGgDt2zAwME5m5IGyHZWYwfKwjoGBcQJjKXUsJztWQvASAAMD46mML39R9RvemlO9AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
     <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
-var BLOG = { ROOT: '/', SHARE: , REWARD: false };
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
 
 
 </script>
 
-<script src="/js/main.min.js?v=1.6.13"></script>
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
 
 
 
 
 
 
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '别跑呀！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
 
 
 
